@@ -11,22 +11,20 @@ exports.index = function(req, res){
  */
 
 exports.events = function(req, res){
-  var Moment = require('moment');
-  var Mongo = require('mongodb');
 
-  var from = Moment.unix(req.query.from);
-  var to = Moment.unix(req.query.to);
+  var moment = require('moment'),
+      mongo  = require('mongodb');
+
+  var from = moment.unix(req.query.from),
+      to   = moment.unix(req.query.to);
 
   console.log("from: %s, to: %s", from, to);
 
   var query = {
-    recorded_at: {
-      '$gte': from.toDate(),
-      '$lt' : to.toDate()
-    }
+    recorded_at: { '$gte': from.toDate(), '$lt' : to.toDate() }
   };
 
-  var db = new Mongo.Db('projectrjs', new Mongo.Server('localhost', 27017));
+  var db = new mongo.Db('projectrjs', new mongo.Server('localhost', 27017));
 
   db.open(function() {
     db.collection('events', function(err, events_collection) {
