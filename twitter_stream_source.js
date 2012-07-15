@@ -32,7 +32,6 @@ exports.twitter_stream_source = (function() {
   var start_streaming = function(endpoint, params) {
     Twitter.stream(endpoint, params, function(stream) {
       stream.on('error', function(data, err) {
-        // This is being called often... too often.
         console.log("++ Twitter -- ERROR -- " + err);
       });
       stream.on('data', function(data) {

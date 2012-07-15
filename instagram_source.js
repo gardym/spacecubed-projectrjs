@@ -58,6 +58,7 @@ exports.instagram_source = (function() {
   };
 
   var poll_instagram = function(lat, lng) {
+    // Delay instagrams by an hour
     var start_time = Moment().subtract('hours', 1).subtract('seconds', 30).unix();
     var end_time = Moment().subtract('hours', 1).unix();
 
