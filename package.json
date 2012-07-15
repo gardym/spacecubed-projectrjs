@@ -1,0 +1,17 @@
+{
+  "author": "ThoughtWorkers",
+  "name": "projectrjs",
+  "description": "Spacecubed-projectr(js)",
+  "version": "0.0.0",
+  "dependencies": {
+    "instagram-node-lib": "*",
+    "moment": "*",
+    "mongodb": "*",
+    "ntwitter": "*"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
