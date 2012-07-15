@@ -1,5 +1,5 @@
 {
-  "author": "ThoughtWorkers",
+  "author": "Mike Gardiner & Co-conspirators of ThoughtWork",
   "name": "projectrjs",
   "description": "Spacecubed-projectr(js)",
   "version": "0.0.0",
@@ -7,7 +7,9 @@
     "instagram-node-lib": "*",
     "moment": "*",
     "mongodb": "*",
-    "ntwitter": "*"
+    "ntwitter": "*",
+    "express": "*",
+    "jade": "*"
   },
   "devDependencies": {},
   "optionalDependencies": {},
