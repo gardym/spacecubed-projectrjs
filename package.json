@@ -9,7 +9,8 @@
     "mongodb": "*",
     "ntwitter": "*",
     "express": "*",
-    "jade": "*"
+    "jade": "*",
+    "async": "*"
   },
   "devDependencies": {},
   "optionalDependencies": {},
