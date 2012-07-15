@@ -10,7 +10,8 @@
     "ntwitter": "*",
     "express": "*",
     "jade": "*",
-    "async": "*"
+    "async": "*",
+    "socket.io": "*"
   },
   "devDependencies": {},
   "optionalDependencies": {},

@@ -1,21 +1,21 @@
-require(["jquery", "moment"], function($, moment) {
-  var default_interval = 3 * 1000;
-  var start_time = moment();
+requirejs.config({
+  shim: {
+    'http://localhost:5001/socket.io/socket.io.js': {
+      exports: function() {
+        return this.io;
+      }
+    }
+  }
+});
 
-  setInterval(function() {
-
-    var now_time = moment();
-
-    // Load new tweets
-    $.get("/events?from=" + start_time.unix() + "&to=" + now_time.unix(), function(tweets) {
-      $.each(tweets, function(_, tweet) {
-        $("#output").append("<p>" + tweet.username + ": " + tweet.text + "</p>");
-        if(tweet.image) {
-          $("#output").append("<p><img src='" + tweet.image + "' /></p>")
-        }
-      });
+require(['jquery', 'moment', 'http://localhost:5001/socket.io/socket.io.js'], function($, moment, io) {
+  var socket = io.connect('http://localhost:5001');
+  socket.on('evt', function(tweets) {
+    $.each(tweets, function(_, tweet) {
+      $('#output').append('<p>' + tweet.username + ': ' + tweet.text + '</p>');
+      if(tweet.image) {
+        $('#output').append("<p><img src='" + tweet.image + "' /></p>")
+      }
     });
-
-    start_time = now_time;
-  }, default_interval);
+  });
 });
