@@ -23,8 +23,6 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-console.log(routes.events);
-
 app.get('/', routes.index);
 app.get('/events', routes.events);
 

@@ -21,8 +21,8 @@ exports.events = function(req, res){
 
   var query = {
     recorded_at: {
-      '$gte': from,
-      '$lt' : to
+      '$gte': from.toDate(),
+      '$lt' : to.toDate()
     }
   };
 
