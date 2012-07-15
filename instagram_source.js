@@ -26,7 +26,8 @@ exports.instagram_source = (function() {
   };
 
   var search_instagram = function(db, lat, lng, start_time, end_time, then) {
-    console.log("-- Instagram -- Searching... from: " + start_time + " to: " + end_time);
+    console.log("-- Instagram -- Searching... from: %s to: %s", start_time, end_time);
+    console.log(Moment().unix());
     Instagram.media.search({
       lat: lat,
       lng: lng,
@@ -34,7 +35,7 @@ exports.instagram_source = (function() {
       min_timestamp: start_time,
       max_timestamp: end_time,
       complete: function(data, pagination) {
-        console.log("-- Instagram -- Recvd - Inserting (found " + data.length + " grams)");
+        console.log("-- Instagram -- Recvd - Inserting (found %s grams)", data.length);
         db.open(function() {
           db.collection('grams', function(err, grams_collection) {
             data.forEach(function(gram) {

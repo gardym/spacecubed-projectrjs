@@ -32,11 +32,11 @@ exports.twitter_stream_source = (function() {
   var start_streaming = function(endpoint, params) {
     Twitter.stream(endpoint, params, function(stream) {
       stream.on('error', function(data, err) {
-        console.log("++ Twitter -- ERROR -- " + err);
+        console.log("++ Twitter -- ERROR -- %s", err);
       });
       stream.on('data', function(data) {
         if(data.user && data.text) {
-          console.log("-- Twitter (" + endpoint + ") -- @" + data.user.screen_name + ": " + data.text);
+          console.log("-- Twitter (%s) -- @%s: %s", endpoint, data.user.screen_name, data.text);
           var db = new Mongo.Db('projectrjs', new Mongo.Server('localhost', 27017));
           db.open(function() {
             db.collection('tweets', function(err, tweets_collection) {
