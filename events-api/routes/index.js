@@ -7,6 +7,13 @@ exports.index = function(req, res){
 };
 
 /*
+ * GET client page.
+ */
+exports.client = function(req, res) {
+  res.render('client', { title: 'spacecubed-proejctrjs' });
+};
+
+/*
  * GET events
  */
 

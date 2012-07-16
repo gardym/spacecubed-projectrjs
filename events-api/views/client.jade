@@ -1,0 +1,21 @@
+extends layout
+
+block css
+  link(rel='stylesheet', href='/stylesheets/client.css')
+
+block javascript
+  script(type='text/javascript', src='/javascripts/require-jquery.js', data-main='/javascripts/main-client')
+
+block content
+  #map
+
+  #template.template-tweet.invisible
+    p
+      img.profile-image
+      span.author
+      span.text
+      br
+      span.date
+
+  #template.template-photo
+
