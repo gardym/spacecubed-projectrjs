@@ -31,6 +31,7 @@ exports.events = function(req, res){
       events_collection.find(query, function(err, cursor) {
         cursor.toArray(function(err, items) {
           db.close();
+          res.header('Access-Control-Allow-Origin', '*');
           res.send(items);
         });
       });
