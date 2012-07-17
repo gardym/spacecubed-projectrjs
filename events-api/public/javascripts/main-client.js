@@ -65,7 +65,6 @@ require(['jquery', 'moment', 'stream', 'map'], function($, moment, stream, map) 
         pin.css('top',  coords.y + "px");
         pin.css('position', 'absolute');
         area.append(pin);
-        console.log(coords);
       }
 
       area.append(tweet_container);
