@@ -1,5 +1,5 @@
 var socket_connection = window.location.origin;
-var config = { shim: { } };
+var config = { shim: { }, waitSeconds: 15 };
 config.shim['/socket.io/socket.io.js'] = {
   exports: function() {
     return this.io;
