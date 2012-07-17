@@ -44,3 +44,9 @@ body {
   color: #aaa;
 }
 
+.pin img {
+  width: 40px;
+  height 40px;
+  position: absolute;
+}
+

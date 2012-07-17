@@ -1,6 +1,7 @@
-require(['jquery', 'moment', 'stream'], function($, moment, stream) {
+require(['jquery', 'moment', 'stream', 'map'], function($, moment, stream, map) {
 
-  var map = $("#map");
+  var area = $("#map");
+  var pin = $("#pin");
   var template_tweet = $("#template.template-tweet");
 
   var rotations = ["top_left", "top_right", "bottom_right", "bottom_left"];
@@ -45,7 +46,18 @@ require(['jquery', 'moment', 'stream'], function($, moment, stream) {
       tweet_container.find('.text').text(tweet.text);
       tweet_container.find('.date').text(moment(tweet.at).fromNow());
 
-      map.append(tweet_container);
+      if(tweet.coordinates) {
+        pin.clone();
+        pin.removeAttr('id');
+
+        var coords = map.to_cartesian(tweet.coordinates.lat, tweet.coordinates.lng);
+        pin.css('left', coords.x);
+        pin.css('top',  coords.y);
+        console.log("Placing at:");
+        console.log(coords);
+      }
+
+      area.append(tweet_container);
       setTimeout(function() {
         place(tweet_container);
       }, 1);
