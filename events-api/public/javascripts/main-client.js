@@ -1,14 +1,4 @@
-requirejs.config({
-  shim: {
-    'http://localhost:5001/socket.io/socket.io.js': {
-      exports: function() {
-        return this.io;
-      }
-    }
-  }
-});
-
-require(['jquery', 'moment', 'http://localhost:5001/socket.io/socket.io.js'], function($, moment, io) {
+require(['jquery', 'moment', 'stream'], function($, moment, stream) {
 
   var map = $("#map");
   var template_tweet = $("#template.template-tweet");
@@ -44,8 +34,7 @@ require(['jquery', 'moment', 'http://localhost:5001/socket.io/socket.io.js'], fu
     }
   };
 
-  var socket = io.connect('http://localhost:5001');
-  socket.on('evt', function(tweets) {
+  stream.on(function(tweets) {
     $.each(tweets, function(_, tweet) {
 
       tweet_container = template_tweet.clone();
