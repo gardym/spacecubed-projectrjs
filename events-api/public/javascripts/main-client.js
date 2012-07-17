@@ -1,7 +1,13 @@
+requirejs.config({
+  'map': {
+    '*': { 'stream': 'shims/shim-stream' }
+  }
+});
+
 require(['jquery', 'moment', 'stream', 'map'], function($, moment, stream, map) {
 
   var area = $("#map");
-  var pin = $("#pin");
+  var template_pin = $("#pin");
   var template_tweet = $("#template.template-tweet");
 
   var rotations = ["top_left", "top_right", "bottom_right", "bottom_left"];
@@ -44,16 +50,20 @@ require(['jquery', 'moment', 'stream', 'map'], function($, moment, stream, map) 
       tweet_container.find('.author').text("@" + tweet.username);
       tweet_container.find('.profile-image').attr('src', tweet.profile_image);
       tweet_container.find('.text').text(tweet.text);
-      tweet_container.find('.date').text(moment(tweet.at).fromNow());
+
+      if(tweet.at) {
+        tweet_container.find('.date').text(moment(tweet.at).fromNow());
+      }
 
       if(tweet.coordinates) {
-        pin.clone();
+        var pin = template_pin.clone();
         pin.removeAttr('id');
 
         var coords = map.to_cartesian(tweet.coordinates.lat, tweet.coordinates.lng);
-        pin.css('left', coords.x);
-        pin.css('top',  coords.y);
-        console.log("Placing at:");
+        pin.css('left', coords.x + "px");
+        pin.css('top',  coords.y + "px");
+        pin.css('position', 'absolute');
+        area.append(pin);
         console.log(coords);
       }
 

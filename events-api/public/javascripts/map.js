@@ -19,6 +19,10 @@ define(['jquery'], function($) {
   };
 
   return {
-    to_cartesian: to_cartesian
+    to_cartesian: to_cartesian,
+    origin_lat: origin_lat,
+    origin_lng: origin_lng,
+    lat_width:  lat_width,
+    lng_height: lng_height
   };
 });
