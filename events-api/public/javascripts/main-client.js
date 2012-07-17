@@ -1,8 +1,9 @@
-requirejs.config({
-  'map': {
-    '*': { 'stream': 'shims/shim-stream' }
-  }
-});
+// Uncomment this to use the stubbed stream - no traffic required!
+//requirejs.config({
+  //'map': {
+    //'*': { 'stream': 'shims/shim-stream' }
+  //}
+//});
 
 require(['jquery', 'moment', 'stream', 'map'], function($, moment, stream, map) {
 
