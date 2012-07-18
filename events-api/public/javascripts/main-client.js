@@ -1,15 +1,22 @@
-requirejs.config({
-  'map': {
-    '*': { 'stream': 'shims/shim-stream' }
-  }
-  ,'shim': {
+
+var config = {
+  'shim': {
     'd3': {
       exports: function() {
         return this.d3;
       }
     }
   }
-});
+}
+
+// Use a stub if we are developing locally
+if (window.location.hostname == 'localhost') {
+  config.map = {
+    '*': { 'stream': 'shims/shim-stream' }
+  }
+}
+
+requirejs.config(config);
 
 require(['jquery', 'moment', 'stream', 'map', 'ticker', 'd3'], function($, moment, stream, map, ticker, d3) {
 
