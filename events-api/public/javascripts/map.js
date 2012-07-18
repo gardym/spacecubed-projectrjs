@@ -18,11 +18,25 @@ define(['jquery'], function($) {
     };
   };
 
+  var events = [];
+
+  var addEvent = function(event) {
+    events.push(event);
+    console.log(events);
+  };
+
+  var draw = function() {
+    console.log("Drawing the shiz");
+  }
+
+  var startRedrawTimer = function(interval) {
+    setInterval(function(){
+      draw();
+    }, interval);
+  }
+
   return {
-    to_cartesian: to_cartesian,
-    origin_lat: origin_lat,
-    origin_lng: origin_lng,
-    lat_width:  lat_width,
-    lng_height: lng_height
+    addEvent: addEvent,
+    startRedrawTimer: startRedrawTimer
   };
 });
