@@ -12,7 +12,7 @@ var config = {
 // Use a stub if we are developing locally
 if (window.location.hostname == 'localhost') {
   config.map = {
-    '*': { 'stream': 'stubs/stubs-stream' }
+    '*': { 'stream': 'stubs/stub-stream' }
   }
 }
 
