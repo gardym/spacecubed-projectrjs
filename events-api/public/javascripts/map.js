@@ -22,11 +22,22 @@ define(['jquery'], function($) {
 
   var addEvent = function(event) {
     events.push(event);
-    console.log(events);
+
+    var pin = $("#pin").clone();
+    pin.removeAttr('id');
+
+    var coords = to_cartesian(event.coordinates.lat, event.coordinates.lng);
+    $("#map").append(pin);
+    pin.css('position', 'absolute');
+    pin.css('top', coords.y + 'px');
+    pin.css('left', coords.x + 'px');
+
+    setTimeout(function() {
+      pin.remove();
+    }, 15000);
   };
 
   var draw = function() {
-    console.log("Drawing the shiz");
   }
 
   var startRedrawTimer = function(interval) {
