@@ -24,3 +24,10 @@ Notings:
 -------
 - Sources are streamed in preference, or polled as required
 - No sample clients yet - incoming.
+
+Ideas:
+-----
+
+- Variable font sizes to make events visually interesting
+- Word histogram
+
