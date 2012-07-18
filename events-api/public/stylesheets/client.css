@@ -15,7 +15,9 @@ body {
   color: #fff;
   font-size: 0.8em;
   width: 300px;
-  -webkit-transition: opacity 0.7s ease-in;
+  -webkit-transition-property: opacity, top;
+  -webkit-transition-duration: 0.5s, 1s;
+  -webkit-transition-timing-function: ease-in, ease-in;
 }
 
 .invisible {
@@ -36,8 +38,10 @@ body {
 }
 
 .template-tweet .profile-image {
-  float: left;
+  float: right;
   margin-right: 6px;
+  width: 40px;
+  height: 40px;
 }
 
 .template-tweet .date {
