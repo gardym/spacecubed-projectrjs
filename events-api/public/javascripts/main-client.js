@@ -1,11 +1,19 @@
-// Uncomment this to use the stubbed stream - no traffic required!
-//requirejs.config({
-  //'map': {
-    //'*': { 'stream': 'shims/shim-stream' }
-  //}
-//});
 
-require(['jquery', 'moment', 'stream', 'map'], function($, moment, stream, map) {
+requirejs.config({
+  'map': {
+    '*': { 'stream': 'shims/shim-stream' }
+  }
+  // Uncomment this to use the stubbed stream - no traffic required!
+  //,'shim': {
+    //'d3': {
+      //exports: function() {
+        //return this.d3;
+      //}
+    //}
+  //}
+});
+
+require(['jquery', 'moment', 'stream', 'map', 'd3'], function($, moment, stream, map, d3) {
 
   var area = $("#map");
   var template_pin = $("#pin");
