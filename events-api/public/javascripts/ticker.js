@@ -39,16 +39,45 @@ define(["jquery"], function($) {
     }, 1);
   };
 
+
+  var feature;
+  var drawFeature = function(newEvent) {
+
+    if(feature) {
+      oldFeature = feature;
+      setTimeout(function() {
+        oldFeature.css('opacity', '0');
+      }, 1);
+    }
+
+    var event = drawVisible(newEvent);
+    feature = event;
+    event.addClass('feature');
+    event.find('.text').html('&#147;' + event.find('.text').text() +'&#148;');
+    event.css('fontSize', '2em');
+    event.css('top', '0px');
+    event.css('left', '0px');
+    event.css('opacity', '0');
+    setTimeout(function() {
+      event.css('opacity', '0.8');
+    }, 1);
+
+  };
+
   var visibles = [];
   var draw = function() {
     var newEvent = events.shift();
     if(newEvent) {
-      var visible = drawVisible(newEvent);
-      visibles.push(visible);
+      if(Math.random() < 0.1) {
+        drawFeature(newEvent);
+      } else {
+        var visible = drawVisible(newEvent);
+        visibles.push(visible);
 
-      $.each(visibles, function(_, event) {
-        moveDown(event);
-      });
+        $.each(visibles, function(_, event) {
+          moveDown(event);
+        });
+      }
     }
   };
 

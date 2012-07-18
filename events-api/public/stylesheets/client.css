@@ -24,6 +24,14 @@ body {
   opacity: 0.0;
 }
 
+.feature {
+  font-size: 2em;
+  font-style: italic;
+  -webkit-transition-duration: 2s, 1s;
+  font-family: "Georgia", serif;
+  line-height: 0.9em;
+}
+
 .template p {
   margin: 0;
 }
