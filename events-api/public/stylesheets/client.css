@@ -12,12 +12,9 @@ body {
 }
 
 .template-tweet {
-  background-color: #fff;
-  opacity: 0.7;
+  color: #fff;
   font-size: 0.8em;
   width: 300px;
-  padding: 6px;
-  border-radius: 10px;
   -webkit-transition: opacity 0.7s ease-in;
 }
 
@@ -29,8 +26,11 @@ body {
   margin: 0;
 }
 
+.template-tweet p {
+  margin: 0 0 0.3em;
+}
 .template-tweet .author {
-  color: #079;
+  color: #80FAFF;
   font-weight: bold;
   padding-right: 4px;
 }
