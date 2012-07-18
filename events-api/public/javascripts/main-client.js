@@ -11,12 +11,21 @@ requirejs.config({
   }
 });
 
-require(['jquery', 'moment', 'stream', 'map', 'ticker'], function($, moment, stream, map, ticker) {
-  stream.on(function(events) {
-    $.each(events, function(_, evt) {
+require(['jquery', 'moment', 'stream', 'map', 'ticker', 'd3'], function($, moment, stream, map, ticker, d3) {
 
-      ticker.start(3000);
-      ticker.addEvent(evt);
+  $(function(){
+    map.startRedrawTimer(4000);
+    ticker.start(3000);
+  });
+
+  stream.on(function(events) {
+    $.each(events, function(_, event) {
+      if (event.coordinates) {
+        map.addEvent(event);
+      }
+      else {
+        ticker.addEvent(event);
+      }
     });
   });
 });
