@@ -26,11 +26,17 @@ body {
 }
 
 .feature {
+  position: absolute;
   font-size: 2em;
   font-style: italic;
-  -webkit-transition-duration: 2s, 1s;
+  -webkit-transition-duration: 2s;
+  -webkit-transition-property: opacity;
+  -webkit-transition-timing-function: ease-in;
   font-family: "Georgia", serif;
   line-height: 0.9em;
+  color: #fff;
+  width: 300px;
+  opacity: 0.0;
 }
 
 .template p {
