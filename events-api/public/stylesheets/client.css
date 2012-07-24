@@ -1,6 +1,7 @@
 body {
   padding: 0;
   margin: 0;
+  background-color: #000;
 }
 
 #map {
@@ -13,7 +14,7 @@ body {
 
 .template-tweet {
   color: #fff;
-  font-size: 0.8em;
+  font-size: 1em;
   width: 300px;
   -webkit-transition-property: opacity, top;
   -webkit-transition-duration: 0.5s, 1s;
