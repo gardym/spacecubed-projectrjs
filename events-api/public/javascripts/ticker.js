@@ -55,8 +55,9 @@ define(["jquery"], function($) {
     event.addClass('feature');
     event.find('.text').html('&#147;' + event.find('.text').text() +'&#148;');
     event.css('fontSize', '2em');
-    event.css('top', '0px');
-    event.css('left', '0px');
+    var random_offset = Math.floor(Math.random() * 15);
+    event.css('top', random_offset + 'px');
+    event.css('left', random_offset + 'px');
     event.css('opacity', '0');
     setTimeout(function() {
       event.css('opacity', '0.8');
