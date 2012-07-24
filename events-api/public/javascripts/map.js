@@ -19,9 +19,13 @@ define(['jquery'], function($) {
   };
 
   var events = [];
-
   var addEvent = function(event) {
     events.push(event);
+  };
+
+  var draw = function() {
+    var event = events.pop();
+    if(!event) return;
 
     var pin = $("#pin").clone();
     pin.removeAttr('id');
@@ -37,18 +41,15 @@ define(['jquery'], function($) {
     }, 15000);
   };
 
-  var draw = function() {
-  }
-
-  var startRedrawTimer = function(interval) {
+  var start = function(interval) {
     setInterval(function(){
       draw();
     }, interval);
-  }
+  };
 
   return {
     addEvent: addEvent,
-    startRedrawTimer: startRedrawTimer,
+    start: start,
     origin_lat: origin_lat,
     origin_lng: origin_lng,
     lat_width: lat_width,

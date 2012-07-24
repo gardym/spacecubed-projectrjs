@@ -22,7 +22,7 @@ require(['jquery', 'moment', 'stream', 'map', 'ticker', 'promoter', 'd3'],
         function($, moment, stream, map, ticker, promoter, d3) {
 
   $(function(){
-    map.startRedrawTimer(4000);
+    map.start(4000);
     ticker.start(3000);
     promoter.start(3000);
   });
