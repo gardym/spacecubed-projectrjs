@@ -26,10 +26,10 @@ define(["jquery"], function($) {
   var moveDown = function(visible) {
     setTimeout(function() {
       var top = visible.position().top;
-      var height = visible.height();
+      var height = 75;
       visible.css('top', top + height + 'px');
       setTimeout(function() {
-        if(visible.position().top > ($("#map").height() - (4 * visible.height()))) {
+        if(visible.position().top > ($("#map").height() - 210)) {
           visible.css('opacity', '0');
         }
       }, 1);
