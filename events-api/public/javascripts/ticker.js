@@ -5,9 +5,6 @@ define(["jquery"], function($) {
     events.push(evt);
   };
 
-  var moveDown = function(event) {
-  };
-
   var drawVisible = function(event) {
     var event_container = $('#template').clone();
     event_container.removeAttr('id');
