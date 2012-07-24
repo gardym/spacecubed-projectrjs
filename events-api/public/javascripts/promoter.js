@@ -1,5 +1,4 @@
-define(["jquery"], function($) {
-
+define(['jquery'], function($) {
   var events = [];
   var addEvent = function(evt) {
     events.push(evt);
@@ -23,30 +22,36 @@ define(["jquery"], function($) {
     return event_container;
   };
 
-  var moveDown = function(visible) {
-    setTimeout(function() {
-      var top = visible.position().top;
-      var height = 75;
-      visible.css('top', top + height + 'px');
-      setTimeout(function() {
-        if(visible.position().top > ($("#map").height() - 210)) {
-          visible.css('opacity', '0');
-        }
-      }, 1);
-    }, 1);
-  };
-
-  var visibles = [];
+  var feature;
   var draw = function() {
-    var newEvent = events.shift();
-    if(newEvent) {
-      var visible = drawVisible(newEvent);
-      visibles.push(visible);
 
-      $.each(visibles, function(_, event) {
-        moveDown(event);
-      });
+    var newEvent;
+    if(events.length > 0) {
+      newEvent = events.pop();
+    } else {
+      return;
     }
+
+    if(feature) {
+      var oldFeature = feature;
+      setTimeout(function() {
+        oldFeature.css('opacity', '0');
+      }, 1);
+    }
+
+    var event = drawVisible(newEvent);
+    feature = event;
+    event.addClass('feature');
+    event.find('.text').html('&#147;' + event.find('.text').text() +'&#148;');
+    event.css('fontSize', '2em');
+    var random_offset = Math.floor(Math.random() * 15);
+    event.css('top', random_offset + 'px');
+    event.css('left', random_offset + 'px');
+    event.css('opacity', '0');
+    setTimeout(function() {
+      event.css('opacity', '0.8');
+    }, 1);
+
   };
 
   var start = function(interval) {

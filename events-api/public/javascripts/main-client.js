@@ -18,11 +18,13 @@ if (window.location.hostname == 'localhost') {
 
 requirejs.config(config);
 
-require(['jquery', 'moment', 'stream', 'map', 'ticker', 'd3'], function($, moment, stream, map, ticker, d3) {
+require(['jquery', 'moment', 'stream', 'map', 'ticker', 'promoter', 'd3'],
+        function($, moment, stream, map, ticker, promoter, d3) {
 
   $(function(){
     map.startRedrawTimer(4000);
     ticker.start(3000);
+    promoter.start(3000);
   });
 
   stream.on(function(events) {
@@ -31,6 +33,11 @@ require(['jquery', 'moment', 'stream', 'map', 'ticker', 'd3'], function($, momen
         map.addEvent(event);
       }
       else {
+        // Define some logic to work out what should be featured
+        // ... or leave it random.
+        if(Math.random() < 0.1) {
+          promoter.addEvent(event);
+        }
         ticker.addEvent(event);
       }
     });
