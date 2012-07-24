@@ -31,8 +31,7 @@ require(['jquery', 'moment', 'stream', 'map', 'ticker', 'promoter', 'd3'],
     $.each(events, function(_, event) {
       if (event.coordinates) {
         map.addEvent(event);
-      }
-      else {
+      } else {
         // Define some logic to work out what should be featured
         // ... or leave it random.
         if(Math.random() < 0.1) {

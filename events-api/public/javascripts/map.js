@@ -36,6 +36,24 @@ define(['jquery'], function($) {
     pin.css('top', coords.y + 'px');
     pin.css('left', coords.x + 'px');
 
+    var template = $('#template').clone();
+    template.removeAttr('id').removeClass('invisible');
+
+    template.find('.text').text(event.text);
+    template.find('.author').text(event.username);
+    template.find('.profile-image').attr('src', event.profile_image);
+
+    template.css('backgroundColor', '000');
+    template.css('position', 'absolute');
+    if(coords.y > (Math.floor($("#map").height() / 2))) {
+      template.css('top', $("#map").height() - 100 );
+    } else {
+      template.css('top', 20 );
+    }
+    template.css('left', 600);
+
+    $("#map").append(template);
+
     setTimeout(function() {
       pin.remove();
     }, 15000);
