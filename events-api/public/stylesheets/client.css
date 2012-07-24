@@ -52,6 +52,14 @@ body {
   padding-right: 4px;
 }
 
+.feature p.author {
+  color: #fff;
+}
+
+.feature p.text {
+  color: #80FAFF;
+}
+
 .template-tweet .profile-image {
   float: right;
   margin-right: 6px;
