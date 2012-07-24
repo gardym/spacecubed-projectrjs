@@ -1,4 +1,9 @@
 define(['map'], function(map) {
+  var random_text = function() {
+    var sample = "If you are at #fground2012 today don't forget to see @TomTolchard at 3.30 talk about Understanding Social Enterprise";
+    return sample.substring(0, Math.floor(Math.random() * sample.length));
+  };
+
   var stub_event = function() {
 
     if(Math.random() > 0.5) {
@@ -10,7 +15,7 @@ define(['map'], function(map) {
 
     return {
       username: 'sii_wa',
-      text: "If you are at #fground2012 today don't forget to see @TomTolchard at 3.30 talk about Understanding Social Enterprise",
+      text: random_text(),
       profile_image: "http://a0.twimg.com/profile_images/1057847588/3405116394_c181846851_m_normal.jpg",
       coordinates: coordinates
     };
