@@ -56,6 +56,7 @@ define(['jquery'], function($) {
 
     setTimeout(function() {
       pin.remove();
+      template.remove();
     }, 15000);
   };
 
