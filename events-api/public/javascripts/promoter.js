@@ -31,7 +31,6 @@ define(['jquery'], function($) {
     event_container.find('.text').html('&#147;' + newEvent.text +'&#148;');
     event_container.find('.author').text(newEvent.username);
 
-
     var random_offset = Math.floor(Math.random() * 15);
     event_container.css('position', 'absolute');
     event_container.css('top', random_offset + 'px');
