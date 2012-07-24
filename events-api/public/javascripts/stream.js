@@ -1,18 +1,20 @@
-var socket_connection = window.location.origin;
-var config = { shim: { }, waitSeconds: 15 };
-config.shim['/socket.io/socket.io.js'] = {
-  exports: function() {
-    return this.io;
-  }
-};
+define(['jquery', 'moment'], function($, moment) {
 
-requirejs.config(config);
+  var listeners = [];
 
-define(['jquery', 'moment', '/socket.io/socket.io.js'], function($, moment, io) {
-  var socket = io.connect(socket_connection);
+  var fromTime = moment().unix();
+  var poll = function() {
+    var toTime = moment().unix();
+    $.get('/events', {from: fromTime, to: toTime}, function(data) {
+      listeners.forEach(function(listener) { listener(data); });
+    });
+    fromTime = toTime;
+  };
+
+  setInterval(poll, 5000);
   return {
     on: function(fn) {
-      socket.on('evt', fn);
+      listeners.push(fn);
     }
   };
 });
