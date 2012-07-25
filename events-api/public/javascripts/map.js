@@ -37,6 +37,10 @@ define(['jquery'], function($) {
 
   return {
     addEvent: addEvent,
-    startRedrawTimer: startRedrawTimer
+    startRedrawTimer: startRedrawTimer,
+    origin_lat: origin_lat,
+    origin_lng: origin_lng,
+    lat_width: lat_width,
+    lng_height: lng_height
   };
 });
