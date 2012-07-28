@@ -1,4 +1,4 @@
-define(['jquery', 'moment'], function($, moment) {
+define(['jquery', 'lib/moment'], function($, moment) {
 
   var listeners = [];
 
