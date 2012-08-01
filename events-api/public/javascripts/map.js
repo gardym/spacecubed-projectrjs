@@ -1,4 +1,4 @@
-define(['jquery', 'circular_animation', 'grid_visualisation'], function($, CircularAnimation, CrosshairAnimation) {
+define(['jquery', 'circular_animation', 'crosshair_animation'], function($, CircularAnimation, CrosshairAnimation) {
   var width = $("#map").width(),
       height = $("#map").height();
 

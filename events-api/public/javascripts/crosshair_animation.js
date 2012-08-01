@@ -1,6 +1,6 @@
-define(['grid_visualisation'], function() {
+define(['crosshair_animation'], function() {
 
-  GridVisualisation = function(coords) {
+  CrosshairAnimation = function(coords) {
     this.id = 'id' + Math.random().toString().replace(/\./g, '');
     this.e = $('<div class="grid-visualisation grid-visualisation-container"></div>').appendTo($("body"));
     this.x = coords.x;
@@ -34,12 +34,12 @@ define(['grid_visualisation'], function() {
 
   };
 
-  GridVisualisation.prototype.stopAnimation = function() 
+  CrosshairAnimation.prototype.stopAnimation = function() 
   {
     this.animationStopping = true;
   };
 
-  GridVisualisation.prototype.remove = function() 
+  CrosshairAnimation.prototype.remove = function() 
   {
       var self = this;
       var transitionOut = function() {
@@ -56,7 +56,7 @@ define(['grid_visualisation'], function() {
   };
 
 
-  GridVisualisation.prototype._createLines = function(numLines) 
+  CrosshairAnimation.prototype._createLines = function(numLines) 
   {
     for (var i = 0; i < numLines; i++)
     {
@@ -65,7 +65,7 @@ define(['grid_visualisation'], function() {
     }
   };
 
-  GridVisualisation.prototype._createLine = function(isHorizontal) 
+  CrosshairAnimation.prototype._createLine = function(isHorizontal) 
   {
     var line = $('<div class="horizontal-line"></div>').appendTo(this.e);
     line.css('position', 'absolute');
@@ -121,5 +121,5 @@ define(['grid_visualisation'], function() {
     setTimeout(stepAnimation, 0);
     return line;
   };
-  return GridVisualisation;
+  return CrosshairAnimation;
 });
