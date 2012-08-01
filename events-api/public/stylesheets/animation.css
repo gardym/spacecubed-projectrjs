@@ -1,0 +1,23 @@
+.circular-animation.circular-animation-container
+{
+  position: absolute;
+  z-index: 1000;
+}
+
+.circular-animation.circular-animation-container
+{
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 1000;
+}
+
+.circular-animation .ring
+{
+  position: absolute;
+  border: 10px solid white;
+  border-radius: 20px;
+  width: 10px;
+  height: 10px;
+  -webkit-transform-origin: 50% 50%;
+}

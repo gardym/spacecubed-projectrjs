@@ -32,7 +32,7 @@ define(['grid_visualisation'], function() {
     setTimeout(stepAnimation2, 0);
 
 
-  }; 
+  };
 
   GridVisualisation.prototype.stopAnimation = function() 
   {

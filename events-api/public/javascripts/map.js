@@ -1,4 +1,4 @@
-define(['jquery', 'target_visualisation', 'grid_visualisation'], function($, TargetVisualisation, GridVisualisation) {
+define(['jquery', 'circular_animation', 'grid_visualisation'], function($, CircularAnimation, CrosshairAnimation) {
   var width = $("#map").width(),
       height = $("#map").height();
 
@@ -29,12 +29,10 @@ define(['jquery', 'target_visualisation', 'grid_visualisation'], function($, Tar
 
     var coords = to_cartesian(event.coordinates.lat, event.coordinates.lng);
     if (Math.random() < 0.5) {
-        new GridVisualisation(coords);
+        new CrosshairAnimation(coords);
     } else {
-        new TargetVisualisation(coords);
+        new CircularAnimation(coords);
     }
-
-    // TODO Replace pin with white dot
 
     // TODO Extract this into tweet details placement etc...
     var template = $('#template').clone();
