@@ -1,4 +1,7 @@
-define(['jquery', 'circular_animation', 'crosshair_animation'], function($, CircularAnimation, CrosshairAnimation) {
+define(
+    ['jquery', 'circular_animation', 'crosshair_animation', 'locatable_event'],
+    function($, CircularAnimation, CrosshairAnimation, LocatableEvent) {
+
   var width = $("#map").width(),
       height = $("#map").height();
 
@@ -34,27 +37,10 @@ define(['jquery', 'circular_animation', 'crosshair_animation'], function($, Circ
         new CircularAnimation(coords);
     }
 
-    // TODO Extract this into tweet details placement etc...
-    var template = $('#template').clone();
-    template.removeAttr('id').removeClass('invisible');
-
-    template.find('.text').text(event.text);
-    template.find('.author').text(event.username);
-    template.find('.profile-image').attr('src', event.profile_image);
-
-    template.css('backgroundColor', '000');
-    template.css('position', 'absolute');
-    if(coords.y > (Math.floor($("#map").height() / 2))) {
-      template.css('top', $("#map").height() - 100 );
-    } else {
-      template.css('top', 20 );
-    }
-    template.css('left', 600);
-
-    $("#map").append(template);
+    var locatable_event = LocatableEvent.draw(event, coords);
 
     setTimeout(function() {
-      template.remove();
+      LocatableEvent.hide(locatable_event);
     }, 15000);
   };
 
