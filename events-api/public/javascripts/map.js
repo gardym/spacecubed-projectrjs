@@ -27,9 +27,6 @@ define(['jquery', 'target_visualisation', 'grid_visualisation'], function($, Tar
     var event = events.pop();
     if(!event) return;
 
-    var pin = $("#pin").clone();
-    pin.removeAttr('id');
-
     var coords = to_cartesian(event.coordinates.lat, event.coordinates.lng);
     if (Math.random() < 0.5) {
         new GridVisualisation(coords);
@@ -37,11 +34,9 @@ define(['jquery', 'target_visualisation', 'grid_visualisation'], function($, Tar
         new TargetVisualisation(coords);
     }
 
-    $("#map").append(pin);
-    pin.css('position', 'absolute');
-    pin.css('top', coords.y + 'px');
-    pin.css('left', coords.x + 'px');
+    // TODO Replace pin with white dot
 
+    // TODO Extract this into tweet details placement etc...
     var template = $('#template').clone();
     template.removeAttr('id').removeClass('invisible');
 
@@ -61,7 +56,6 @@ define(['jquery', 'target_visualisation', 'grid_visualisation'], function($, Tar
     $("#map").append(template);
 
     setTimeout(function() {
-      pin.remove();
       template.remove();
     }, 15000);
   };
