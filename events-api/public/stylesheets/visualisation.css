@@ -1,0 +1,23 @@
+.target-visualisation.target-visualisation-container
+{
+	position: absolute;
+	z-index: 1000;
+}
+
+.grid-visualisation.grid-visualisation-container
+{
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 1000;
+}
+
+.target-visualisation .ring
+{
+	position: absolute;
+	border: 10px solid white;
+	border-radius: 20px;
+	width: 10px;
+	height: 10px;
+	-webkit-transform-origin: 50% 50%;
+}

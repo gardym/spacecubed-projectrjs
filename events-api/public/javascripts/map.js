@@ -1,4 +1,4 @@
-define(['jquery'], function($) {
+define(['jquery', 'target_visualisation', 'grid_visualisation'], function($, TargetVisualisation, GridVisualisation) {
   var width = $("#map").width(),
       height = $("#map").height();
 
@@ -31,6 +31,12 @@ define(['jquery'], function($) {
     pin.removeAttr('id');
 
     var coords = to_cartesian(event.coordinates.lat, event.coordinates.lng);
+    if (Math.random() < 0.5) {
+        new GridVisualisation(coords);
+    } else {
+        new TargetVisualisation(coords);
+    }
+
     $("#map").append(pin);
     pin.css('position', 'absolute');
     pin.css('top', coords.y + 'px');
