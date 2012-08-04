@@ -20,7 +20,6 @@ define(["jquery"], function($) {
 
     $('#map').append(event_container);
     var offset = '-' + event_container.height().toString() + 'px';
-    event_container.remove();
 
     event_container.css('top', offset);
     $('#map').append(event_container);
