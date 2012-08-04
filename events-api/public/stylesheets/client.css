@@ -5,6 +5,9 @@ body {
 }
 
 #map {
+  position: absolute;
+  top: 120px;
+  left: 0;
   background-image: url('spacecubed-map-1366.jpg');
   background-repeat: no-repeat;
   background-color: #000;
