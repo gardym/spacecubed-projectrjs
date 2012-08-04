@@ -1,10 +1,7 @@
 var config = {
   'shim': {
-    'lib/d3': {
-      exports: function() {
-        return this.d3;
-      }
-    }
+    'lib/d3': { exports: function() { return this.d3; } },
+    'lib/moment': { exports: function() { return this.moment; } }
   }
 }
 
@@ -17,8 +14,8 @@ if (window.location.hostname == 'localhost') {
 
 requirejs.config(config);
 
-require(['jquery', 'lib/moment', 'stream', 'map', 'ticker', 'promoter', 'lib/d3'],
-        function($, moment, stream, map, ticker, promoter, d3) {
+require(['jquery', 'stream', 'map', 'ticker', 'promoter', 'lib/d3'],
+        function($, stream, map, ticker, promoter, d3) {
 
   $(function(){
     map.start(4000);
