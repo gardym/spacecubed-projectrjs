@@ -15,26 +15,26 @@ define(["jquery"], function($) {
     event_container.find('.author').text(event.username);
 
     event_container.css('position', 'absolute');
-    event_container.css('top', '-500px');
-    event_container.css('left', '1050px');
+    event_container.css('top', '0');
+    event_container.css('left', '-500px');
 
-    $('#map').append(event_container);
-    var offset = '-' + event_container.height().toString() + 'px';
+    $('#tape').append(event_container);
+    var offset = '-' + event_container.width().toString() + 'px';
 
-    event_container.css('top', offset);
-    $('#map').append(event_container);
+    event_container.css('left', offset);
+    $('#tape').append(event_container);
 
-    distance = event_container.height();
+    distance = event_container.width();
 
     return event_container;
   };
 
-  var moveDown = function(visible) {
+  var moveRight = function(visible) {
     setTimeout(function() {
-      var top = visible.position().top;
-      visible.css('top', top + distance + 'px');
+      var left = visible.position().left;
+      visible.css('left', left + distance + 'px');
       setTimeout(function() {
-        if(visible.position().top > ($("#map").height() - 210)) {
+        if(visible.position().left > ($('#tape').width() - (visible.width()) * 2)) {
           visible.css('opacity', '0');
         }
       }, 1);
@@ -49,7 +49,7 @@ define(["jquery"], function($) {
       visibles.push(visible);
 
       $.each(visibles, function(_, event) {
-        moveDown(event);
+        moveRight(event);
       });
     }
   };

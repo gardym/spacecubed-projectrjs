@@ -4,6 +4,12 @@ body {
   background-color: #000;
 }
 
+#tape {
+  width: 1366px;
+  height: 115px;
+  background-color: #000;
+}
+
 #map {
   position: absolute;
   top: 120px;
@@ -19,7 +25,7 @@ body {
   color: #fff;
   font-size: 1em;
   width: 300px;
-  -webkit-transition-property: opacity, top;
+  -webkit-transition-property: opacity, left;
   -webkit-transition-duration: 0.5s, 1s;
   -webkit-transition-timing-function: ease-in, ease-in;
 }
