@@ -86,12 +86,9 @@ define(['circular_animation'], function() {
         }
         else
           {
-            console.log(self);
             self.animationsInProgress--;
-            console.log("Animations remaining: " + self.animationsInProgress)
             if (self.animationsInProgress <= 0)
               {
-                console.log("removing");
                 self.remove();
               }
           }
