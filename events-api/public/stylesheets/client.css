@@ -70,7 +70,7 @@ body {
 }
 
 .template-tweet .profile-image {
-  float: right;
+  float: left;
   margin-right: 6px;
   width: 40px;
   height: 40px;
