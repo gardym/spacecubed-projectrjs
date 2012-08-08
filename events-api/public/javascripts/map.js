@@ -1,6 +1,6 @@
 define(
-    ['jquery', 'circular_animation', 'crosshair_animation', 'locatable_event'],
-    function($, CircularAnimation, CrosshairAnimation, LocatableEvent) {
+    ['jquery', 'spotlight'],
+    function($, Spotlight) {
 
   var width = $("#map").width(), height = $("#map").height();
   var origin_lat = -31.937487, origin_lng = 115.841517
@@ -15,9 +15,14 @@ define(
   };
 
   var events = [];
+  var spotlights = [];
+  var spotlightInterval = 5000;
 
-  var create = function(locatableEvents) {
+  var create = function(locatableEvents, spotlightIntervalArg) {
     events = locatableEvents;
+    if (spotlightIntervalArg) {
+      spotlightInterval = spotlightIntervalArg;
+    }
     draw();
   };
 
@@ -27,15 +32,13 @@ define(
   };
 
   var draw = function() {
-
-    // TODO for each event draw its pin
-    // TODO Trigger timer for spotlight animation etc..
-    //var event = events.pop();
-    //if(!event) return;
-    //
     events.forEach(function(event) {
       drawPin(event);
     });
+
+    setInterval(function(){
+      moveSpotlight();
+    }, spotlightInterval);
   };
 
   var drawPin = function(event) {
@@ -50,19 +53,22 @@ define(
     pin.css('color', '#fff');
   };
 
-  var chooseNextEventToSpotlight = function() {
-
+  var moveSpotlight = function() {
+    var event = chooseNextEventToSpotlight();
+    if(spotlights.length > 0)
+      spotlights.pop().die();
+    createSpotlight(event);
   };
 
-  var drawSpotlight = function(event) {
+  var chooseNextEventToSpotlight = function() {
+    // TODO: Don't spotlight any of the last ten spotlights.
+    return events[Math.floor(Math.random() * events.length)];
+  };
 
-    //if (Math.random() < 0.5) {
-        //new CrosshairAnimation(coords);
-    //} else {
-        //new CircularAnimation(coords);
-    //}
-    // Draw the text/content of the event
-    //var locatable_event = LocatableEvent.draw(event, coords);
+  var createSpotlight = function(event) {
+    var spotlight = new Spotlight(event, to_cartesian(event.coordinates));
+    spotlights.push(spotlight);
+    spotlight.shineOnYouCrazyDiamond();
   };
 
   return {
