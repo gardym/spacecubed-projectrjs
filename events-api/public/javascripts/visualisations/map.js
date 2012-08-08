@@ -1,5 +1,5 @@
 define(
-    ['jquery', 'spotlight'],
+    ['jquery', 'visualisations/spotlight'],
     function($, Spotlight) {
 
   var width = $("#map").width(), height = $("#map").height();
@@ -52,7 +52,6 @@ define(
     $('#map').append(pin);
 
     var coords = to_cartesian(event.coordinates);
-    console.log(coords);
     pin.css('position', 'absolute');
     pin.css('top', coords.y + 'px');
     pin.css('left', coords.x + 'px');

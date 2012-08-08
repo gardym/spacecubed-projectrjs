@@ -1,4 +1,4 @@
-define(['crosshair_animation'], function() {
+define(function() {
 
   CrosshairAnimation = function(coords) {
     this.id = 'id' + Math.random().toString().replace(/\./g, '');

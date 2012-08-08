@@ -1,4 +1,4 @@
-define(['jquery', 'circular_animation'], function($, CircularAnimation) {
+define(['jquery', 'visualisations/animations/circular'], function($, CircularAnimation) {
   return function(event) {
     var animation;
     var imageBox;

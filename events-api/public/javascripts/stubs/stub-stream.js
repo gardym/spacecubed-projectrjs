@@ -1,4 +1,4 @@
-define(['map'], function(map) {
+define(['visualisations/map'], function(map) {
   var random_text = function() {
     var sample = "If you are at #fground2012 today don't forget to see @TomTolchard at 3.30 talk about Understanding Social Enterprise";
     return sample.substring(0, Math.floor(Math.random() * sample.length));

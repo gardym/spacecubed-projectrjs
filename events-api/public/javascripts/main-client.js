@@ -13,7 +13,7 @@ if (window.location.hostname == 'localhost') {
 
 requirejs.config(config);
 
-require(['jquery', 'stream', 'map', 'live_events', 'ticker', 'promoter'],
+require(['jquery', 'stream', 'visualisations/map', 'data/live_events', 'visualisations/ticker', 'visualisations/promoter'],
         function($, stream, map, live_events, ticker, promoter) {
 
   $(function(){
