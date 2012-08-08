@@ -1,6 +1,5 @@
 var config = {
   'shim': {
-    'lib/d3': { exports: function() { return this.d3; } },
     'lib/moment': { exports: function() { return this.moment; } }
   }
 }
@@ -14,8 +13,8 @@ if (window.location.hostname == 'localhost') {
 
 requirejs.config(config);
 
-require(['jquery', 'stream', 'map', 'live_events', 'ticker', 'promoter', 'lib/d3'],
-        function($, stream, map, live_events, ticker, promoter, d3) {
+require(['jquery', 'stream', 'map', 'live_events', 'ticker', 'promoter'],
+        function($, stream, map, live_events, ticker, promoter) {
 
   $(function(){
     var locatableEvents = live_events.events.filter(function(event) {
