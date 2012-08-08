@@ -14,27 +14,31 @@ if (window.location.hostname == 'localhost') {
 
 requirejs.config(config);
 
-require(['jquery', 'stream', 'map', 'ticker', 'promoter', 'lib/d3'],
-        function($, stream, map, ticker, promoter, d3) {
+require(['jquery', 'stream', 'map', 'live_events', 'ticker', 'promoter', 'lib/d3'],
+        function($, stream, map, live_events, ticker, promoter, d3) {
 
   $(function(){
-    map.start(4000);
-    ticker.start(3000);
-    promoter.start(3000);
+    var locatableEvents = live_events.events.filter(function(event) {
+      return event.coordinates;
+    });
+    map.create(locatableEvents);
+
+    //ticker.start(3000);
+    //promoter.start(3000);
   });
 
-  stream.on(function(events) {
-    $.each(events, function(_, event) {
-      if (event.coordinates) {
-        map.addEvent(event);
-      } else {
-        // Define some logic to work out what should be featured
-        // ... or leave it random.
-        if(Math.random() < 0.1) {
-          promoter.addEvent(event);
-        }
-        ticker.addEvent(event);
-      }
-    });
-  });
+  //stream.on(function(events) {
+    //$.each(events, function(_, event) {
+      //if (event.coordinates) {
+        //map.addEvent(event);
+      //} else {
+        //// Define some logic to work out what should be featured
+        //// ... or leave it random.
+        //if(Math.random() < 0.1) {
+          //promoter.addEvent(event);
+        //}
+        //ticker.addEvent(event);
+      //}
+    //});
+  //});
 });
