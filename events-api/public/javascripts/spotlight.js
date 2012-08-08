@@ -1,9 +1,9 @@
 define(['jquery', 'circular_animation'], function($, CircularAnimation) {
-  return function(event, coords) {
+  return function(event) {
     var animation;
 
     this.shineOnYouCrazyDiamond = function() {
-      animation = new CircularAnimation(coords);
+      animation = new CircularAnimation(event.xy);
 
       // Wait for however long the above takes (would be better in a callback)
       setTimeout(function() {

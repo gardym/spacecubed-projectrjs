@@ -8,6 +8,7 @@ define(
   var lat_width = Math.abs(end_lat - origin_lat), lng_height = Math.abs(end_lng - origin_lng);
 
   var to_cartesian = function(coords) {
+    // TODO: Adjust for map rotation
     return {
       x: (Math.abs(end_lat - coords.lat) / lat_width) * width,
       y: (Math.abs(end_lng - coords.lng) / lng_height) * height
@@ -19,7 +20,10 @@ define(
   var spotlightInterval = 5000;
 
   var create = function(locatableEvents, spotlightIntervalArg) {
-    events = locatableEvents;
+    events = locatableEvents.map(function(event){
+      event.xy = to_cartesian(event.coordinates);
+      return event;
+    });
     if (spotlightIntervalArg) {
       spotlightInterval = spotlightIntervalArg;
     }
@@ -27,6 +31,7 @@ define(
   };
 
   var addEvent = function(event) {
+    event.xy = to_cartesian(event.coordinates);
     events.push(event);
     // TODO: Drop off once we hit a certain size (ensure we don't drop off an event this is currently spotlighted
   };
@@ -66,7 +71,7 @@ define(
   };
 
   var createSpotlight = function(event) {
-    var spotlight = new Spotlight(event, to_cartesian(event.coordinates));
+    var spotlight = new Spotlight(event);
     spotlights.push(spotlight);
     spotlight.shineOnYouCrazyDiamond();
   };
