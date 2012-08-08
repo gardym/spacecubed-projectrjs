@@ -1,4 +1,4 @@
-define(['circular_animation'], function() {
+define(function() {
 
   // TODO Replace pin with white dot
 
@@ -15,7 +15,10 @@ define(['circular_animation'], function() {
     this.animationsInProgress = 0;
     this._createRingElements(10);
     var self = this;
-    setTimeout((function() { self.animationStopping = true }), 5000);
+
+    setTimeout(function() {
+      self.animationStopping = true
+    }, 5000);
   };
 
 
@@ -89,7 +92,9 @@ define(['circular_animation'], function() {
             self.animationsInProgress--;
             if (self.animationsInProgress <= 0)
               {
-                self.remove();
+                // TODO: Don't remove at this stage. Need to tweak this though as static rings look pants.
+                // This is the end of the animation?
+                //self.remove();
               }
           }
     }

@@ -21,7 +21,7 @@ require(['jquery', 'stream', 'map', 'live_events', 'ticker', 'promoter', 'lib/d3
     var locatableEvents = live_events.events.filter(function(event) {
       return event.coordinates;
     });
-    map.create(locatableEvents);
+    map.create([locatableEvents.pop()]);
 
     //ticker.start(3000);
     //promoter.start(3000);

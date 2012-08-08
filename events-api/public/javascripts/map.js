@@ -17,7 +17,7 @@ define(
 
   var events = [];
   var spotlights = [];
-  var spotlightInterval = 5000;
+  var spotlightInterval = 20000;
 
   var create = function(locatableEvents, spotlightIntervalArg) {
     events = locatableEvents.map(function(event){
@@ -41,6 +41,7 @@ define(
       drawPin(event);
     });
 
+    moveSpotlight();
     setInterval(function(){
       moveSpotlight();
     }, spotlightInterval);
