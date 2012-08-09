@@ -95,7 +95,9 @@ define(function() {
                 // TODO: Don't remove at this stage. Need to tweak this though as static rings look pants.
                 // This is the end of the animation?
                 //self.remove();
-                self.completionCallback();
+                if(self.completionCallback) {
+                  self.completionCallback();
+                }
               }
           }
     }
