@@ -1,4 +1,4 @@
-var events_api = require('./events-api/app');
+var events_api = require('./app/app');
 
 if (process.env["STREAM_SOURCE"] == 'live') {
   var streamers = require('./lib/streamers');
