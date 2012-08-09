@@ -7,13 +7,13 @@ var config = {
 // Use a stub if we are developing locally
 if (window.location.hostname == 'localhost') {
   config.map = {
-    '*': { 'stream': 'stubs/stub-stream' }
+    '*': { 'data/stream': 'stubs/stub-stream' }
   }
 }
 
 requirejs.config(config);
 
-require(['jquery', 'stream', 'visualisations/map', 'data/live_events', 'visualisations/ticker', 'visualisations/promoter'],
+require(['jquery', 'data/stream', 'visualisations/map', 'data/live_events', 'visualisations/ticker', 'visualisations/promoter'],
         function($, stream, map, live_events, ticker, promoter) {
 
   $(function(){
