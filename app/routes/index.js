@@ -1,12 +1,4 @@
 /*
- * GET home page.
- */
-
-exports.index = function(req, res){
-  res.render('index', { title: 'the future' });
-};
-
-/*
  * GET client page.
  */
 exports.client = function(req, res) {
