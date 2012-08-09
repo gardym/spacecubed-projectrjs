@@ -17,16 +17,14 @@ define(['jquery', 'visualisations/animations/circular'], function($, CircularAni
 
     this.shineOnYouCrazyDiamond = function() {
       animation = new CircularAnimation(event.xy);
-
-      // Wait for however long the above takes (would be better in a callback)
-      setTimeout(function() {
+      animation.startAnimation(function() {
         // Show our details (instagram and tweet)
         if(event.image) {
           displayImageBox(event);
         } else {
           displayTextBox(event);
         }
-      }, 4000);
+      });
     };
 
     this.die = function() {

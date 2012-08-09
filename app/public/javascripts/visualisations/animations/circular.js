@@ -9,21 +9,21 @@ define(function() {
     this.y = coords.y;
     this.e.css('top', coords.y);
     this.e.css('left', coords.x);
-    this.startAnimation();
     this.rings = [];
     this.animationStopping = false;
     this.animationsInProgress = 0;
-    this._createRingElements(10);
-    var self = this;
-
-    setTimeout(function() {
-      self.animationStopping = true
-    }, 5000);
   };
 
 
-  CircularAnimation.prototype.startAnimation = function()
+  CircularAnimation.prototype.startAnimation = function(callback)
   {
+    var self = this;
+
+    self._createRingElements(10);
+    self.completionCallback = callback;
+    setTimeout(function() {
+      self.animationStopping = true
+    }, 5000);
   };
 
   CircularAnimation.prototype.stopAnimation = function()
@@ -95,6 +95,7 @@ define(function() {
                 // TODO: Don't remove at this stage. Need to tweak this though as static rings look pants.
                 // This is the end of the animation?
                 //self.remove();
+                self.completionCallback();
               }
           }
     }
