@@ -23,7 +23,7 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-app.get('/client', routes.client);
+app.get('/', routes.client);
 app.get('/events', routes.events);
 
 var server = http.createServer(app);
