@@ -21,8 +21,6 @@ exports.events = function(req, res){
   var from = moment.unix(req.query.from),
       to   = moment.unix(req.query.to);
 
-  console.log("from: %s, to: %s", from, to);
-
   var query = {
     recorded_at: { '$gte': from.toDate(), '$lt' : to.toDate() }
   };
