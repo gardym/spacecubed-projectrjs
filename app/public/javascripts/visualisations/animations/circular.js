@@ -4,7 +4,7 @@ define(function() {
 
   CircularAnimation = function(coords) {
     this.id = 'id' + Math.random().toString().replace(/\./g, '');
-    this.e = $('<div class="circular-animation circular-animation-container"></div>').appendTo($("body"));
+    this.e = $('<div class="circular-animation circular-animation-container"></div>').appendTo($("#map"));
     this.x = coords.x;
     this.y = coords.y;
     this.e.css('top', coords.y);
@@ -52,7 +52,7 @@ define(function() {
   {
     for (var i = 0; i < numRings; i++)
     {
-      this.rings.push(this._createRingElement(Math.random()*100, Math.random()*20));
+      this.rings.push(this._createRingElement(Math.random()*100, Math.random()*10));
     }
   };
 
@@ -67,21 +67,21 @@ define(function() {
     ring.css('border-right', (thickness) +'px solid rgba(255,255,255,0.1)')
     ring.css('width', radiusInner * 2 + 'px')
     ring.css('height', radiusInner * 2 + 'px')
-    ring.css('top', - (radiusInner + thickness) + 'px')
+    ring.css('top',  - (radiusInner + thickness) + 'px')
     ring.css('left', - (radiusInner + thickness) + 'px')
-    initialScale = 10
+    initialScale = 10;
     ring.css('-webkit-transform', 'translate3d(0, 0, 0) scaleX(' + initialScale + ') scaleY(' + initialScale + ')');
     ring.css('-webkit-transition', '-webkit-transform 1500ms ease-in-out, opacity 1500ms ease-in-out');
-    ring.css('opacity', '0.0');
+    ring.css('opacity', '1.0');
 
     var self = this;
     var stepAnimation = function() {
-      var scale = 1 - Math.pow(Math.random(), 4) * 5;
+      var scale = 1 - Math.pow(Math.random(), 2) * 2;
       var rot = Math.random() * 360;
       var duration = Math.random() * 2000 + 50;
       ring.css('-webkit-transform', 'translate3d(0, 0, 0) scaleX(' + scale + ') scaleY(' + scale + ') rotate(' + rot + 'deg)');
       ring.css('-webkit-transition', '-webkit-transform ' + duration + 'ms ease-in-out, opacity ' + duration + 'ms ease-in-out');
-      ring.css('opacity', Math.random());
+      ring.css('opacity', (Math.random() * 9 + 1) / 10);
 
       if (self.animationStopping === false)
         {

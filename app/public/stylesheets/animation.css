@@ -4,6 +4,12 @@
   z-index: 1000;
 }
 
+.circular-animation-container {
+  background-color: #f00;
+  width: 1px;
+  height: 1px;
+}
+
 .circular-animation.circular-animation-container
 {
   top: 0;

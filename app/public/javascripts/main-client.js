@@ -20,7 +20,8 @@ require(['jquery', 'data/stream', 'visualisations/map', 'data/live_events', 'vis
     var locatableEvents = live_events.events.filter(function(event) {
       return event.coordinates;
     });
-    map.create([locatableEvents.pop()]);
+    map.create(locatableEvents);
+    //map.create([locatableEvents.pop()]);
 
     //ticker.start(3000);
     //promoter.start(3000);
