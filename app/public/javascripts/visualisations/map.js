@@ -1,6 +1,6 @@
 define(
-    ['jquery', 'visualisations/spotlight'],
-    function($, Spotlight) {
+    ['jquery', 'visualisations/spotlight', 'visualisations/star'],
+    function($, Spotlight, Star) {
 
   var width = $("#map").width(), height = $("#map").height();
   var origin_lat = -31.937487, origin_lng = 115.841517
@@ -48,14 +48,7 @@ define(
   };
 
   var drawPin = function(event) {
-    var pin = $('<div>o</div>');
-    $('#map').append(pin);
-
-    var coords = to_cartesian(event.coordinates);
-    pin.css('position', 'absolute');
-    pin.css('top', coords.y + 'px');
-    pin.css('left', coords.x + 'px');
-    pin.css('color', '#fff');
+    new Star(event);
   };
 
   var moveSpotlight = function() {

@@ -27,3 +27,10 @@
   height: 10px;
   -webkit-transform-origin: 50% 50%;
 }
+
+.star {
+  background-color: #fff;
+  width: 15px;
+  height: 15px;
+  opacity: 0;
+}
