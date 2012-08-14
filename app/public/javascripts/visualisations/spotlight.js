@@ -23,9 +23,14 @@ define(['jquery', 'lib/jquery.imagesloaded', 'visualisations/animations/circular
       imageBox.css('position', 'absolute');
       imageBox.css('width', '240px');
       imageBox.css('height', '240px');
+      imageBox.css('-webkit-transition-property', 'opacity');
+      imageBox.css('-webkit-transition-duration', '1s');
+      imageBox.css('-webkit-transition-timing-function', 'ease-in');
+      imageBox.css('opacity', '0.0');
 
       imageLoadedDeferred.always(function() {
         imageBox.show();
+        imageBox.css('opacity', '0.9');
       });
     };
 
@@ -44,7 +49,10 @@ define(['jquery', 'lib/jquery.imagesloaded', 'visualisations/animations/circular
 
     this.die = function() {
       animation.remove();
-      imageBox.remove();
+      imageBox.css('opacity', '0.0');
+      setTimeout(function() {
+        imageBox.remove();
+      }, 1500);
     };
   };
 });
