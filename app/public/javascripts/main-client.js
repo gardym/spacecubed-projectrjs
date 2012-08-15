@@ -35,12 +35,16 @@ require(['jquery', 'visualisations/map', 'data/live_event_stream', 'visualisatio
 
       map.create(locatableEventsFrom(eventsToDate));
 
+      // TODO Load up ticker etc...
+
       setInterval(function(){
         eventStream.newEvents(updateIntervalInSeconds, function(newEvents){
           var newLocatableEvents = locatableEventsFrom(newEvents);
           newLocatableEvents.forEach(function(newEvent){
             map.addEvent(newEvent);
           });
+
+          // TODO Add to ticker etc...
         });
       }, updateIntervalInSeconds * 1000);
     });
