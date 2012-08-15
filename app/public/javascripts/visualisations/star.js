@@ -2,25 +2,15 @@ define(['jquery'], function($) {
   return function(event) {
 
     this.create = function() {
-      var pin = $('<div class="star"></div>');
-      $('#map').append(pin);
+      var star = $('<div class="star"></div>');
+      $('#map').append(star);
 
-      pin.css('position', 'absolute');
-      pin.css('top', event.xy.y + 'px');
-      pin.css('left', event.xy.x + 'px');
-      pin.css('color', '#fff');
+      star.css('top', event.xy.y + 'px');
+      star.css('left', event.xy.x + 'px');
 
-      pin.css('borderRadius', pin.width() /2);
+      star.css('borderRadius', star.width() /2);
 
-      return pin;
-    };
-
-    var randomColour = function() {
-      var randomHex = function() {
-        return Math.floor(Math.random() * 0xff);
-      };
-
-      return 'rgb(' + randomHex() + ', ' + randomHex() + ', ' + randomHex() + ')';
+      return star;
     };
 
     var blue = '#4ABFD9';
@@ -36,11 +26,6 @@ define(['jquery'], function($) {
 
     this.twinkle = function(star, scaleX, scaleY) {
       star.css('backgroundColor', eventColour());
-      star.css('-webkit-transition',
-        '-webkit-transform 500ms ease-in-out, ' +
-        'opacity 500ms ease-in-out, ' +
-        'background-color 500ms ease-in-out');
-      star.css('opacity', (Math.random() * 0.5) + 0.5);
       setInterval(function() {
         var resize = Math.random();
         star.css('-webkit-transform',

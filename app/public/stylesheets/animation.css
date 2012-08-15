@@ -32,5 +32,7 @@
   background-color: #fff;
   width: 15px;
   height: 15px;
-  opacity: 0;
+  opacity: 0.5;
+  position: absolute;
+  -webkit-transition: -webkit-transform 500ms ease-in-out, opacity 500ms ease-in-out, background-color 500ms ease-in-out;
 }
