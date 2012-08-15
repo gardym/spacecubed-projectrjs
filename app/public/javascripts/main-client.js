@@ -8,7 +8,12 @@ var getParam = function(a) {
   return (a = location.search.match(RegExp("[?&]" + a + "=([^&]*)(&?)", "i"))) ? a[1] : a
 }
 
-if (getParam('data') == 'fake') {
+// Params
+var dataSource = getParam('data');
+var numberOfDaysToSeedEvents = parseInt(getParam('days')) || 4;
+var updateIntervalInSeconds = parseInt(getParam('interval')) || 20;
+
+if (dataSource == 'fake') {
   config.map = {
     '*': { 'data/live_event_stream': 'data/fake_event_stream' }
   }
@@ -26,18 +31,18 @@ require(['jquery', 'visualisations/map', 'data/live_event_stream', 'visualisatio
         function($, map, eventStream, ticker, promoter) {
 
   $(function(){
-    eventStream.eventsToDate(getParam('days') || 4, function(eventsToDate) {
+    eventStream.eventsToDate(numberOfDaysToSeedEvents, function(eventsToDate) {
 
       map.create(locatableEventsFrom(eventsToDate));
 
       setInterval(function(){
-        eventStream.newEvents(20, function(newEvents){
+        eventStream.newEvents(updateIntervalInSeconds, function(newEvents){
           var newLocatableEvents = locatableEventsFrom(newEvents);
           newLocatableEvents.forEach(function(newEvent){
             map.addEvent(newEvent);
           });
         });
-      }, 20000);
+      }, updateIntervalInSeconds * 1000);
     });
   });
 });
