@@ -14,19 +14,30 @@ if (getParam('data') == 'fake') {
   }
 }
 
+var locatableEventsFrom = function(allEvents) {
+  return allEvents.filter(function(event) {
+    return event.coordinates;
+  });
+}
+
 requirejs.config(config);
 
 require(['jquery', 'visualisations/map', 'data/live_event_stream', 'visualisations/ticker', 'visualisations/promoter'],
-        function($, map, event_stream, ticker, promoter) {
+        function($, map, eventStream, ticker, promoter) {
 
   $(function(){
-    event_stream.eventsToDate(getParam('days') || 4, function(eventsToDate) {
+    eventStream.eventsToDate(getParam('days') || 4, function(eventsToDate) {
 
-      var locatableEvents = eventsToDate.filter(function(event) {
-        return event.coordinates;
-      });
+      map.create(locatableEventsFrom(eventsToDate));
 
-      map.create(locatableEvents);
+      setInterval(function(){
+        eventStream.newEvents(20, function(newEvents){
+          var newLocatableEvents = locatableEventsFrom(newEvents);
+          newLocatableEvents.forEach(function(newEvent){
+            map.addEvent(newEvent);
+          });
+        });
+      }, 20000);
     });
   });
 });

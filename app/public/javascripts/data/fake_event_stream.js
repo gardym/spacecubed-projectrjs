@@ -1,6 +1,37 @@
 define(function() {
+
+  var random_text = function() {
+    var sample = "If you are at #fground2012 today don't forget to see @TomTolchard at 3.30 talk about Understanding Social Enterprise";
+    return sample.substring(0, Math.floor(Math.random() * sample.length));
+  };
+
   return {
-    newEvents: function(doneCallback) { return []; },
+    newEvents: function(secondsSinceLastCall, doneCallback) {
+
+      doneCallback([
+          {
+            "provider": "Instagram",
+            "username": "m_i_l_l_y_",
+            "name": "Milly Goldman",
+            "profile_image": "http://images.instagram.com/profiles/profile_184848456_75sq_1343580646.jpg",
+            "text": "http://instagr.am/p/N5bm7btgeH/",
+            "image": "http://distilleryimage11.s3.amazonaws.com/d697fdcede0311e1b62722000a1e8b36_7.jpg",
+            "at": {
+              "_d": "2012-08-04T07:13:06.000Z",
+              "_isUTC": false,
+              "_a": null,
+              "_lang": false
+            },
+            "coordinates": {
+              "lat": -31.957559585,
+              "lng": 115.872299194
+            },
+            "place": null,
+            "recorded_at": "2012-08-04T08:13:09.077Z",
+            "_id": "501cd995d7de840200000062"
+          }
+      ]);
+    },
     eventsToDate: function(days, doneCallback) {
       doneCallback([
         {
