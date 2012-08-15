@@ -22,8 +22,10 @@ define(function() {
     self._createRingElements(10);
     self.completionCallback = callback;
     setTimeout(function() {
-      self.animationStopping = true
-    }, 5000);
+      if(self.completionCallback) {
+        self.completionCallback();
+      }
+    }, 2000);
   };
 
   CircularAnimation.prototype.stopAnimation = function()
@@ -44,7 +46,8 @@ define(function() {
       }
       setTimeout(onTransitionOutComplete, transitionOutDuration)
     };
-    setTimeout(transitionOut, 2000);
+    setTimeout(transitionOut, 1000);
+    
   };
 
 
@@ -52,7 +55,7 @@ define(function() {
   {
     for (var i = 0; i < numRings; i++)
     {
-      this.rings.push(this._createRingElement(Math.random()*100, Math.random()*10));
+      this.rings.push(this._createRingElement(Math.random()*50, Math.random()*10));
     }
   };
 
@@ -72,7 +75,7 @@ define(function() {
     initialScale = 10;
     ring.css('-webkit-transform', 'translate3d(0, 0, 0) scaleX(' + initialScale + ') scaleY(' + initialScale + ')');
     ring.css('-webkit-transition', '-webkit-transform 1500ms ease-in-out, opacity 1500ms ease-in-out');
-    ring.css('opacity', '1.0');
+    ring.css('opacity', '0.0');
 
     var self = this;
     var stepAnimation = function() {
@@ -95,9 +98,6 @@ define(function() {
                 // TODO: Don't remove at this stage. Need to tweak this though as static rings look pants.
                 // This is the end of the animation?
                 //self.remove();
-                if(self.completionCallback) {
-                  self.completionCallback();
-                }
               }
           }
     }

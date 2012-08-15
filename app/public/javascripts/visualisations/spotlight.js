@@ -17,20 +17,25 @@ define(['jquery', 'lib/jquery.imagesloaded', 'visualisations/animations/circular
       imageBox.append(image);
       $('#map').append(imageBox);
 
-      var offset = 120;
-      imageBox.css('top', (event.xy.y - (offset / 2)) + 'px');
-      imageBox.css('left', (event.xy.x + offset) + 'px');
+      var offset = 240;
+      var direction = event.xy.x < ($('#map').get(0).clientWidth / 2) ? 1 : -1;
+
+      imageBox.css('top', (event.xy.y - 120) + 'px');
+      imageBox.css('left', (event.xy.x + (180 * direction) - 120) + 'px');
       imageBox.css('position', 'absolute');
       imageBox.css('width', '240px');
       imageBox.css('height', '240px');
-      imageBox.css('-webkit-transition-property', 'opacity');
-      imageBox.css('-webkit-transition-duration', '1s');
-      imageBox.css('-webkit-transition-timing-function', 'ease-in');
-      imageBox.css('opacity', '0.0');
+      imageBox.css('-webkit-transform', 'scale(0,0)');
+      imageBox.css('-webkit-transform-origin',  (-180 * direction + 120) + 'px ' + 120 + 'px');
+      imageBox.css('-webkit-transition', 'opacity 1s ease-in, -webkit-transform 2s ease-out');
+      imageBox.css('opacity', '0.5');
 
       imageLoadedDeferred.always(function() {
-        imageBox.show();
-        imageBox.css('opacity', '0.9');
+        setTimeout(function() { 
+          imageBox.show();
+          imageBox.css('opacity', '1.0');
+          imageBox.css('-webkit-transform', 'scale(1,1)');
+        }, 0);
       });
     };
 
