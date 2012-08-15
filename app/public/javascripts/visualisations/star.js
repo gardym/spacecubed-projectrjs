@@ -47,7 +47,6 @@ define(['jquery'], function($) {
           'translate3d(0, 0, 0) ' +
           'scaleX(' + (resize * scaleX) + ') ' +
           'scaleY(' + (resize * scaleY) + ')');
-        star.css('borderRadius', star.width() * 0.8);
         star.css('opacity', (Math.random() * 0.5) + 0.5);
       }, Math.floor(Math.random() * 3000));
     };
