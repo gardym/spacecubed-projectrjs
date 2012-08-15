@@ -1,10 +1,5 @@
 define(function() {
 
-  var random_text = function() {
-    var sample = "If you are at #fground2012 today don't forget to see @TomTolchard at 3.30 talk about Understanding Social Enterprise";
-    return sample.substring(0, Math.floor(Math.random() * sample.length));
-  };
-
   return {
     newEvents: function(secondsSinceLastCall, doneCallback) {
 
@@ -29,6 +24,18 @@ define(function() {
             "place": null,
             "recorded_at": "2012-08-04T08:13:09.077Z",
             "_id": "501cd995d7de840200000062"
+          },
+          {
+            "provider": "Twitter",
+            "username": "Sutto",
+            "name": "Darcy Laycock",
+            "profile_image": "http://a0.twimg.com/profile_images/1767661430/Sutto__Avatar__normal.jpg",
+            "text": "@Groovy_Glen yeh, but my point is - the same permissions are required to read text or to check for the encryption code, so be careful.",
+            "at": "Sat Aug 04 08:06:14 +0000 2012",
+            "coordinates": null,
+            "place": null,
+            "recorded_at": "2012-08-04T08:06:14.914Z",
+            "_id": "501cd7f6d7de840200000040"
           }
       ]);
     },
