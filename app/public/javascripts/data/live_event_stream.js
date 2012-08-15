@@ -6,8 +6,8 @@ define( ['jquery', 'lib/moment' ], function($, moment) {
     });
   };
 
-  var eventsToDate = function(doneCallback) {
-    var fromTime = moment().subtract('days', 2).unix();
+  var eventsToDate = function(days, doneCallback) {
+    var fromTime = moment().subtract('days', days).unix();
     var toTime = moment().unix();
 
     return fetchEvents(fromTime, toTime, doneCallback);

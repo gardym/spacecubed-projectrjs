@@ -1,7 +1,7 @@
 define(function() {
   return {
     newEvents: function(doneCallback) { return []; },
-    eventsToDate: function(doneCallback) {
+    eventsToDate: function(days, doneCallback) {
       doneCallback([
         {
           "provider": "Twitter",
