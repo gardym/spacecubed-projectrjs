@@ -12,22 +12,29 @@ Sources:
 - Twitter Streaming API - by user
 - Instagram - Polling
 
+Notings:
+-------
+- Sources are streamed in preference, or polled as required
+
 Get projecting:
 --------------
 - git clone
 - npm install
-- mongod
 - cp sample.env .env && (Edit it with your settings)
 - foreman start
+- browse to http://localhost:5000
 
-Notings:
--------
-- Sources are streamed in preference, or polled as required
-- No sample clients yet - incoming.
+A note on data:
+--------------
 
-Ideas:
------
+The easiest option for local development is to use the inbuilt fake data source.
 
-- Variable font sizes to make events visually interesting
-- Word histogram
+- Achieve this by browsing to: http://localhost:5000?data=fake
+
+If you want to test the against real data sources you'll need to:
+
+- Ensure you have correct keys etc. set in your .env
+- Run mongo locally: `mongod`
+- Wait for the events to be collected in your Mongo
+- Grin happily
 
