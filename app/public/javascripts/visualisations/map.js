@@ -16,7 +16,7 @@ define(
   };
 
   var events = [];
-  var spotlights = [];
+  var shiningSpotlights = [];
   var spotlightInterval = 20000;
 
   var create = function(locatableEvents, spotlightIntervalArg) {
@@ -38,7 +38,7 @@ define(
 
   var draw = function() {
     events.forEach(function(event) {
-      drawPin(event);
+      new Star(event);
     });
 
     moveSpotlight();
@@ -47,25 +47,45 @@ define(
     }, spotlightInterval);
   };
 
-  var drawPin = function(event) {
-    new Star(event);
+  var recentlySpotlitEvents = [];
+  var chooseRandomEvent = function() {
+    if(events.length > 0) {
+      return events[Math.floor(Math.random() * events.length)];
+    } else {
+      return undefined;
+    }
   };
 
   var moveSpotlight = function() {
-    var event = chooseNextEventToSpotlight();
-    if(spotlights.length > 0)
-      spotlights.pop().die();
-    createSpotlight(event);
+    // Remove the previous spotlight
+    if(shiningSpotlights.length > 0) {
+      shiningSpotlights.pop().die();
+    }
+
+   var event = chooseNextEventToSpotlight();
+   recordSpotlight(event);
+   createSpotlight(event);
+  };
+
+  var recordSpotlight = function(spotlight) {
+    recentlySpotlitEvents.push(spotlight);
+    if(recentlySpotlitEvents.length > 10) {
+      recentlySpotlitEvents.pop();
+    }
   };
 
   var chooseNextEventToSpotlight = function() {
-    // TODO: Don't spotlight any of the last ten spotlights.
-    return events[Math.floor(Math.random() * events.length)];
+    var spotlightCandidate = chooseRandomEvent();
+    while(recentlySpotlitEvents.some(function(e) { return e._id === spotlightCandidate._id })) {
+      spotlightCandidate = chooseRandomEvent();
+    }
+
+    return spotlightCandidate;
   };
 
   var createSpotlight = function(event) {
     var spotlight = new Spotlight(event);
-    spotlights.push(spotlight);
+    shiningSpotlights.push(spotlight);
     spotlight.shineOnYouCrazyDiamond();
   };
 
