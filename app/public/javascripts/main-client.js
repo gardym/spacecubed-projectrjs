@@ -8,25 +8,45 @@ var getParam = function(a) {
   return (a = location.search.match(RegExp("[?&]" + a + "=([^&]*)(&?)", "i"))) ? a[1] : a
 }
 
-if (getParam('data') == 'fake') {
+// Params
+var dataSource = getParam('data');
+var numberOfDaysToSeedEvents = parseInt(getParam('days')) || 4;
+var updateIntervalInSeconds = parseInt(getParam('interval')) || 20;
+
+if (dataSource == 'fake') {
   config.map = {
     '*': { 'data/live_event_stream': 'data/fake_event_stream' }
   }
 }
 
+var locatableEventsFrom = function(allEvents) {
+  return allEvents.filter(function(event) {
+    return event.coordinates;
+  });
+}
+
 requirejs.config(config);
 
 require(['jquery', 'visualisations/map', 'data/live_event_stream', 'visualisations/ticker', 'visualisations/promoter'],
-        function($, map, event_stream, ticker, promoter) {
+        function($, map, eventStream, ticker, promoter) {
 
   $(function(){
-    event_stream.eventsToDate(getParam('days') || 4, function(eventsToDate) {
+    eventStream.eventsToDate(numberOfDaysToSeedEvents, function(eventsToDate) {
 
-      var locatableEvents = eventsToDate.filter(function(event) {
-        return event.coordinates;
-      });
+      map.create(locatableEventsFrom(eventsToDate));
 
-      map.create(locatableEvents);
+      // TODO Load up ticker etc...
+
+      setInterval(function(){
+        eventStream.newEvents(updateIntervalInSeconds, function(newEvents){
+          var newLocatableEvents = locatableEventsFrom(newEvents);
+          newLocatableEvents.forEach(function(newEvent){
+            map.addEvent(newEvent);
+          });
+
+          // TODO Add to ticker etc...
+        });
+      }, updateIntervalInSeconds * 1000);
     });
   });
 });

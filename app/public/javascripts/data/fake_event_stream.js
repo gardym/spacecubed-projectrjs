@@ -1,6 +1,44 @@
 define(function() {
+
   return {
-    newEvents: function(doneCallback) { return []; },
+    newEvents: function(secondsSinceLastCall, doneCallback) {
+
+      doneCallback([
+          {
+            "provider": "Instagram",
+            "username": "m_i_l_l_y_",
+            "name": "Milly Goldman",
+            "profile_image": "http://images.instagram.com/profiles/profile_184848456_75sq_1343580646.jpg",
+            "text": "http://instagr.am/p/N5bm7btgeH/",
+            "image": "http://distilleryimage11.s3.amazonaws.com/d697fdcede0311e1b62722000a1e8b36_7.jpg",
+            "at": {
+              "_d": "2012-08-04T07:13:06.000Z",
+              "_isUTC": false,
+              "_a": null,
+              "_lang": false
+            },
+            "coordinates": {
+              "lat": -31.957559585,
+              "lng": 115.872299194
+            },
+            "place": null,
+            "recorded_at": "2012-08-04T08:13:09.077Z",
+            "_id": "501cd995d7de840200000062"
+          },
+          {
+            "provider": "Twitter",
+            "username": "Sutto",
+            "name": "Darcy Laycock",
+            "profile_image": "http://a0.twimg.com/profile_images/1767661430/Sutto__Avatar__normal.jpg",
+            "text": "@Groovy_Glen yeh, but my point is - the same permissions are required to read text or to check for the encryption code, so be careful.",
+            "at": "Sat Aug 04 08:06:14 +0000 2012",
+            "coordinates": null,
+            "place": null,
+            "recorded_at": "2012-08-04T08:06:14.914Z",
+            "_id": "501cd7f6d7de840200000040"
+          }
+      ]);
+    },
     eventsToDate: function(days, doneCallback) {
       doneCallback([
         {

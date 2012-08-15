@@ -13,8 +13,15 @@ define( ['jquery', 'lib/moment' ], function($, moment) {
     return fetchEvents(fromTime, toTime, doneCallback);
   };
 
+  var newEvents = function(secondsSinceLastCall, doneCallback) {
+    var fromTime = moment().subtract('seconds', secondsSinceLastCall).unix();
+    var toTime = moment().unix();
+
+    return fetchEvents(fromTime, toTime, doneCallback);
+  };
+
   return {
-    newEvents: function(doneCallback) { return []; },
+    newEvents: newEvents,
     eventsToDate: eventsToDate
   }
 });
