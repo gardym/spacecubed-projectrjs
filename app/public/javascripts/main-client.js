@@ -17,8 +17,10 @@ if (dataSource == 'fake') {
 
 requirejs.config(config);
 
-require(['jquery', 'visualisations/map', 'data/live_event_stream', 'visualisations/ticker', 'visualisations/promoter'],
-        function($, map, eventStream, ticker, promoter) {
+require(['jquery', 'data/live_event_stream',
+         'visualisations/map', 'visualisations/ticker', 'visualisations/promoter'],
+        function($, eventStream,
+                 map, ticker, promoter) {
 
   var locatableEventsFrom = function(allEvents) {
     return allEvents.filter(function(event) {
@@ -26,21 +28,30 @@ require(['jquery', 'visualisations/map', 'data/live_event_stream', 'visualisatio
     });
   };
 
+  var unlocatableEventsFrom = function(allEvents) {
+    return allEvents.filter(function(event) {
+      return !event.coordinates;
+    });
+  };
+
   $(function(){
     eventStream.eventsToDate(numberOfDaysToSeedEvents, function(eventsToDate) {
 
       map.create(locatableEventsFrom(eventsToDate));
-
-      // TODO Load up ticker etc...
+      ticker.start(updateIntervalInSeconds);
 
       setInterval(function(){
-        eventStream.newEvents(updateIntervalInSeconds, function(newEvents){
+        eventStream.newEvents(updateIntervalInSeconds, function(newEvents) {
           var newLocatableEvents = locatableEventsFrom(newEvents);
-          newLocatableEvents.forEach(function(newEvent){
+          newLocatableEvents.forEach(function(newEvent) {
             map.addEvent(newEvent);
           });
 
           // TODO Add to ticker etc...
+          var newUnlocatableEvents = unlocatableEventsFrom(newEvents);
+          newUnlocatableEvents.forEach(function(newEvent) {
+            ticker.addEvent(newEvent);
+          });
         });
       }, updateIntervalInSeconds * 1000);
     });

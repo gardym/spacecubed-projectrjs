@@ -54,8 +54,8 @@ define(["jquery"], function($) {
     }
   };
 
-  var start = function(interval) {
-    setInterval(draw, interval);
+  var start = function(intervalInSeconds) {
+    setInterval(draw, intervalInSeconds * 1000);
   };
 
   return {
