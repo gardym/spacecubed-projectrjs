@@ -1,18 +1,6 @@
 define(['jquery'], function($) {
   return function(event) {
-
-    this.create = function() {
-      var star = $('<div class="star"></div>');
-      $('#map').append(star);
-
-      star.css('top', event.xy.y + 'px');
-      star.css('left', event.xy.x + 'px');
-
-      star.css('borderRadius', star.width() /2);
-
-      return star;
-    };
-
+    var star;
     var blue = '#4ABFD9';
     var yellow = '#F2B33D';
 
@@ -24,18 +12,35 @@ define(['jquery'], function($) {
       }
     };
 
-    this.twinkle = function(star, scaleX, scaleY) {
+    var css_scale = function(scaleX, scaleY) {
+      star.css('-webkit-transform',
+        'translate3d(0, 0, 0) ' +
+        'scaleX(' + scaleX + ') ' +
+        'scaleY(' + scaleY + ')');
+    };
+
+    star = $('<div class="star"></div>');
+    $('#map').append(star);
+    star.css('top', event.xy.y + 'px');
+    star.css('left', event.xy.x + 'px');
+    star.css('borderRadius', star.width() /2);
+
+    var twinkle = function(scaleX, scaleY) {
       star.css('backgroundColor', eventColour());
       setInterval(function() {
         var resize = Math.random();
-        star.css('-webkit-transform',
-          'translate3d(0, 0, 0) ' +
-          'scaleX(' + (resize * scaleX) + ') ' +
-          'scaleY(' + (resize * scaleY) + ')');
+        css_scale(resize * scaleX, resize * scaleY);
         star.css('opacity', (Math.random() * 0.5) + 0.5);
       }, Math.floor(Math.random() * 3000));
     };
+    twinkle(1, 1);
 
-    this.twinkle(this.create(), 1, 1);
+    this.die = function() {
+      css_scale(10, 10);
+      star.css('opacity', '0.9');
+      setTimeout(function() {
+        star.remove();
+      }, 500);
+    };
   };
 });
