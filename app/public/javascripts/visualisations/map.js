@@ -16,8 +16,10 @@ define(
   };
 
   var events = [];
+  var stars = [];
   var shiningSpotlights = [];
   var spotlightInterval = 20000;
+  var simultaneousEventLimit = 100;
 
   var create = function(locatableEvents, spotlightIntervalArg) {
     events = locatableEvents.map(function(event){
@@ -33,12 +35,16 @@ define(
   var addEvent = function(event) {
     event.xy = to_cartesian(event.coordinates);
     events.push(event);
-    // TODO: Drop off once we hit a certain size (ensure we don't drop off an event this is currently spotlighted
+    stars.push(new Star(event));
+    if(events.length > simultaneousEventLimit) {
+      events.pop();
+      stars.pop().die();
+    }
   };
 
   var draw = function() {
     events.forEach(function(event) {
-      new Star(event);
+      stars.push(new Star(event));
     });
 
     moveSpotlight();

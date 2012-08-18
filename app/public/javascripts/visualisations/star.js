@@ -36,10 +36,14 @@ define(['jquery'], function($) {
     twinkle(1, 1);
 
     this.die = function() {
-      css_scale(10, 10);
-      star.css('opacity', '0.9');
+      css_scale(4, 4);
+      star.css('opacity', '0.7');
       setTimeout(function() {
-        star.remove();
+        star.css('opacity', '0');
+        css_scale(0.1, 0.1);
+        setTimeout(function() {
+          star.remove();
+        }, 500);
       }, 500);
     };
   };
