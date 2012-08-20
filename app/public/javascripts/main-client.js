@@ -42,7 +42,7 @@ require(['jquery', 'data/live_event_stream',
     eventStream.eventsToDate(numberOfDaysToSeedEvents, function(eventsToDate) {
 
       map.create(locatableEventsFrom(eventsToDate));
-      ticker.start(last_five(unlocatableEventsFrom(eventsToDate)), updateIntervalInSeconds);
+      ticker.create(last_five(unlocatableEventsFrom(eventsToDate)), updateIntervalInSeconds);
 
       setInterval(function(){
         eventStream.newEvents(updateIntervalInSeconds, function(newEvents) {

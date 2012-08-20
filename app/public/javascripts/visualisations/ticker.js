@@ -54,13 +54,13 @@ define(["jquery"], function($) {
     }
   };
 
-  var start = function(seedEvents, intervalInSeconds) {
+  var create = function(seedEvents, intervalInSeconds) {
     events = seedEvents;
     setInterval(draw, intervalInSeconds * 1000);
   };
 
   return {
     addEvent: addEvent,
-    start: start
+    create: create
   };
 });
