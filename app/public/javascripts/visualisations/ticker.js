@@ -54,7 +54,8 @@ define(["jquery"], function($) {
     }
   };
 
-  var start = function(intervalInSeconds) {
+  var start = function(seedEvents, intervalInSeconds) {
+    events = seedEvents;
     setInterval(draw, intervalInSeconds * 1000);
   };
 

@@ -34,11 +34,15 @@ require(['jquery', 'data/live_event_stream',
     });
   };
 
+  var last_five = function(ary) {
+    return ary.slice(ary.length - 6, ary.length - 1);
+  };
+
   $(function(){
     eventStream.eventsToDate(numberOfDaysToSeedEvents, function(eventsToDate) {
 
       map.create(locatableEventsFrom(eventsToDate));
-      ticker.start(updateIntervalInSeconds);
+      ticker.start(last_five(unlocatableEventsFrom(eventsToDate)), updateIntervalInSeconds);
 
       setInterval(function(){
         eventStream.newEvents(updateIntervalInSeconds, function(newEvents) {
