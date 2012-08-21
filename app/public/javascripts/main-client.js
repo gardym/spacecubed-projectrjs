@@ -4,7 +4,7 @@ var getParam = function(a) {
 
 // Params
 var dataSource = getParam('data');
-var numberOfDaysToSeedEvents = parseInt(getParam('days')) || 4;
+var numberOfDaysToSeedEvents = parseInt(getParam('days')) || 1;
 var updateIntervalInSeconds = parseInt(getParam('interval')) || 20;
 var showBackground = getParam('background');
 
