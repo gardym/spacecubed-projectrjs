@@ -24,6 +24,13 @@ Get projecting:
 - foreman start
 - browse to http://localhost:5000
 
+Parameters
+----------
+    background=true // show the map background
+    interval=<seconds> // specify the update interval
+    days=<days> // number of days worth of data to seed the map with
+    data=fake // (see below for more)
+
 A note on data:
 --------------
 

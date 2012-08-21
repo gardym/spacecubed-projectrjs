@@ -6,6 +6,7 @@ var getParam = function(a) {
 var dataSource = getParam('data');
 var numberOfDaysToSeedEvents = parseInt(getParam('days')) || 4;
 var updateIntervalInSeconds = parseInt(getParam('interval')) || 20;
+var showBackground = getParam('background');
 
 var config = {
   'shim': { 'lib/moment': { exports: function() { return this.moment; } } }
@@ -39,6 +40,9 @@ require(['jquery', 'data/live_event_stream',
   };
 
   $(function(){
+    if(showBackground === 'true') {
+      $("#map").addClass('map-background');
+    }
     eventStream.eventsToDate(numberOfDaysToSeedEvents, function(eventsToDate) {
 
       map.create(locatableEventsFrom(eventsToDate));

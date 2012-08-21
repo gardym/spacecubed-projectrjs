@@ -14,11 +14,14 @@ body {
   position: absolute;
   top: 120px;
   left: 0;
-  background-image: url('spacecubed-map-1366.jpg');
-  background-repeat: no-repeat;
   background-color: #000;
   width: 1366px;
   height: 596px;
+}
+
+.map-background {
+  background-image: url('spacecubed-map-1366.jpg');
+  background-repeat: no-repeat;
 }
 
 .template-tweet {
