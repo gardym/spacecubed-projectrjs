@@ -1,4 +1,4 @@
-define(['jquery'], function($) 
+define(['jquery'], function($)
 {
   function TweetView(canvas, eventData, bounds) {
     this.canvas = canvas;
@@ -6,9 +6,9 @@ define(['jquery'], function($)
     this.bounds = bounds;
 
     var self = this;
-    finishTimer = function() 
-    { 
-      self._destroyElement(); 
+    finishTimer = function()
+    {
+      self._destroyElement();
       if (self.conComplete) self.onComplete();
     }
     setTimeout(finishTimer, 10000);
@@ -25,7 +25,7 @@ define(['jquery'], function($)
   };
 
   DetailsLayer.prototype._destroyElement = function() {
-    this.e.remove();        
+    this.e.remove();
   };
-  
+
 });
