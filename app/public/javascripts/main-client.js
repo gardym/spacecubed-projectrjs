@@ -18,10 +18,8 @@ if (dataSource == 'fake') {
 
 requirejs.config(config);
 
-require(['jquery', 'data/live_event_stream',
-         'visualisations/map'],
-        function($, eventStream,
-                 map) {
+require(['jquery', 'data/live_event_stream', 'visualisations/map'],
+        function($, eventStream, map) {
 
   var locatableEventsFrom = function(allEvents) {
     return allEvents.filter(function(event) {
