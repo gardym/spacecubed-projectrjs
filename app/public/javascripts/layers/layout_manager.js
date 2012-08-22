@@ -17,7 +17,7 @@ define(['layers/rect'], function(Rect) {
     while (iteration < maxIterations)
     {
       var area = this.getRandomAreaOfDimensions(width, height);
-      if (this.areaIsAvailable(area)) 
+      if (this.areaIsAvailable(area))
       {
         var areaHandle = Math.random().toString().replace('.', '');
         this.allocatedAreas[areaHandle] = area;
@@ -46,7 +46,7 @@ define(['layers/rect'], function(Rect) {
 
   LayoutManager.prototype.areaIsAvailable = function(area)
   {
-    for (var i = 0; i < this.exclusionAreas.length; i++)    
+    for (var i = 0; i < this.exclusionAreas.length; i++)
       if (this.exclusionAreas[i].intersects(area)) return false;
     for (var areaKey in this.allocatedAreas)
       if (this.allocatedArea[areaKey].intersects(area))
