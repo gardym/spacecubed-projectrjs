@@ -1,4 +1,4 @@
-define(['query', 'tweet_view'], function($, TweetView) 
+define(['jquery', 'layers/views/tweet_view'], function($, TweetView) 
 {
   function DetailsLayer(eventSource, canvas) {
     this.views = [];

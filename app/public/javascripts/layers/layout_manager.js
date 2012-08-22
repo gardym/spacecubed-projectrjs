@@ -1,4 +1,4 @@
-define(['rect'], function(Rect) {
+define(['layers/rect'], function(Rect) {
 
   function LayoutManager(width, height) {
     this.width = width;
