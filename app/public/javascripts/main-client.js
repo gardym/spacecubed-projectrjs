@@ -18,10 +18,8 @@ if (dataSource == 'fake') {
 
 requirejs.config(config);
 
-require(['jquery', 'data/live_event_stream',
-         'visualisations/map', 'visualisations/ticker', 'visualisations/promoter'],
-        function($, eventStream,
-                 map, ticker, promoter) {
+require(['jquery', 'data/live_event_stream', 'visualisations/map'],
+        function($, eventStream, map) {
 
   var locatableEventsFrom = function(allEvents) {
     return allEvents.filter(function(event) {
@@ -46,7 +44,6 @@ require(['jquery', 'data/live_event_stream',
     eventStream.eventsToDate(numberOfDaysToSeedEvents, function(eventsToDate) {
 
       map.create(locatableEventsFrom(eventsToDate));
-      ticker.create(last_five(unlocatableEventsFrom(eventsToDate)), updateIntervalInSeconds);
 
       setInterval(function(){
         eventStream.newEvents(updateIntervalInSeconds, function(newEvents) {
@@ -55,11 +52,7 @@ require(['jquery', 'data/live_event_stream',
             map.addEvent(newEvent);
           });
 
-          // TODO Add to ticker etc...
-          var newUnlocatableEvents = unlocatableEventsFrom(newEvents);
-          newUnlocatableEvents.forEach(function(newEvent) {
-            ticker.addEvent(newEvent);
-          });
+          //var newUnlocatableEvents = unlocatableEventsFrom(newEvents);
         });
       }, updateIntervalInSeconds * 1000);
     });
