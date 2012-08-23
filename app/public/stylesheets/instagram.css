@@ -1,0 +1,101 @@
+
+@-webkit-keyframes instagram-animation
+{
+    0%   
+    {
+        opacity: 0;
+        -webkit-transform: translateX(-100px);
+        -webkit-animation-timing-function: ease-out;
+        visibility: visible;
+    }
+    10%  
+    {
+        opacity: 1;
+        -webkit-transform: translateX(-20px);
+        -webkit-animation-timing-function: linear;
+    }
+    90%  
+    {
+        opacity: 1;
+        -webkit-transform: translateX(20px);
+        -webkit-animation-timing-function: ease-in;
+     }
+    100% 
+    {
+        opacity: 0;
+        -webkit-transform: translateX(100px);
+    }
+}
+
+
+
+.instagram
+{
+    font-family: georgia, "times new roman", serif;
+    color: #444;
+    font-size: 13px;    
+    line-height: 15px;
+    -webkit-animation-duration: 20s;
+    -webkit-animation-name: instagram-animation;
+    -webkit-transform: translateX(0);
+    padding: 1px;
+    visibility: hidden;
+    position: absolute;
+    max-width: 200px;
+}
+
+
+.instagram .image
+{
+    width: 100px;
+    height: 100px;
+}
+
+.instagram .avatar
+{
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 8px;
+    border: 1px solid white;
+    width: 50px;
+    height: 50px;
+}
+
+.instagram .author
+{
+    display:inline-block;
+    vertical-align: middle;
+    margin-left: 6px;
+}
+
+.instagram .author .username
+{
+    font-family: Arial, Helvetica;
+    font-size: 14px;
+    color: #6AF;
+    font-weight: bold;
+    margin: 0;
+}
+
+.instagram .author .name
+{
+    font-family: Arial, Helvetica;
+    font-size: 10px;
+    color: #FFF;
+    margin: 0;
+}
+
+.instagram .twitter-logo
+{
+    position: relative;
+    top: -2px;
+    left: -2px;
+    width: 20px;
+    height: 20px;
+    background-image: url("/images/twitter-logo-white.png");
+    background-size: 28px 28px;
+    background-position: -4px -4px;
+    opacity: 0.4;
+}
+
+

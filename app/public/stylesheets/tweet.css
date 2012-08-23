@@ -1,0 +1,155 @@
+
+@-webkit-keyframes tweet-animation
+{
+    0%   
+    {
+        opacity: 0;
+        -webkit-transform: translateX(-100px);
+        -webkit-animation-timing-function: ease-out;
+        visibility: visible;
+    }
+    10%  
+    {
+        opacity: 1;
+        -webkit-transform: translateX(-20px);
+        -webkit-animation-timing-function: linear;
+    }
+    90%  
+    {
+        opacity: 1;
+        -webkit-transform: translateX(20px);
+        -webkit-animation-timing-function: ease-in;
+     }
+    100% 
+    {
+        opacity: 0;
+        -webkit-transform: translateX(100px);
+    }
+}
+
+
+
+.tweet
+{
+    font-family: georgia, "times new roman", serif;
+    color: #444;
+    font-size: 13px;    
+    line-height: 15px;
+    -webkit-animation-duration: 20s;
+    -webkit-animation-name: tweet-animation;
+    -webkit-transform: translateX(0);
+    padding: 1px;
+    visibility: hidden;
+    position: absolute;
+}
+
+
+.tweet .text
+{
+    display:inline-block;
+    max-width: 200px;
+    background: white;
+    padding: 8px;
+    position: relative;
+    border-radius: 1px;
+    vertical-align: middle;
+    word-wrap: break-word;
+
+}
+
+.tweet .text:after
+{
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: white;
+    position: absolute;
+    top: 50%;
+    margin-top: -5px;
+    right: -5px;
+    -webkit-transform: rotate(45deg);
+}
+
+.tweet span.hashtag,
+.tweet span.mention,
+.tweet span.link
+{
+    color: #69B;
+}
+
+.tweet .avatar
+{
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 8px;
+    border: 1px solid white;
+    width: 50px;
+    height: 50px;
+}
+
+.tweet .author
+{
+    display:inline-block;
+    vertical-align: middle;
+    margin-left: 6px;
+}
+
+.tweet .author .username
+{
+    font-family: Arial, Helvetica;
+    font-size: 14px;
+    color: #6AF;
+    font-weight: bold;
+    margin: 0;
+}
+
+.tweet .author .name
+{
+    font-family: Arial, Helvetica;
+    font-size: 10px;
+    color: #FFF;
+    margin: 0;
+}
+
+.tweet .twitter-logo
+{
+    position: relative;
+    top: -2px;
+    left: -2px;
+    width: 20px;
+    height: 20px;
+    background-image: url("/images/twitter-logo-white.png");
+    background-size: 28px 28px;
+    background-position: -4px -4px;
+    opacity: 0.4;
+}
+
+
+
+
+.tweet.black .text
+{
+    border: 1px solid #666;
+    background: #222;
+    color: white;
+}
+
+.tweet.black .text:after
+{
+    background: #222;
+    border-right: 1px solid #666;
+    border-top: 1px solid #666;
+    right: -6px;
+}
+
+.tweet.black .hashtag
+{
+    color: #ACF;
+}
+.tweet.black .avatar
+{
+    border: 1px solid #666;
+}
+
+
+​

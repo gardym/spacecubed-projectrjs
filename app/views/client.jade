@@ -2,6 +2,8 @@ extends layout
 
 block css
   link(rel='stylesheet', href='/stylesheets/client.css')
+  link(rel='stylesheet', href='/stylesheets/tweet.css')
+  link(rel='stylesheet', href='/stylesheets/instagram.css')
 
 block javascript
   script(type='text/javascript', src='/javascripts/require_jquery.js', data-main='/javascripts/main_client')
@@ -11,9 +13,20 @@ block content
 
   #map
 
-  #template.template-tweet.invisible
-    img.profile-image
-    p.text
-    p.author
-    p.date
+  #template-tweet.invisible
+    div.tweet
+      div.text
+      img.avatar
+      div.author
+        p.username
+        p.name
+        div.twitter-logo
+
+
+
+  #template-instagram.invisible
+    div.instagram
+      img.image
+
+
 

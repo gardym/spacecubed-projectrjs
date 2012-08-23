@@ -1,8 +1,9 @@
-define(['layers/rect'], function(Rect) {
-
-  function LayoutManager(width, height) {
+define(['layers/rect'], function(Rect) 
+{
+  function LayoutManager(width, height, margin) {
     this.width = width;
     this.height = height;
+    this.margin = margin || 10;
     this.exclusionAreas = [];
     this.allocatedAreas = {};
   }
@@ -47,9 +48,9 @@ define(['layers/rect'], function(Rect) {
   LayoutManager.prototype.areaIsAvailable = function(area)
   {
     for (var i = 0; i < this.exclusionAreas.length; i++)
-      if (this.exclusionAreas[i].intersects(area)) return false;
+      if (this.exclusionAreas[i].expand(this.margin, this.margin, this.margin, this.margin).intersects(area)) return false;
     for (var areaKey in this.allocatedAreas)
-      if (this.allocatedArea[areaKey].intersects(area))
+      if (this.allocatedAreas[areaKey].expand(this.margin, this.margin, this.margin, this.margin).intersects(area))
         return false;
     return true;
   };

@@ -1,11 +1,11 @@
-define(['jquery', 'layers/layout_manager', 'layers/views/tweet', 'layers/rect'], function($, layoutManager, tweetView, rect)
+define(['jquery', 'layers/layout_manager', 'layers/views/instagram', 'layers/rect'], function($, layoutManager, instagramView, rect)
 {
-  function FeaturesLayer(canvas, data) 
+  function InstagramFeaturesLayer(canvas, data) 
   {
     this.canvas = canvas;
     this.data = data;
     this.views = [];
-    this.maxConcurrentViews = 4;
+    this.maxConcurrentViews = 2;
     this.layoutManager = new layoutManager(this.canvas.element.width(), this.canvas.element.height());
     this.layoutManager.exclusionAreas.push(new rect(840, 0, 140, 100));
     this.layoutManager.exclusionAreas.push(new rect(10, 100, 1050, 280));
@@ -30,9 +30,9 @@ define(['jquery', 'layers/layout_manager', 'layers/views/tweet', 'layers/rect'],
     setTimeout(timerTick, 1);
   };
 
-  FeaturesLayer.prototype._createEventView = function() 
+  InstagramFeaturesLayer.prototype._createEventView = function() 
   {
-    var view = new tweetView(this, this._getRandomTweet());
+    var view = new instagramView(this, this._getRandomInstagram());
     var viewArea = this.layoutManager.allocateAreaOfDimensions(view.element.width(), view.element.height());
     if (viewArea == null)
     {
@@ -51,17 +51,12 @@ define(['jquery', 'layers/layout_manager', 'layers/views/tweet', 'layers/rect'],
     }
   };
 
-  FeaturesLayer.prototype._getRandomEvent = function()
+  InstagramFeaturesLayer.prototype._getRandomInstagram = function()
   {
-    return this.data[Math.floor(Math.random() * this.data.length)];
+    var instagrams = this.data.filter(function(event) { return event.provider = 'instagram'; });
+    return instagrams[Math.floor(Math.random() * instagrams.length)];
   };
 
-  FeaturesLayer.prototype._getRandomTweet = function()
-  {
-    var tweets = this.data.filter(function(event) { return event.provider = 'twitter'; });
-    return tweets[Math.floor(Math.random() * tweets.length)];
-  };
-
-  return FeaturesLayer;
+  return InstagramFeaturesLayer;
 
 });
