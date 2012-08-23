@@ -1,4 +1,4 @@
-define(['jquery'], function($)
+define(['jquery', 'visualisations/animations/circular'], function($, circularAnimation)
 {
   function InstagramView(layer, data, x, y) 
   {
@@ -8,6 +8,9 @@ define(['jquery'], function($)
     this.y = y || 0;
     this._createElement();
     this._bindEvents();
+    position = this.layer.canvas.latLongToCartesian(data.coordinates);
+    this.circularAnimation = new circularAnimation(position)
+    this.circularAnimation.startAnimation(function() {});
   };
 
   InstagramView.prototype.setPosition = function(x, y)
@@ -57,6 +60,7 @@ define(['jquery'], function($)
 
   InstagramView.prototype._destroyElement = function() 
   {
+    this.circularAnimation.remove();
     this.element.remove();
   };
 

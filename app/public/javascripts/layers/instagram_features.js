@@ -53,7 +53,7 @@ define(['jquery', 'layers/layout_manager', 'layers/views/instagram', 'layers/rec
 
   InstagramFeaturesLayer.prototype._getRandomInstagram = function()
   {
-    var instagrams = this.data.filter(function(event) { return event.provider = 'instagram'; });
+    var instagrams = this.data.filter(function(event) { return event.coordinates; });
     return instagrams[Math.floor(Math.random() * instagrams.length)];
   };
 
