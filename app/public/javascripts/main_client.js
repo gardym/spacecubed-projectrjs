@@ -31,10 +31,12 @@ require(['jquery', 'data/live_event_stream', 'canvas', 'layers/features', 'layer
     if(showBackground === 'true') {
       $("#map").addClass('map-background');
     }
+
+    var _canvas = new canvas($("#map"));
+
     eventStream.eventsToDate(numberOfDaysToSeedEvents, function(eventsToDate) {
-      window.canvas = new canvas($("#map"));
-      window.featuresLayer = new featuresLayer(window.canvas, eventsToDate);
-      window.instagramFeaturesLayer = new instagramFeaturesLayer(window.canvas, eventsToDate);
+      window.featuresLayer = new featuresLayer(_canvas, eventsToDate);
+      window.instagramFeaturesLayer = new instagramFeaturesLayer(_canvas, eventsToDate);
     });
   });
 });
