@@ -18,8 +18,8 @@ if (dataSource == 'fake') {
 
 requirejs.config(config);
 
-require(['jquery', 'data/live_event_stream', 'canvas', 'layers/features', 'layers/instagram_features'],
-        function($, eventStream, Canvas, FeaturesLayer, InstagramFeaturesLayer) {
+require(['jquery', 'data/live_event_stream', 'canvas', 'layers/tweet_features', 'layers/instagram_features'],
+        function($, eventStream, Canvas, TweetFeaturesLayer, InstagramFeaturesLayer) {
 
   var locatableEventsFrom = function(allEvents) {
     return allEvents.filter(function(event) {
@@ -35,7 +35,7 @@ require(['jquery', 'data/live_event_stream', 'canvas', 'layers/features', 'layer
     var canvas = new Canvas($("#map"));
 
     eventStream.eventsToDate(numberOfDaysToSeedEvents, function(eventsToDate) {
-      new FeaturesLayer(canvas, eventsToDate);
+      new TweetFeaturesLayer(canvas, eventsToDate);
       new InstagramFeaturesLayer(canvas, eventsToDate);
     });
   });

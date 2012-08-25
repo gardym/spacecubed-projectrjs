@@ -1,6 +1,6 @@
 define(['jquery', 'layers/layout_manager', 'layers/views/tweet', 'layers/rect'], function($, layoutManager, tweetView, rect)
 {
-  function FeaturesLayer(canvas, data) 
+  function TweetFeaturesLayer(canvas, data)
   {
     this.canvas = canvas;
     this.data = data;
@@ -29,14 +29,14 @@ define(['jquery', 'layers/layout_manager', 'layers/views/tweet', 'layers/rect'],
     setTimeout(timerTick, 1);
   };
 
-  FeaturesLayer.prototype._createEventView = function() 
+  TweetFeaturesLayer.prototype._createEventView = function()
   {
     var view = new tweetView(this, this._getRandomTweet());
     var viewArea = this.layoutManager.allocateAreaOfDimensions(view.element.width(), view.element.height());
     if (viewArea == null)
     {
       return view.remove();
-    } 
+    }
 
     view.setPosition(viewArea.area.x, viewArea.area.y);
     this.views.push(view);
@@ -50,17 +50,17 @@ define(['jquery', 'layers/layout_manager', 'layers/views/tweet', 'layers/rect'],
     }
   };
 
-  FeaturesLayer.prototype._getRandomEvent = function()
+  TweetFeaturesLayer.prototype._getRandomEvent = function()
   {
     return this.data[Math.floor(Math.random() * this.data.length)];
   };
 
-  FeaturesLayer.prototype._getRandomTweet = function()
+  TweetFeaturesLayer.prototype._getRandomTweet = function()
   {
     var tweets = this.data.filter(function(event) { return event.provider = 'twitter'; });
     return tweets[Math.floor(Math.random() * tweets.length)];
   };
 
-  return FeaturesLayer;
+  return TweetFeaturesLayer;
 
 });
