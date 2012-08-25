@@ -1,24 +1,12 @@
 define(['jquery', 'layers/layout_manager', 'layers/views/tweet', 'layers/rect'], function($, layoutManager, tweetView, rect)
 {
-  function TweetFeaturesLayer(canvas, data)
+  function TweetFeaturesLayer(canvas, layoutManager, data)
   {
     this.canvas = canvas;
     this.data = data;
     this.views = [];
     this.maxConcurrentViews = 4;
-    this.layoutManager = new layoutManager(this.canvas.element.width(), this.canvas.element.height());
-    this.layoutManager.exclusionAreas.push(new rect(840, 0, 140, 100));
-    this.layoutManager.exclusionAreas.push(new rect(10, 100, 1050, 280));
-    this.layoutManager.exclusionAreas.push(new rect(10, 380, 550, 40));
-    this.layoutManager.exclusionAreas.push(new rect(1060, 180, 90, 150));
-    this.layoutManager.exclusionAreas.push(new rect(310, 420, 100, 150));
-    this.layoutManager.exclusionAreas.push(new rect(1100, 520, 210, 50));
-
-    for (var i = 0; i < this.layoutManager.exclusionAreas.length; i++)
-    {
-      r = this.layoutManager.exclusionAreas[i];
-      $("<div style='width:"+r.w+"px; height:"+r.h+"px; left: "+r.x+"px; top: "+r.y+"px; background: red; opacity: 0.2; position:absolute'>&nbsp;</div>").appendTo(this.canvas.element);
-    };
+    this.layoutManager = layoutManager;
 
     var self = this;
     var timerTick = function() {
