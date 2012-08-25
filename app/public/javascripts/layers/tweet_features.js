@@ -1,54 +1,28 @@
-define(['jquery', 'layers/views/tweet'], function($, tweetView)
+define(['jquery', 'layers/features', 'layers/views/tweet'], function($, FeaturesLayer, TweetView)
 {
   function TweetFeaturesLayer(canvas, layoutManager, data)
   {
-    this.canvas = canvas;
-    this.data = data;
-    this.views = [];
-    this.maxConcurrentViews = 4;
-    this.layoutManager = layoutManager;
+    _this = new FeaturesLayer(layoutManager);
 
-    var self = this;
+    _this.data = data.filter(function(event) { return event.provider = 'twitter'; })
+    _this.views = [];
+    _this.maxConcurrentViews = 4;
+
+    var self = _this;
     var timerTick = function() {
       if (self.views.length < self.maxConcurrentViews)
         self._createEventView();
       setTimeout(timerTick, 1000 + Math.random() * 5000);
     };
     setTimeout(timerTick, 1);
-  };
 
-  TweetFeaturesLayer.prototype._createEventView = function()
-  {
-    var view = new tweetView(this, this._getRandomTweet());
-    var viewArea = this.layoutManager.allocateAreaOfDimensions(view.element.width(), view.element.height());
-    if (viewArea == null)
-    {
-      return view.remove();
-    }
+    _this._createView = function() {
+      var randomTweet = _this.data[Math.floor(Math.random() * _this.data.length)];
+      return new TweetView(canvas, randomTweet);
+    };
 
-    view.setPosition(viewArea.area.x, viewArea.area.y);
-    this.views.push(view);
-
-    var self = this;
-    view.onComplete = function()
-    {
-      self.layoutManager.deallocateArea(viewArea.handle);
-      var elementIndex = self.views.indexOf(view);
-      if (elementIndex != -1) self.views.splice(elementIndex, 1)
-    }
-  };
-
-  TweetFeaturesLayer.prototype._getRandomEvent = function()
-  {
-    return this.data[Math.floor(Math.random() * this.data.length)];
-  };
-
-  TweetFeaturesLayer.prototype._getRandomTweet = function()
-  {
-    var tweets = this.data.filter(function(event) { return event.provider = 'twitter'; });
-    return tweets[Math.floor(Math.random() * tweets.length)];
+    return _this;
   };
 
   return TweetFeaturesLayer;
-
 });

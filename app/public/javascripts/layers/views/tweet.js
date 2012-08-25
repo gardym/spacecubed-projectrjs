@@ -1,8 +1,8 @@
 define(['jquery'], function($)
 {
-  function TweetView(layer, data, x, y) 
+  function TweetView(canvas, data, x, y) 
   {
-    this.layer = layer;
+    this.canvas = canvas;
     this.data = data;
     this.x = x || 0;
     this.y = y || 0;
@@ -14,9 +14,7 @@ define(['jquery'], function($)
   {
     this.x = x;
     this.y = y;
-    this.element
-    .css('left', this.x + 'px')
-    .css('top', this.y + 'px');
+    this.element.css('left', this.x + 'px').css('top', this.y + 'px');
   };
 
   TweetView.prototype.remove = function()
@@ -26,14 +24,12 @@ define(['jquery'], function($)
 
   TweetView.prototype._createElement = function() 
   {
-    this.element = $("#template-tweet").clone().children().appendTo(this.layer.canvas.element);
+    this.element = $("#template-tweet").clone().children().appendTo(this.canvas.element);
     this.element.find(".text").html(this._getTextHtml());
     this.element.find(".username").text(this.data.username);
     this.element.find(".name").text(this.data.name);
     this.element.find(".avatar").prop("src", this.data.profile_image);
-    this.element
-    .css('left', this.x + 'px')
-    .css('top', this.y + 'px')
+    this.element.css('left', this.x + 'px').css('top', this.y + 'px')
   };
 
   TweetView.prototype._getTextHtml = function() 
