@@ -17,7 +17,6 @@ define(['jquery', 'layers/layout_manager', 'layers/views/tweet', 'layers/rect'],
     for (var i = 0; i < this.layoutManager.exclusionAreas.length; i++)
     {
       r = this.layoutManager.exclusionAreas[i];
-      console.log(r);
       $("<div style='width:"+r.w+"px; height:"+r.h+"px; left: "+r.x+"px; top: "+r.y+"px; background: red; opacity: 0.2; position:absolute'>&nbsp;</div>").appendTo(this.canvas.element);
     };
 

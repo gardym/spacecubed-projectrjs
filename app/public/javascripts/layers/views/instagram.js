@@ -29,7 +29,6 @@ define(['jquery', 'visualisations/animations/circular'], function($, circularAni
 
   InstagramView.prototype._createElement = function() 
   {
-    console.log(this.data);
     this.element = $("#template-instagram").clone().children().appendTo(this.layer.canvas.element);
     this.element.find(".image").prop("src", this.data.image);
     this.element
