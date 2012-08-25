@@ -1,17 +1,18 @@
-define(['jquery'], function($)
-{
-
-
+define(function() {
   function Canvas(element) {
+
     this.element = element;
 
     var width = this.element.width(),
         height = this.element.height();
-    var origin_lat = -31.937487, 
+
+    var origin_lat = -31.937487,
         origin_lng = 115.841517;
-    var end_lat = -31.97317, 
+
+    var end_lat = -31.97317,
         end_lng = 115.880442;
-    var lat_height = Math.abs(end_lat - origin_lat), 
+
+    var lat_height = Math.abs(end_lat - origin_lat),
         lng_width = Math.abs(end_lng - origin_lng);
 
     this.latLongToCartesian = function(coords) {
