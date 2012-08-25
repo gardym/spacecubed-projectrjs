@@ -5,7 +5,6 @@ define(['jquery', 'layers/features', 'layers/views/instagram'], function($, Feat
     _this = new FeaturesLayer(layoutManager);
 
     _this.data = data.filter(function(event) { return event.coordinates; })
-    _this.views = [];
     _this.maxConcurrentViews = 2;
 
     _this._createView = function() {
