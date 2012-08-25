@@ -1,4 +1,4 @@
-define(['jquery', 'layers/layout_manager', 'layers/views/instagram', 'layers/rect'], function($, layoutManager, instagramView, rect)
+define(['jquery', 'layers/views/instagram'], function($, instagramView)
 {
   function InstagramFeaturesLayer(canvas, layoutManager, data)
   {

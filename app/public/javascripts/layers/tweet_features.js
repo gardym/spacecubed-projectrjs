@@ -1,4 +1,4 @@
-define(['jquery', 'layers/layout_manager', 'layers/views/tweet', 'layers/rect'], function($, layoutManager, tweetView, rect)
+define(['jquery', 'layers/views/tweet'], function($, tweetView)
 {
   function TweetFeaturesLayer(canvas, layoutManager, data)
   {
