@@ -18,14 +18,8 @@ if (dataSource == 'fake') {
 
 requirejs.config(config);
 
-require(['jquery', 'data/live_event_stream', 'canvas', 'layers/layout_manager', 'layers/tweet_features', 'layers/instagram_features'],
-        function($, eventStream, Canvas, LayoutManager, TweetFeaturesLayer, InstagramFeaturesLayer) {
-
-  var locatableEventsFrom = function(allEvents) {
-    return allEvents.filter(function(event) {
-      return event.coordinates;
-    });
-  };
+require(['jquery', 'data/live_event_stream', 'canvas', 'layers/layout_manager', 'layers/tweet_features', 'layers/instagram_features', 'layers/sparkles'],
+        function($, eventStream, Canvas, LayoutManager, TweetFeaturesLayer, InstagramFeaturesLayer, SparklesLayer) {
 
   $(function(){
     if(showBackground === 'true') {
@@ -52,6 +46,7 @@ require(['jquery', 'data/live_event_stream', 'canvas', 'layers/layout_manager', 
     eventStream.eventsToDate(numberOfDaysToSeedEvents, function(eventsToDate) {
       new TweetFeaturesLayer(canvas, layoutManager, eventsToDate);
       new InstagramFeaturesLayer(canvas, layoutManager, eventsToDate);
+      new SparklesLayer(canvas, eventsToDate);
     });
   });
 });
