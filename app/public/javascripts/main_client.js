@@ -18,8 +18,8 @@ if (dataSource == 'fake') {
 
 requirejs.config(config);
 
-require(['jquery', 'data/live_event_stream', 'canvas', 'layers/rect', 'layers/layout_manager', 'layers/tweet_features', 'layers/instagram_features'],
-        function($, eventStream, Canvas, Rect, LayoutManager, TweetFeaturesLayer, InstagramFeaturesLayer) {
+require(['jquery', 'data/live_event_stream', 'canvas', 'layers/layout_manager', 'layers/tweet_features', 'layers/instagram_features'],
+        function($, eventStream, Canvas, LayoutManager, TweetFeaturesLayer, InstagramFeaturesLayer) {
 
   var locatableEventsFrom = function(allEvents) {
     return allEvents.filter(function(event) {
@@ -35,12 +35,12 @@ require(['jquery', 'data/live_event_stream', 'canvas', 'layers/rect', 'layers/la
     var canvas = new Canvas($("#map"));
 
     var layoutManager = new LayoutManager(canvas.element.width(), canvas.element.height());
-    layoutManager.exclusionAreas.push(new Rect(840, 0, 140, 100));
-    layoutManager.exclusionAreas.push(new Rect(10, 100, 1050, 280));
-    layoutManager.exclusionAreas.push(new Rect(10, 380, 550, 40));
-    layoutManager.exclusionAreas.push(new Rect(1060, 180, 90, 150));
-    layoutManager.exclusionAreas.push(new Rect(310, 420, 100, 150));
-    layoutManager.exclusionAreas.push(new Rect(1100, 520, 210, 50));
+    layoutManager.exclude(840, 0, 140, 100);
+    layoutManager.exclude(10, 100, 1050, 280);
+    layoutManager.exclude(10, 380, 550, 40);
+    layoutManager.exclude(1060, 180, 90, 150);
+    layoutManager.exclude(310, 420, 100, 150);
+    layoutManager.exclude(1100, 520, 210, 50);
 
     // Red debugging areas.
     for (var i = 0; i < layoutManager.exclusionAreas.length; i++)

@@ -1,4 +1,4 @@
-define(['layers/rect'], function(Rect) 
+define(['layers/rect'], function(Rect)
 {
   function LayoutManager(width, height, margin) {
     this.width = width;
@@ -7,6 +7,10 @@ define(['layers/rect'], function(Rect)
     this.exclusionAreas = [];
     this.allocatedAreas = {};
   }
+
+  LayoutManager.prototype.exclude = function(x, y, width, height) {
+    this.addExclusionArea(new Rect(x, y, width, height));
+  };
 
   LayoutManager.prototype.addExclusionArea = function(bounds) {
     this.exclusionAreas.push(bounds);
