@@ -35,8 +35,8 @@ require(['jquery', 'data/live_event_stream', 'canvas', 'layers/features', 'layer
     var canvas = new Canvas($("#map"));
 
     eventStream.eventsToDate(numberOfDaysToSeedEvents, function(eventsToDate) {
-      window.featuresLayer = new FeaturesLayer(canvas, eventsToDate);
-      window.instagramFeaturesLayer = new InstagramFeaturesLayer(canvas, eventsToDate);
+      new FeaturesLayer(canvas, eventsToDate);
+      new InstagramFeaturesLayer(canvas, eventsToDate);
     });
   });
 });
