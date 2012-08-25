@@ -18,7 +18,7 @@ define(function() {
       var self = this;
       view.onComplete = function()
       {
-        self.layoutManager.deallocateArea(viewArea.handle);
+        layoutManager.deallocateArea(viewArea.handle);
         var elementIndex = self.views.indexOf(view);
         if (elementIndex != -1) self.views.splice(elementIndex, 1)
       }
