@@ -4,7 +4,7 @@ define(['layers/views/pin'], function(PinView) {
 
     this.data = eventsToDate.filter(function(e) { return e.coordinates });
     this.views = [];
-    this.maxConcurrentPins = 100;
+    this.maxConcurrentPins = this.data.length;
 
     this._start = function() {
       for(var i = 0; i < this.maxConcurrentPins; i++) {
