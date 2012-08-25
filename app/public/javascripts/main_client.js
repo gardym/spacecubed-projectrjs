@@ -19,7 +19,7 @@ if (dataSource == 'fake') {
 requirejs.config(config);
 
 require(['jquery', 'data/live_event_stream', 'canvas', 'layers/features', 'layers/instagram_features'],
-        function($, eventStream, canvas, featuresLayer, instagramFeaturesLayer) {
+        function($, eventStream, Canvas, FeaturesLayer, InstagramFeaturesLayer) {
 
   var locatableEventsFrom = function(allEvents) {
     return allEvents.filter(function(event) {
@@ -32,11 +32,11 @@ require(['jquery', 'data/live_event_stream', 'canvas', 'layers/features', 'layer
       $("#map").addClass('map-background');
     }
 
-    var _canvas = new canvas($("#map"));
+    var canvas = new Canvas($("#map"));
 
     eventStream.eventsToDate(numberOfDaysToSeedEvents, function(eventsToDate) {
-      window.featuresLayer = new featuresLayer(_canvas, eventsToDate);
-      window.instagramFeaturesLayer = new instagramFeaturesLayer(_canvas, eventsToDate);
+      window.featuresLayer = new FeaturesLayer(canvas, eventsToDate);
+      window.instagramFeaturesLayer = new InstagramFeaturesLayer(canvas, eventsToDate);
     });
   });
 });
