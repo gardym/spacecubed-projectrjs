@@ -27,12 +27,6 @@ require(['jquery', 'data/live_event_stream', 'canvas', 'layers/features', 'layer
     });
   };
 
-  var unlocatableEventsFrom = function(allEvents) {
-    return allEvents.filter(function(event) {
-      return !event.coordinates;
-    });
-  };
-
   $(function(){
     if(showBackground === 'true') {
       $("#map").addClass('map-background');
