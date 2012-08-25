@@ -18,8 +18,8 @@ if (dataSource == 'fake') {
 
 requirejs.config(config);
 
-require(['jquery', 'data/live_event_stream', 'visualisations/map', 'canvas', 'layers/features', 'layers/instagram_features'],
-        function($, eventStream, map, canvas, featuresLayer, instagramFeaturesLayer) {
+require(['jquery', 'data/live_event_stream', 'canvas', 'layers/features', 'layers/instagram_features'],
+        function($, eventStream, canvas, featuresLayer, instagramFeaturesLayer) {
 
   var locatableEventsFrom = function(allEvents) {
     return allEvents.filter(function(event) {
@@ -31,10 +31,6 @@ require(['jquery', 'data/live_event_stream', 'visualisations/map', 'canvas', 'la
     return allEvents.filter(function(event) {
       return !event.coordinates;
     });
-  };
-
-  var last_five = function(ary) {
-    return ary.slice(ary.length - 6, ary.length - 1);
   };
 
   $(function(){
