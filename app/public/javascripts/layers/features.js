@@ -2,6 +2,21 @@ define(function() {
 
   function FeaturesLayer(layoutManager) {
 
+    this.views = [];
+
+    // Override this in your subclass for your specific viewing needs.
+    this._createView = function() { };
+
+    this._start = function() {
+      var self = this;
+      var timerTick = function() {
+        if (self.views.length < self.maxConcurrentViews)
+          self._createEventView();
+        setTimeout(timerTick, 1000 + Math.random() * 5000);
+      };
+      setTimeout(timerTick, 1);
+    };
+
     this._createEventView = function() {
 
       var view = this._createView();
@@ -23,6 +38,8 @@ define(function() {
         if (elementIndex != -1) self.views.splice(elementIndex, 1)
       }
     };
+
+    this._start();
   }
 
   return FeaturesLayer;
