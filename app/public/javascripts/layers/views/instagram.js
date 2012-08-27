@@ -9,9 +9,10 @@ define(['jquery', 'visualisations/animations/circular'], function($, circularAni
     this._createElement();
     this._bindEvents();
 
-    var position = this.canvas.latLongToCartesian(data.coordinates);
-    this.circularAnimation = new circularAnimation(position)
+    this.latLongPosition = this.canvas.latLongToCartesian(data.coordinates);
+    this.circularAnimation = new circularAnimation(this.latLongPosition)
     this.circularAnimation.startAnimation(function() {});
+
   };
 
   InstagramView.prototype.setPosition = function(x, y)
@@ -21,11 +22,32 @@ define(['jquery', 'visualisations/animations/circular'], function($, circularAni
     this.element
     .css('left', this.x + 'px')
     .css('top', this.y + 'px');
+
+
+    var lx = x + this.element.width() / 2; 
+    var ly = y + this.element.height() / 2; 
+
+    var s = this.latLongPosition;
+    var self = this;
+    setTimeout(function() { 
+      self.line = window.mapPaper.path("M "+s.x+" "+ (s.y + 5) +" L "+s.x+" "+ (s.y + 5)).attr({ "stroke": "#FFFFFF", "stroke-width": 2}).attr({"opacity":"0"});
+      //self.line = window.mapPaper.path("M "+s.x+" "+ (s.y + 5) +" L "+(lx - 100)+" "+ly).attr({ "stroke": "#FFFFFF", "stroke-width": 2}).attr({"opacity":"0"});
+      var animateStep1 = Raphael.animation({path:"M "+s.x+" "+(s.y + 5)+" L " + (lx - 20) + " "+ly, "opacity": "1"}, 2000, Raphael.easing_formulas[">"]);
+      self.line.animate(animateStep1);
+    }, 0)
+    setTimeout(function() { 
+      var animateStep2 = Raphael.animation({path:"M "+s.x+" "+(s.y + 5)+" L " + (lx + 20) + " "+ly}, 16000);
+      self.line.animate(animateStep2);
+    }, 2000)
+    setTimeout(function() { 
+      var animateStep3 = Raphael.animation({path:"M " + (lx + 100) + " " + ly + " L " + (lx + 100) + " " + ly, "opacity": "0"}, 2000, Raphael.easing_formulas["<"]);
+      self.line.animate(animateStep3);
+    }, 18000)
   };
 
   InstagramView.prototype.remove = function()
   {
-    this._destroyElement();    
+    this._destroyElement();  
   }
 
   InstagramView.prototype._createElement = function() 
@@ -62,6 +84,7 @@ define(['jquery', 'visualisations/animations/circular'], function($, circularAni
   {
     this.circularAnimation.remove();
     this.element.remove();
+    if (this.line) this.line.remove();
   };
 
   InstagramView.prototype._onAnimationCompleted = function() 

@@ -20,7 +20,13 @@ define(function() {
     this._createEventView = function() {
 
       var view = this._createView();
-      var viewArea = layoutManager.allocateAreaOfDimensions(view.element.width(), view.element.height());
+
+      var viewArea = layoutManager.allocateAreaOfDimensions(
+        view.element.width(), 
+        view.element.height(),
+        view.latLongPosition ? view.latLongPosition.x : null,
+        view.latLongPosition ? view.latLongPosition.y : null
+        );
 
       if (viewArea == null)
       {

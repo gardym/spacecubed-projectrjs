@@ -38,17 +38,22 @@
     -webkit-animation-duration: 20s;
     -webkit-animation-name: instagram-animation;
     -webkit-transform: translateX(0);
-    padding: 1px;
     visibility: hidden;
     position: absolute;
     max-width: 200px;
+    border: 2px solid rgba(255,255,255,0.50);
+    box-shadow: 0 0 16px 8px rgba(0,0,0,1);
+    background: black;
+    width: 100px;
+    height: 100px;
 }
 
 
 .instagram .image
 {
-    width: 100px;
-    height: 100px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
 .instagram .avatar

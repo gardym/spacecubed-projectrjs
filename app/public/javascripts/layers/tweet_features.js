@@ -2,9 +2,9 @@ define(['jquery', 'layers/features', 'layers/views/tweet'], function($, Features
 {
   function TweetFeaturesLayer(canvas, layoutManager, data)
   {
-    _this = new FeaturesLayer(layoutManager);
+    var _this = new FeaturesLayer(layoutManager);
 
-    _this.data = data.filter(function(event) { return event.provider = 'twitter'; })
+    _this.data = data.filter(function(event) { return event.provider = 'twitter' && event.text.indexOf("http://instagr.am") == -1; })
     _this.maxConcurrentViews = 4;
 
     _this._createView = function() {

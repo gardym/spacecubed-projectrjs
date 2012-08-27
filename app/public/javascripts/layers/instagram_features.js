@@ -2,7 +2,7 @@ define(['jquery', 'layers/features', 'layers/views/instagram'], function($, Feat
 {
   function InstagramFeaturesLayer(canvas, layoutManager, data)
   {
-    _this = new FeaturesLayer(layoutManager);
+    var _this = new FeaturesLayer(layoutManager);
 
     _this.data = data.filter(function(event) { return event.coordinates; })
     _this.maxConcurrentViews = 2;

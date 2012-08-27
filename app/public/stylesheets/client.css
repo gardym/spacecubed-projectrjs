@@ -10,11 +10,17 @@ body {
   background-color: #000;
 }
 
+#map-container
+{
+  position: relative;
+}
+
+#background,
+#svg-container,
 #map {
   position: absolute;
   top: 120px;
   left: 0;
-  background-color: #000;
   width: 1366px;
   height: 596px;
 }

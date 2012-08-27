@@ -7,6 +7,7 @@ var dataSource = getParam('data');
 var numberOfDaysToSeedEvents = parseInt(getParam('days')) || 1;
 var updateIntervalInSeconds = parseInt(getParam('interval')) || 20;
 var showBackground = getParam('background');
+var showExclusionAreas = getParam('showExclusionAreas');
 
 var config = {
   'shim': { 'lib/moment': { exports: function() { return this.moment; } } }
@@ -23,10 +24,12 @@ require(['jquery', 'data/live_event_stream', 'canvas', 'layers/layout_manager', 
 
   $(function(){
     if(showBackground === 'true') {
-      $("#map").addClass('map-background');
+      $("#background").addClass('map-background');
     }
 
     var canvas = new Canvas($("#map"));
+    window.mapPaper = Raphael($("#raphael-container").get(0), canvas.element.width(), canvas.element.height());
+
 
     var layoutManager = new LayoutManager(canvas.element.width(), canvas.element.height());
     layoutManager.exclude(840, 0, 140, 100);
@@ -36,11 +39,14 @@ require(['jquery', 'data/live_event_stream', 'canvas', 'layers/layout_manager', 
     layoutManager.exclude(310, 420, 100, 150);
     layoutManager.exclude(1100, 520, 210, 50);
 
-    // Red debugging areas.
-    for (var i = 0; i < layoutManager.exclusionAreas.length; i++)
+    if (showExclusionAreas)
     {
-      r = layoutManager.exclusionAreas[i];
-      $("<div style='width:"+r.w+"px; height:"+r.h+"px; left: "+r.x+"px; top: "+r.y+"px; background: red; opacity: 0.2; position:absolute'>&nbsp;</div>").appendTo(canvas.element);
+      // Red debugging areas.
+      for (var i = 0; i < layoutManager.exclusionAreas.length; i++)
+      {
+        r = layoutManager.exclusionAreas[i];
+        $("<div style='width:"+r.w+"px; height:"+r.h+"px; left: "+r.x+"px; top: "+r.y+"px; background: red; opacity: 0.2; position:absolute'>&nbsp;</div>").appendTo(canvas.element);
+      };
     };
 
     eventStream.eventsToDate(numberOfDaysToSeedEvents, function(eventsToDate) {

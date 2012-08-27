@@ -16,21 +16,39 @@ define(['layers/rect'], function(Rect)
     this.exclusionAreas.push(bounds);
   };
 
-  LayoutManager.prototype.allocateAreaOfDimensions = function(width, height) {
-    var maxIterations = 16;
+  LayoutManager.prototype.allocateAreaOfDimensions = function(width, height, closeToX, closeToY) {
+    var maxIterations = 64;
     var iteration = 0;
+    var bestDistance = null;
+    var bestArea = null;
     while (iteration < maxIterations)
     {
       var area = this.getRandomAreaOfDimensions(width, height);
       if (this.areaIsAvailable(area))
       {
-        var areaHandle = Math.random().toString().replace('.', '');
-        this.allocatedAreas[areaHandle] = area;
-        return  { handle: areaHandle, area: area }
+        if (closeToX)
+        {
+          var distance = Math.pow((closeToX - (area.x + area.w / 2)), 2) 
+                       + Math.pow((closeToY - (area.y + area.h / 2)), 2);
+          if (bestArea == null || distance < bestDistance) {
+            bestDistance = distance;
+            bestArea = area;
+          }
+        } else {
+          bestArea = area;
+          break;
+        }
       }
       iteration++;
     }
-    return null;
+    if(bestArea != null) 
+    {
+      var areaHandle = Math.random().toString().replace('.', '');
+      this.allocatedAreas[areaHandle] = bestArea;
+      return  { handle: areaHandle, area: bestArea }
+    } else {
+      return null;
+    }
   };
 
   LayoutManager.prototype.deallocateArea = function(areaKey)

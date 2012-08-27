@@ -6,12 +6,16 @@ block css
   link(rel='stylesheet', href='/stylesheets/instagram.css')
 
 block javascript
+  script(type='text/javascript', src='/javascripts/lib/raphael-min.js')
   script(type='text/javascript', src='/javascripts/require_jquery.js', data-main='/javascripts/main_client')
 
 block content
   #tape
 
-  #map
+  #mapContainer
+    #background
+    #raphael-container
+    #map
 
   #template-tweet.invisible
     div.tweet

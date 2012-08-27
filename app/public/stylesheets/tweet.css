@@ -38,9 +38,9 @@
     -webkit-animation-duration: 20s;
     -webkit-animation-name: tweet-animation;
     -webkit-transform: translateX(0);
-    padding: 1px;
     visibility: hidden;
     position: absolute;
+    box-shadow: 0 0 16px 8px rgba(0,0,0,1);
 }
 
 
@@ -54,7 +54,6 @@
     border-radius: 1px;
     vertical-align: middle;
     word-wrap: break-word;
-
 }
 
 .tweet .text:after
