@@ -40,7 +40,6 @@
     -webkit-transform: translateX(0);
     visibility: hidden;
     position: absolute;
-    box-shadow: 0 0 16px 8px rgba(0,0,0,1);
 }
 
 
@@ -54,6 +53,7 @@
     border-radius: 1px;
     vertical-align: middle;
     word-wrap: break-word;
+    box-shadow: 0 0 16px 8px rgba(0,0,0,1);
 }
 
 .tweet .text:after

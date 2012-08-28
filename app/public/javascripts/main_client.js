@@ -9,6 +9,12 @@ var updateIntervalInSeconds = parseInt(getParam('interval')) || 20;
 var showBackground = getParam('background');
 var showExclusionAreas = getParam('showExclusionAreas');
 
+var exclusionTop = getParam('exclusionTop');
+var exclusionBottom = getParam('exclusionBottom');
+var scale = getParam('scale');
+var offsetX = getParam('offsetX');
+var offsetY = getParam('offsetY');
+
 var config = {
   'shim': { 'lib/moment': { exports: function() { return this.moment; } } }
 }
@@ -30,14 +36,23 @@ require(['jquery', 'data/live_event_stream', 'canvas', 'layers/layout_manager', 
     var canvas = new Canvas($("#map"));
     window.mapPaper = Raphael($("#raphael-container").get(0), canvas.element.width(), canvas.element.height());
 
-
     var layoutManager = new LayoutManager(canvas.element.width(), canvas.element.height());
-    layoutManager.exclude(840, 0, 140, 100);
-    layoutManager.exclude(10, 100, 1050, 280);
-    layoutManager.exclude(10, 380, 550, 40);
-    layoutManager.exclude(1060, 180, 90, 150);
-    layoutManager.exclude(310, 420, 100, 150);
-    layoutManager.exclude(1100, 520, 210, 50);
+
+    // apply the scale / offset to the background layer
+    $("#background").css("-webkit-transform", "scale(" + (scale || 1) + ", " + (scale || 1) + ") translateX(" + (offsetX || 0) + "px) translateY(" + (offsetY || 0) + "px)");
+
+    var cs = canvas.element.width() / 1366; // scaling constant for pre-defined exclusion areas 
+    layoutManager.exclude( 840 * cs,   0 * cs,  140 * cs, 100 * cs);
+    layoutManager.exclude(  10 * cs, 100 * cs, 1050 * cs, 280 * cs);
+    layoutManager.exclude(  10 * cs, 380 * cs,  550 * cs,  40 * cs);
+    layoutManager.exclude(1060 * cs, 180 * cs,   90 * cs, 150 * cs);
+    layoutManager.exclude( 310 * cs, 420 * cs,  100 * cs, 150 * cs);
+    layoutManager.exclude(1100 * cs, 520 * cs,  210 * cs,  50 * cs);
+
+    if (exclusionTop)
+      layoutManager.exclude(0, 0, canvas.element.width(), canvas.element.height() * exclusionTop);
+    if (exclusionBottom)
+      layoutManager.exclude(0, canvas.element.height() * (1 - exclusionBottom), canvas.element.width(), canvas.element.height() * exclusionBottom);
 
     if (showExclusionAreas)
     {
@@ -45,7 +60,7 @@ require(['jquery', 'data/live_event_stream', 'canvas', 'layers/layout_manager', 
       for (var i = 0; i < layoutManager.exclusionAreas.length; i++)
       {
         r = layoutManager.exclusionAreas[i];
-        $("<div style='width:"+r.w+"px; height:"+r.h+"px; left: "+r.x+"px; top: "+r.y+"px; background: red; opacity: 0.2; position:absolute'>&nbsp;</div>").appendTo(canvas.element);
+        $("<div style='width:"+r.w+"px; height:"+r.h+"px; left: "+r.x+"px; top: "+r.y+"px; background: red; opacity: 0.5; position:absolute'>&nbsp;</div>").appendTo(canvas.element);
       };
     };
 

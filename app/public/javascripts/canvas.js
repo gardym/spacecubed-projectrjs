@@ -19,7 +19,7 @@ define(function() {
       // TODO: Adjust for map rotation
       return {
         x: (Math.abs(coords.lng - origin_lng) / lng_width) * width,
-        y: (Math.abs(coords.lat - origin_lat) / lat_height) * height
+        y: (Math.abs(coords.lat - origin_lat) / lat_height) * (596 / 1366) * width
       };
     };
 

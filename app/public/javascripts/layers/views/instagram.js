@@ -30,13 +30,13 @@ define(['jquery', 'visualisations/animations/circular'], function($, circularAni
     var s = this.latLongPosition;
     var self = this;
     setTimeout(function() { 
-      self.line = window.mapPaper.path("M "+s.x+" "+ (s.y + 5) +" L "+s.x+" "+ (s.y + 5)).attr({ "stroke": "#FFFFFF", "stroke-width": 2}).attr({"opacity":"0"});
+      self.line = window.mapPaper.path("M "+s.x+" "+ s.y +" L "+s.x+" "+ (s.y + 5)).attr({ "stroke": "#FFFFFF", "stroke-width": 2}).attr({"opacity":"0"});
       //self.line = window.mapPaper.path("M "+s.x+" "+ (s.y + 5) +" L "+(lx - 100)+" "+ly).attr({ "stroke": "#FFFFFF", "stroke-width": 2}).attr({"opacity":"0"});
-      var animateStep1 = Raphael.animation({path:"M "+s.x+" "+(s.y + 5)+" L " + (lx - 20) + " "+ly, "opacity": "1"}, 2000, Raphael.easing_formulas[">"]);
+      var animateStep1 = Raphael.animation({path:"M "+s.x+" "+ s.y+" L " + (lx - 20) + " "+ly, "opacity": "1"}, 2000, Raphael.easing_formulas[">"]);
       self.line.animate(animateStep1);
     }, 0)
     setTimeout(function() { 
-      var animateStep2 = Raphael.animation({path:"M "+s.x+" "+(s.y + 5)+" L " + (lx + 20) + " "+ly}, 16000);
+      var animateStep2 = Raphael.animation({path:"M "+s.x+" "+s.y+" L " + (lx + 20) + " "+ly}, 16000);
       self.line.animate(animateStep2);
     }, 2000)
     setTimeout(function() { 

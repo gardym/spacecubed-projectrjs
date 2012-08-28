@@ -19,15 +19,17 @@ body {
 #svg-container,
 #map {
   position: absolute;
-  top: 120px;
   left: 0;
-  width: 1366px;
-  height: 596px;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-transform-origin: 0 0;
 }
 
 .map-background {
-  background-image: url('spacecubed-map-1366.jpg');
-  background-repeat: no-repeat;
+   background-image: url('spacecubed-map-1366.jpg');
+   background-repeat: no-repeat;
+   background-size: 100%;
 }
 
 .template-tweet {
