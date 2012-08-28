@@ -25,8 +25,15 @@ if (dataSource == 'fake') {
 
 requirejs.config(config);
 
-require(['jquery', 'data/live_event_stream', 'canvas', 'layers/layout_manager', 'layers/tweet_features', 'layers/instagram_features', 'layers/sparkles'],
-        function($, eventStream, Canvas, LayoutManager, TweetFeaturesLayer, InstagramFeaturesLayer, SparklesLayer) {
+require(['jquery', 
+         'data/live_event_stream', 
+         'canvas', 
+         'layers/layout_manager', 
+         'layers/tweet_features', 
+         'layers/instagram_features', 
+         'layers/sparkles', 
+         'layers/throb'],
+        function($, eventStream, Canvas, LayoutManager, TweetFeaturesLayer, InstagramFeaturesLayer, SparklesLayer, ThrobLayer) {
 
   $(function(){
     if(showBackground === 'true') {
@@ -68,6 +75,7 @@ require(['jquery', 'data/live_event_stream', 'canvas', 'layers/layout_manager', 
       new TweetFeaturesLayer(canvas, layoutManager, eventsToDate);
       new InstagramFeaturesLayer(canvas, layoutManager, eventsToDate);
       new SparklesLayer(canvas, eventsToDate);
+      new ThrobLayer(canvas, { lat: -31.95553, lng: 115.859111 })
     });
   });
 });

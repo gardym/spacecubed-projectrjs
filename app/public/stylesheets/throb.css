@@ -1,0 +1,36 @@
+@-webkit-keyframes throb-animation
+{
+    0%   
+    {
+        opacity: 1;
+        -webkit-transform: scale(0.2, 0.2);
+        -webkit-animation-timing-function: ease-in-out;
+    }
+    50%  
+    {
+        opacity: 0.5;
+        -webkit-transform: scale(1, 1);
+        -webkit-animation-timing-function: ease-in-out;
+    }
+    100% 
+    {
+        opacity: 1;
+        -webkit-transform: scale(0.2, 0.2);
+        -webkit-animation-timing-function: ease-in-out;
+    }
+}
+
+
+
+.throbber
+{
+    -webkit-animation-name: throb-animation;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-transform: scale(0.2, 0.2);
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+    border-radius: 20px;
+}
