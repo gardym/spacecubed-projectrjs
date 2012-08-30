@@ -1,6 +1,6 @@
 define(['jquery'], function($)
 {
-  function TweetView(canvas, data, x, y) 
+  function TweetView(canvas, data, x, y)
   {
     this.canvas = canvas;
     this.data = data;
@@ -19,10 +19,10 @@ define(['jquery'], function($)
 
   TweetView.prototype.remove = function()
   {
-    this._destroyElement();    
+    this._destroyElement();
   }
 
-  TweetView.prototype._createElement = function() 
+  TweetView.prototype._createElement = function()
   {
     this.element = $("#template-tweet").clone().children().appendTo(this.canvas.element);
     this.element.find(".text").html(this._getTextHtml());
@@ -32,7 +32,7 @@ define(['jquery'], function($)
     this.element.css('left', this.x + 'px').css('top', this.y + 'px')
   };
 
-  TweetView.prototype._getTextHtml = function() 
+  TweetView.prototype._getTextHtml = function()
   {
     var text = this.data.text;
     text = text.replace(/(@[a-zA-Z0-9_]+)/g, '<span class="mention">$1</span>');
@@ -41,24 +41,24 @@ define(['jquery'], function($)
     return text;
   }
 
-  TweetView.prototype._bindEvents = function() 
+  TweetView.prototype._bindEvents = function()
   {
     var self = this;
-    var listener = function() 
+    var listener = function()
     {
       self.element.get(0).removeEventListener('webkitAnimationEnd', listener, false);
       self.element.get(0).style.webkitAnimationName = '';
-      self._onAnimationCompleted(); 
+      self._onAnimationCompleted();
     };
     this.element.get(0).addEventListener('webkitAnimationEnd', listener, false);
   }
 
-  TweetView.prototype._destroyElement = function() 
+  TweetView.prototype._destroyElement = function()
   {
     this.element.remove();
   };
 
-  TweetView.prototype._onAnimationCompleted = function() 
+  TweetView.prototype._onAnimationCompleted = function()
   {
     this._destroyElement();
     if (this.onComplete) this.onComplete();

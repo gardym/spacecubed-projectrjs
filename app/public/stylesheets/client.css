@@ -12,7 +12,9 @@ body {
 
 #map-container
 {
-  position: relative;
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
 
 #background,
@@ -24,6 +26,7 @@ body {
   width: 100%;
   height: 100%;
   -webkit-transform-origin: 0 0;
+  overflow: hidden;
 }
 
 .map-background {
@@ -42,7 +45,7 @@ body {
 }
 
 .invisible {
-  opacity: 0.0;
+  display: none;
 }
 
 .feature {

@@ -11,9 +11,8 @@ var showExclusionAreas = getParam('showExclusionAreas');
 
 var exclusionTop = getParam('exclusionTop');
 var exclusionBottom = getParam('exclusionBottom');
-var scale = getParam('scale');
-var offsetX = getParam('offsetX');
-var offsetY = getParam('offsetY');
+var offsetX = getParam('offsetX') || 0;
+var offsetY = getParam('offsetY') || 0;
 
 var config = {
   'shim': { 'lib/moment': { exports: function() { return this.moment; } } }
@@ -25,13 +24,13 @@ if (dataSource == 'fake') {
 
 requirejs.config(config);
 
-require(['jquery', 
-         'data/live_event_stream', 
-         'canvas', 
-         'layers/layout_manager', 
-         'layers/tweet_features', 
-         'layers/instagram_features', 
-         'layers/sparkles', 
+require(['jquery',
+         'data/live_event_stream',
+         'canvas',
+         'layers/layout_manager',
+         'layers/tweet_features',
+         'layers/instagram_features',
+         'layers/sparkles',
          'layers/throb'],
         function($, eventStream, Canvas, LayoutManager, TweetFeaturesLayer, InstagramFeaturesLayer, SparklesLayer, ThrobLayer) {
 
@@ -45,10 +44,10 @@ require(['jquery',
 
     var layoutManager = new LayoutManager(canvas.element.width(), canvas.element.height());
 
-    // apply the scale / offset to the background layer
-    $("#background").css("-webkit-transform", "scale(" + (scale || 1) + ", " + (scale || 1) + ") translateX(" + (offsetX || 0) + "px) translateY(" + (offsetY || 0) + "px)");
+    // Apply the offset
+    $("#map-container").css("top", offsetY + "px").css("left", offsetX + "px");
 
-    var cs = canvas.element.width() / 1366; // scaling constant for pre-defined exclusion areas 
+    var cs = canvas.element.width() / 1366; // scaling constant for pre-defined exclusion areas
     layoutManager.exclude( 840 * cs,   0 * cs,  140 * cs, 100 * cs);
     layoutManager.exclude(  10 * cs, 100 * cs, 1050 * cs, 280 * cs);
     layoutManager.exclude(  10 * cs, 380 * cs,  550 * cs,  40 * cs);
@@ -56,10 +55,13 @@ require(['jquery',
     layoutManager.exclude( 310 * cs, 420 * cs,  100 * cs, 150 * cs);
     layoutManager.exclude(1100 * cs, 520 * cs,  210 * cs,  50 * cs);
 
-    if (exclusionTop)
+    if (exclusionTop) {
       layoutManager.exclude(0, 0, canvas.element.width(), canvas.element.height() * exclusionTop);
-    if (exclusionBottom)
+    }
+
+    if (exclusionBottom) {
       layoutManager.exclude(0, canvas.element.height() * (1 - exclusionBottom), canvas.element.width(), canvas.element.height() * exclusionBottom);
+    }
 
     if (showExclusionAreas)
     {

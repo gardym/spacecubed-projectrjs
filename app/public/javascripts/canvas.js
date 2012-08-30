@@ -1,7 +1,9 @@
-define(function() {
-  function Canvas(element) {
+// TODO Inject the offset into this guy
 
-    this.element = element;
+define(function() {
+  function Canvas($element) {
+
+    this.element = $element;
 
     var width = this.element.width(),
         height = this.element.height();
