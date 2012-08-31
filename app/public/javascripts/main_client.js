@@ -19,20 +19,20 @@ var config = {
 }
 
 if (dataSource == 'fake') {
-  config.map = { '*': { 'data/live_event_stream': 'data/fake_event_stream' } }
+  config.map = { '*': { 'data/live_events': 'data/fake_events' } }
 }
 
 requirejs.config(config);
 
 require(['jquery',
-         'data/live_event_stream',
+         'data/live_events',
          'canvas',
          'layers/layout_manager',
          'layers/tweet_features',
          'layers/instagram_features',
          'layers/sparkles',
          'layers/throb'],
-        function($, eventStream, Canvas, LayoutManager, TweetFeaturesLayer, InstagramFeaturesLayer, SparklesLayer, ThrobLayer) {
+        function($, Events, Canvas, LayoutManager, TweetFeaturesLayer, InstagramFeaturesLayer, SparklesLayer, ThrobLayer) {
 
   $(function(){
     if(showBackground === 'true') {
@@ -73,11 +73,12 @@ require(['jquery',
       };
     };
 
-    eventStream.eventsToDate(numberOfDaysToSeedEvents, function(eventsToDate) {
-      new TweetFeaturesLayer(canvas, layoutManager, eventsToDate);
-      new InstagramFeaturesLayer(canvas, layoutManager, eventsToDate);
-      new SparklesLayer(canvas, eventsToDate);
-      new ThrobLayer(canvas, { lat: -31.95553, lng: 115.859111 })
+    new Events(numberOfDaysToSeedEvents, updateIntervalInSeconds, 2000, function(events){
+      new TweetFeaturesLayer(canvas, layoutManager, events);
+      new InstagramFeaturesLayer(canvas, layoutManager, events);
+      new SparklesLayer(canvas, events);
+      new ThrobLayer(canvas, { lat: -31.95553, lng: 115.859111 });
     });
+
   });
 });

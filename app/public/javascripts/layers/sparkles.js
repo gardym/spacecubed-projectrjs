@@ -1,14 +1,19 @@
 define(['layers/views/pin'], function(PinView) {
 
-  function SparklesLayer(canvas, eventsToDate) {
+  function SparklesLayer(canvas, events) {
 
-    this.data = eventsToDate.filter(
-                                function(e) { return e.coordinates })
-                            .filter(
-                                function(e){ return canvas.containsCoords(e.coordinates) });
     this.views = [];
-    this.maxConcurrentPins = this.data.length;
+    this.maxConcurrentPins = 500;
 
+    var getLocatableEvents = function() {
+      return events.all().filter(function(e) {
+        return e.coordinates != null && canvas.contains(e.coordinates);
+      });
+    };
+
+    // TODO Come up with better way of selecting events, having them die, and adding new ones to the layer
+
+    // Overrides start so that we dont pause between each sparkle that is displayed
     this._start = function() {
       for(var i = 0; i < this.maxConcurrentPins; i++) {
         this.views.push(this._createEventView());
@@ -16,12 +21,14 @@ define(['layers/views/pin'], function(PinView) {
     };
 
     this._createEventView = function() {
-      var randomEvent = this.data.splice(Math.floor(Math.random() * this.data.length), 1)[0];
+      var locatableEvents = getLocatableEvents();
+      var randomEvent = locatableEvents.splice(Math.floor(Math.random() * locatableEvents.length), 1)[0];
       return new PinView(canvas, randomEvent);
     };
 
     this._start();
   };
+
 
   return SparklesLayer;
 

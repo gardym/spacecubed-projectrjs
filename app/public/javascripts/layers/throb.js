@@ -1,5 +1,5 @@
-define(['layers/views/pin'], function(PinView) {
-  
+define(['jquery'], function($) {
+
   function ThrobLayer(canvas, coords) {
 
     var throbber = $("<div class='throbber'></div>").appendTo('#map');

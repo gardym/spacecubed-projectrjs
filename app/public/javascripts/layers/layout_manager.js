@@ -28,7 +28,7 @@ define(['layers/rect'], function(Rect)
       {
         if (closeToX)
         {
-          var distance = Math.pow((closeToX - (area.x + area.w / 2)), 2) 
+          var distance = Math.pow((closeToX - (area.x + area.w / 2)), 2)
                        + Math.pow((closeToY - (area.y + area.h / 2)), 2);
           if (bestArea == null || distance < bestDistance) {
             bestDistance = distance;
@@ -41,7 +41,7 @@ define(['layers/rect'], function(Rect)
       }
       iteration++;
     }
-    if(bestArea != null) 
+    if(bestArea != null)
     {
       var areaHandle = Math.random().toString().replace('.', '');
       this.allocatedAreas[areaHandle] = bestArea;

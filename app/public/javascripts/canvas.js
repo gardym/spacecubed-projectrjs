@@ -23,7 +23,7 @@ define(function() {
       };
     };
 
-    this.containsCoords = function(coords) {
+    this.contains = function(coords) {
       var c = this.latLongToCartesian(coords);
       return (c.x <= width) && (c.y <= height);
     };

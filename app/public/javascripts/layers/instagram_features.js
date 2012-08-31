@@ -1,14 +1,22 @@
 define(['jquery', 'layers/features', 'layers/views/instagram'], function($, FeaturesLayer, InstagramView)
 {
-  function InstagramFeaturesLayer(canvas, layoutManager, data)
+  function InstagramFeaturesLayer(canvas, layoutManager, events)
   {
     var _this = new FeaturesLayer(layoutManager);
 
-    _this.data = data.filter(function(event) { return event.coordinates; })
+    var fetchGrams = function() {
+      return events.all().filter(function(event) {
+        return event.provider == "Instagram" &&
+               event.coordinates &&
+               canvas.contains(event.coordinates);
+      });
+    };
+
     _this.maxConcurrentViews = 2;
 
     _this._createView = function() {
-      var randomGram = _this.data[Math.floor(Math.random() * _this.data.length)];
+      var grams = fetchGrams();
+      var randomGram = grams[Math.floor(Math.random() * grams.length)];
       return new InstagramView(canvas, randomGram);
     };
 

@@ -1,6 +1,8 @@
 define(function() {
 
-  var allEvents = [
+  function Events(numberOfDaysToSeedWith, updateIntervalInSeconds, maxEventsToStore, seedCompleteCallback)
+  {
+    this.cannedEvents = [
     {
       "provider": "Twitter",
       "username": "Sutto",
@@ -8799,17 +8801,12 @@ define(function() {
     }
   ];
 
-  var locatableEvents = allEvents.filter(function(event) { return event.coordinates; });
-  var unlocatableEvents = allEvents.filter(function(event) { return !event.coordinates; });
+    seedCompleteCallback(this);
+  }
 
-  return {
-    newEvents: function(secondsSinceLastCall, doneCallback) {
-      var locatableEvent = locatableEvents[Math.floor(Math.random() * locatableEvents.length)];
-      var unlocatableEvent = unlocatableEvents[Math.floor(Math.random() * unlocatableEvents.length)];
-      doneCallback([locatableEvent, unlocatableEvent]);
-    },
-    eventsToDate: function(days, doneCallback) {
-      doneCallback(allEvents);
-    }
+  Events.prototype.all = function() {
+    return this.cannedEvents;
   };
+
+  return Events;
 });
