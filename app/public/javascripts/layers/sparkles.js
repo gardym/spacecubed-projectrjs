@@ -2,7 +2,10 @@ define(['layers/views/pin'], function(PinView) {
 
   function SparklesLayer(canvas, eventsToDate) {
 
-    this.data = eventsToDate.filter(function(e) { return e.coordinates });
+    this.data = eventsToDate.filter(
+                                function(e) { return e.coordinates })
+                            .filter(
+                                function(e){ return canvas.containsCoords(e.coordinates) });
     this.views = [];
     this.maxConcurrentPins = this.data.length;
 

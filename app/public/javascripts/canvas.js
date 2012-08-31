@@ -1,5 +1,3 @@
-// TODO Inject the offset into this guy
-
 define(function() {
   function Canvas($element) {
 
@@ -25,6 +23,10 @@ define(function() {
       };
     };
 
+    this.containsCoords = function(coords) {
+      var c = this.latLongToCartesian(coords);
+      return (c.x <= width) && (c.y <= height);
+    };
   };
   return Canvas;
 });
