@@ -1,11 +1,10 @@
-define( ['jquery', 'lib/moment' ], function($, moment) {
+define( ['jquery', 'lib/moment', 'data/fixed_queue' ], function($, moment, FixedQueue) {
 
   function EventSource(numberOfDaysToSeedWith, updateIntervalInSeconds, maxEventsToStore, seedCompleteCallback)
   {
     var self = this;
 
-    // TODO Replace this with a fixed size queue
-    this.events = [];
+    this.events = new FixedQueue(maxEventsToStore);
 
     var fetchEvents = function(fromTime, toTime, doneCallback) {
       $.get('/events', {from: fromTime, to: toTime}, function(data) {
@@ -28,7 +27,9 @@ define( ['jquery', 'lib/moment' ], function($, moment) {
     };
 
     eventsToDate(numberOfDaysToSeedWith, function(rawEvents){
-      this.events = rawEvents;
+      rawEvents.forEach(function(event) {
+        this.events.push(event);
+      });
       seedCompleteCallback(self);
     });
 
@@ -45,7 +46,7 @@ define( ['jquery', 'lib/moment' ], function($, moment) {
   }
 
   EventSource.prototype.all = function() {
-    return this.events;
+    return this.events.allItems();
   };
 
   return EventSource;
