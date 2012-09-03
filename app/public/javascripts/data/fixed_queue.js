@@ -1,6 +1,6 @@
 define(function() {
 
-  // Pushes new elements onto the end and pop from the front
+  // Pushes new elements onto the end and pops from the front
 
   function FixedQueue(maxSize) {
     this.data = [];

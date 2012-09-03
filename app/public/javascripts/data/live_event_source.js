@@ -40,9 +40,8 @@ define( ['jquery', 'lib/moment', 'data/fixed_queue' ], function($, moment, Fixed
           self.events.push(newEvent);
         });
 
-      }, updateIntervalInSeconds * 1000);
-    });
-
+      });
+    }, updateIntervalInSeconds * 1000);
   }
 
   EventSource.prototype.all = function() {
