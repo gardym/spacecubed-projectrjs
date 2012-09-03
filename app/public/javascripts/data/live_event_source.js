@@ -28,7 +28,7 @@ define( ['jquery', 'lib/moment', 'data/fixed_queue' ], function($, moment, Fixed
 
     eventsToDate(numberOfDaysToSeedWith, function(rawEvents){
       rawEvents.forEach(function(event) {
-        this.events.push(event);
+        self.events.push(event);
       });
       seedCompleteCallback(self);
     });
