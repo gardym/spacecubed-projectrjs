@@ -23,20 +23,20 @@ var config = {
 }
 
 if (dataSource == 'fake') {
-  config.map = { '*': { 'data/live_events': 'data/fake_events' } }
+  config.map = { '*': { 'data/live_event_source': 'data/fake_event_source' } }
 }
 
 requirejs.config(config);
 
 require(['jquery',
-         'data/live_events',
+         'data/live_event_source',
          'canvas',
          'layers/layout_manager',
          'layers/tweet_features',
          'layers/instagram_features',
          'layers/sparkles',
          'layers/throb'],
-        function($, Events, Canvas, LayoutManager, TweetFeaturesLayer, InstagramFeaturesLayer, SparklesLayer, ThrobLayer) {
+        function($, EventSource, Canvas, LayoutManager, TweetFeaturesLayer, InstagramFeaturesLayer, SparklesLayer, ThrobLayer) {
 
   $(function(){
     if(showBackground === 'true') {
@@ -77,10 +77,10 @@ require(['jquery',
       };
     };
 
-    new Events(numberOfDaysToSeedEvents, updateIntervalInSeconds, 2000, function(events){
-      new TweetFeaturesLayer(canvas, layoutManager, events);
-      new InstagramFeaturesLayer(canvas, layoutManager, events);
-      new SparklesLayer(canvas, events, maxPins, sparkleRefresh);
+    new EventSource(numberOfDaysToSeedEvents, updateIntervalInSeconds, 2000, function(eventSource){
+      new TweetFeaturesLayer(canvas, layoutManager, eventSource);
+      new InstagramFeaturesLayer(canvas, layoutManager, eventSource);
+      new SparklesLayer(canvas, eventSource, maxPins, sparkleRefresh);
       new ThrobLayer(canvas, { lat: -31.95553, lng: 115.859111 });
     });
 

@@ -1,11 +1,11 @@
 define(['jquery', 'layers/features', 'layers/views/instagram'], function($, FeaturesLayer, InstagramView)
 {
-  function InstagramFeaturesLayer(canvas, layoutManager, events)
+  function InstagramFeaturesLayer(canvas, layoutManager, eventSource)
   {
     var _this = new FeaturesLayer(layoutManager);
 
     var fetchGrams = function() {
-      return events.all().filter(function(event) {
+      return eventSource.all().filter(function(event) {
         return event.provider == "Instagram" &&
                event.coordinates &&
                canvas.contains(event.coordinates);

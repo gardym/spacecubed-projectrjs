@@ -1,14 +1,11 @@
 define(['layers/views/pin'], function(PinView) {
 
-  function SparklesLayer(canvas, events, maxConcurrentPins, sparkleRefresh) {
-
-    // TODO Rename events to event source
-    var self = this;
+  function SparklesLayer(canvas, eventSource, maxConcurrentPins, sparkleRefresh) {
 
     var views = {};
 
     var getLocatableEvents = function() {
-      return events.all().filter(function(e) {
+      return eventSource.all().filter(function(e) {
         return e.coordinates != null && canvas.contains(e.coordinates);
       });
     };

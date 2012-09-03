@@ -1,6 +1,6 @@
 define(function() {
 
-  function Events(numberOfDaysToSeedWith, updateIntervalInSeconds, maxEventsToStore, seedCompleteCallback)
+  function EventSource(numberOfDaysToSeedWith, updateIntervalInSeconds, maxEventsToStore, seedCompleteCallback)
   {
     this.cannedEvents = [
     {
@@ -8804,9 +8804,9 @@ define(function() {
     seedCompleteCallback(this);
   }
 
-  Events.prototype.all = function() {
+  EventSource.prototype.all = function() {
     return this.cannedEvents;
   };
 
-  return Events;
+  return EventSource;
 });

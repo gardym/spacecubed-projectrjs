@@ -1,11 +1,11 @@
 define(['jquery', 'layers/features', 'layers/views/tweet'], function($, FeaturesLayer, TweetView)
 {
-  function TweetFeaturesLayer(canvas, layoutManager, events)
+  function TweetFeaturesLayer(canvas, layoutManager, eventSource)
   {
     var _this = new FeaturesLayer(layoutManager);
 
     var getTweets = function() {
-      return events.all().filter(function(event) {
+      return eventSource.all().filter(function(event) {
           return event.provider == 'Twitter' &&
                  event.text.indexOf("http://instagr.am") == -1;
         });
