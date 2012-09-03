@@ -13,25 +13,33 @@ define(['layers/views/pin'], function(PinView) {
       });
     };
 
+    var idsOfEventsCurrentlyPinned = function() {
+      // Using the Chrome only 'keys' function, hope that's cool.
+      return Object.keys(views);
+    };
+
     // Adding sparkle
 
     var selectAnEventNotAlreadyPinned = function(locatableEvents) {
-      var candidateEvent = locatableEvents[Math.floor(Math.random() * locatableEvents.length)];
+      var alreadyPinned = idsOfEventsCurrentlyPinned();
 
-      // TODO Instead of infinite loop here filter locatable events with keys of currently displayed views
-      while (true) {
-        if (views[candidateEvent._id] == null) {
-          break;
-        }
-        candidateEvent = locatableEvents[Math.floor(Math.random() * locatableEvents.length)];
+      var notAlreadyPinned = locatableEvents.filter(function(event){
+        return alreadyPinned.indexOf(event._id) == -1;
+      });
+
+      if (notAlreadyPinned.length > 0) {
+        return notAlreadyPinned[Math.floor(Math.random() * notAlreadyPinned.length)];
       }
-
-      return candidateEvent;
+      else {
+        return null;
+      }
     };
 
     var markAnEventWithAPin = function(locatableEvents) {
       var event = selectAnEventNotAlreadyPinned(locatableEvents);
-      views[event._id] = new PinView(canvas, event);
+      if (event) {
+        views[event._id] = new PinView(canvas, event);
+      }
     };
 
 
@@ -39,10 +47,10 @@ define(['layers/views/pin'], function(PinView) {
 
     var replacePin = function() {
 
-      // Using the Chrome only 'keys' function, hope that's cool.
-      var idsOfEventsCurrentlyPinned = Object.keys(views);
+      var candidatesToDie = idsOfEventsCurrentlyPinned();
 
-      var idOfViewToDie = idsOfEventsCurrentlyPinned[Math.floor(Math.random() * idsOfEventsCurrentlyPinned.length)];
+      // Make sure we remove first so we can readd if needed
+      var idOfViewToDie = candidatesToDie[Math.floor(Math.random() * candidatesToDie.length)];
       removeView(idOfViewToDie);
 
       var locatableEvents = getLocatableEvents();
