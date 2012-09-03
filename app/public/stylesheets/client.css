@@ -100,3 +100,25 @@ body {
   position: absolute;
 }
 
+
+#thoughtworks
+{
+  position: absolute;
+  top: 550px;
+  left: 78px;
+  opacity: 0.75;
+}
+
+#powered-by
+{
+  text-align: center;  
+  font-size: 10px;
+  font-style: italic;
+  color: white;
+  padding-bottom: 4px;
+}
+
+#thoughtworks img
+{
+  width: 120px;
+}
