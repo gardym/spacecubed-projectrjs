@@ -1,9 +1,11 @@
 define(['layers/views/pin'], function(PinView) {
 
-  function SparklesLayer(canvas, events) {
+  function SparklesLayer(canvas, events, maxConcurrentPins, sparkleRefresh) {
 
-    this.views = [];
-    this.maxConcurrentPins = 500;
+    // TODO Rename events to event source
+    var self = this;
+
+    var views = {};
 
     var getLocatableEvents = function() {
       return events.all().filter(function(e) {
@@ -11,22 +13,61 @@ define(['layers/views/pin'], function(PinView) {
       });
     };
 
-    // TODO Come up with better way of selecting events, having them die, and adding new ones to the layer
+    // Adding sparkle
 
-    // Overrides start so that we dont pause between each sparkle that is displayed
-    this._start = function() {
-      for(var i = 0; i < this.maxConcurrentPins; i++) {
-        this.views.push(this._createEventView());
+    var selectAnEventNotAlreadyPinned = function(locatableEvents) {
+      var candidateEvent = locatableEvents[Math.floor(Math.random() * locatableEvents.length)];
+
+      // TODO Instead of infinite loop here filter locatable events with keys of currently displayed views
+      while (true) {
+        if (views[candidateEvent._id] == null) {
+          break;
+        }
+        candidateEvent = locatableEvents[Math.floor(Math.random() * locatableEvents.length)];
       }
+
+      return candidateEvent;
     };
 
-    this._createEventView = function() {
+    var markAnEventWithAPin = function(locatableEvents) {
+      var event = selectAnEventNotAlreadyPinned(locatableEvents);
+      views[event._id] = new PinView(canvas, event);
+    };
+
+
+    // Killing the sparkle
+
+    var replacePin = function() {
+
+      // Using the Chrome only 'keys' function, hope that's cool.
+      var idsOfEventsCurrentlyPinned = Object.keys(views);
+
+      var idOfViewToDie = idsOfEventsCurrentlyPinned[Math.floor(Math.random() * idsOfEventsCurrentlyPinned.length)];
+      removeView(idOfViewToDie);
+
       var locatableEvents = getLocatableEvents();
-      var randomEvent = locatableEvents.splice(Math.floor(Math.random() * locatableEvents.length), 1)[0];
-      return new PinView(canvas, randomEvent);
+      markAnEventWithAPin(locatableEvents);
     };
 
-    this._start();
+    var removeView = function(idOfViewToDie){
+      var view = views[idOfViewToDie];
+      view.die();
+      delete views[idOfViewToDie];
+    };
+
+    // Kick this bad boy off
+
+    var start = function() {
+      var locatableEvents = getLocatableEvents();
+      var numberOfPinsToPlant = Math.min(maxConcurrentPins, locatableEvents.length);
+      for(var i = 0; i < numberOfPinsToPlant; i++) {
+        markAnEventWithAPin(locatableEvents);
+      }
+
+      setInterval(replacePin, sparkleRefresh);
+    };
+
+    start();
   };
 
 

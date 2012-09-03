@@ -7,7 +7,7 @@ define(['jquery', 'layers/features', 'layers/views/tweet'], function($, Features
     var getTweets = function() {
       return events.all().filter(function(event) {
           return event.provider == 'Twitter' &&
-            event.text.indexOf("http://instagr.am") == -1;
+                 event.text.indexOf("http://instagr.am") == -1;
         });
     };
     _this.maxConcurrentViews = 4;

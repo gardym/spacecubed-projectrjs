@@ -6,6 +6,10 @@ var getParam = function(a) {
 var dataSource = getParam('data');
 var numberOfDaysToSeedEvents = parseInt(getParam('days')) || 1;
 var updateIntervalInSeconds = parseInt(getParam('interval')) || 20;
+
+var maxPins = parseInt(getParam('maxPins')) || 300;
+var sparkleRefresh = parseInt(getParam('sparkleRefresh')) || 10000;
+
 var showBackground = getParam('background');
 var showExclusionAreas = getParam('showExclusionAreas');
 
@@ -76,7 +80,7 @@ require(['jquery',
     new Events(numberOfDaysToSeedEvents, updateIntervalInSeconds, 2000, function(events){
       new TweetFeaturesLayer(canvas, layoutManager, events);
       new InstagramFeaturesLayer(canvas, layoutManager, events);
-      new SparklesLayer(canvas, events);
+      new SparklesLayer(canvas, events, maxPins, sparkleRefresh);
       new ThrobLayer(canvas, { lat: -31.95553, lng: 115.859111 });
     });
 

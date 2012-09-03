@@ -24,16 +24,18 @@ define(['jquery'], function($) {
 
     var twinkle = function(scaleX, scaleY) {
       star.css('backgroundColor', eventColour());
-      setInterval(function() {
+      return setInterval(function() {
         var resize = Math.random();
         css_scale(resize * scaleX, resize * scaleY);
         star.css('opacity', (Math.random() * 0.5) + 0.5);
       }, Math.floor(Math.random() * 3000));
     };
 
-    twinkle(1, 1);
+    var twinkleIntervalId = twinkle(1, 1);
 
     this.die = function() {
+      clearInterval(twinkleIntervalId);
+
       css_scale(4, 4);
       star.css('opacity', '0.7');
       setTimeout(function() {
@@ -44,7 +46,6 @@ define(['jquery'], function($) {
         }, 500);
       }, 500);
     };
-
   };
 
   return PinView;
