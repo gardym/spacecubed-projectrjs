@@ -13,10 +13,10 @@ var sparkleRefresh = parseInt(getParam('sparkleRefresh')) || 10000;
 var showBackground = getParam('background');
 var showExclusionAreas = getParam('showExclusionAreas');
 
-var exclusionTop = getParam('exclusionTop');
-var exclusionBottom = getParam('exclusionBottom');
-var offsetX = getParam('offsetX') || 0;
-var offsetY = getParam('offsetY') || 0;
+var exclusionTop = getParam('exclusionTop') || 0.17;
+var exclusionBottom = getParam('exclusionBottom') || 0.02;
+var offsetX = parseInt(getParam('offsetX')) || -40;
+var offsetY = parseInt(getParam('offsetY')) || 210;
 
 var config = {
   'shim': { 'lib/moment': { exports: function() { return this.moment; } } }
