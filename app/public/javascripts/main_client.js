@@ -43,21 +43,18 @@ require(['jquery',
       $("#background").addClass('map-background');
     }
 
-    var canvas = new Canvas($("#map"));
+    var canvas = new Canvas($("#map"), offsetX, offsetY);
     window.mapPaper = Raphael($("#raphael-container").get(0), canvas.element.width(), canvas.element.height());
 
     var layoutManager = new LayoutManager(canvas.element.width(), canvas.element.height());
 
-    // Apply the offset
-    $("#map-container").css("top", offsetY + "px").css("left", offsetX + "px");
-
     var cs = canvas.element.width() / 1366; // scaling constant for pre-defined exclusion areas
-    layoutManager.exclude( 840 * cs,   0 * cs,  140 * cs, 100 * cs);
-    layoutManager.exclude(  10 * cs, 100 * cs, 1050 * cs, 280 * cs);
-    layoutManager.exclude(  10 * cs, 380 * cs,  550 * cs,  40 * cs);
-    layoutManager.exclude(1060 * cs, 180 * cs,   90 * cs, 150 * cs);
-    layoutManager.exclude( 310 * cs, 420 * cs,  100 * cs, 150 * cs);
-    layoutManager.exclude(1100 * cs, 520 * cs,  210 * cs,  50 * cs);
+    layoutManager.exclude( 840 * cs + offsetX, -50 * cs + offsetY,  140 * cs, 100 * cs);
+    layoutManager.exclude(  10 * cs + offsetX,  50 * cs + offsetY, 1050 * cs, 310 * cs);
+    layoutManager.exclude(  10 * cs + offsetX, 360 * cs + offsetY,  550 * cs,  40 * cs);
+    layoutManager.exclude(1060 * cs + offsetX, 180 * cs + offsetY,   90 * cs, 100 * cs);
+    layoutManager.exclude( 330 * cs + offsetX, 400 * cs + offsetY,   80 * cs, 150 * cs);
+    layoutManager.exclude(1100 * cs + offsetX, 520 * cs + offsetY,  210 * cs,  50 * cs);
 
     if (exclusionTop) {
       layoutManager.exclude(0, 0, canvas.element.width(), canvas.element.height() * exclusionTop);

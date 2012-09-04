@@ -1,7 +1,9 @@
 define(function() {
-  function Canvas($element) {
+  function Canvas($element, offsetX, offsetY) {
 
     this.element = $element;
+    this.offsetX = offsetX;
+    this.offsetY = offsetY;
 
     var width = this.element.width(),
         height = this.element.height();
@@ -18,8 +20,8 @@ define(function() {
     this.latLongToCartesian = function(coords) {
       // TODO: Adjust for map rotation
       return {
-        x: (Math.abs(coords.lng - origin_lng) / lng_width) * width,
-        y: (Math.abs(coords.lat - origin_lat) / lat_height) * (596 / 1366) * width
+        x: ((Math.abs(coords.lng - origin_lng) / lng_width) * width) + offsetX,
+        y: ((Math.abs(coords.lat - origin_lat) / lat_height) * (596 / 1366) * width) + offsetY
       };
     };
 
