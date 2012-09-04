@@ -74,14 +74,14 @@ define(function() {
     ring.css('left', - (radiusInner + thickness) + 'px')
     initialScale = 10;
     ring.css('-webkit-transform', 'translate3d(0, 0, 0) scaleX(' + initialScale + ') scaleY(' + initialScale + ')');
-    ring.css('-webkit-transition', '-webkit-transform 1500ms ease-in-out, opacity 1500ms ease-in-out');
+    ring.css('-webkit-transition', '-webkit-transform 2000ms ease-in-out, opacity 2000ms ease-in-out');
     ring.css('opacity', '0.0');
 
     var self = this;
     var stepAnimation = function() {
       var scale = 1 - Math.pow(Math.random(), 2) * 2;
       var rot = Math.random() * 360;
-      var duration = Math.random() * 2000 + 50;
+      var duration = Math.random() * 2000 + 1000;
       ring.css('-webkit-transform', 'translate3d(0, 0, 0) scaleX(' + scale + ') scaleY(' + scale + ') rotate(' + rot + 'deg)');
       ring.css('-webkit-transition', '-webkit-transform ' + duration + 'ms ease-in-out, opacity ' + duration + 'ms ease-in-out');
       ring.css('opacity', (Math.random() * 9 + 1) / 10);
