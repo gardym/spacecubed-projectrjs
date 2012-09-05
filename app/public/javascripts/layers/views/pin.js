@@ -12,23 +12,22 @@ define(['jquery'], function($) {
 
     var css_scale = function(scaleX, scaleY) {
       star.css('-webkit-transform',
-        'translate3d(0, 0, 0) ' +
         'scaleX(' + scaleX + ') ' +
         'scaleY(' + scaleY + ')');
     };
 
     var xy = canvas.latLongToCartesian(event.coordinates);
-    star.css('top', xy.y + 'px');
-    star.css('left', xy.x + 'px');
+    star.css('top', xy.y - (star.width() / 2) + 'px');
+    star.css('left', xy.x - (star.width() / 2)  + 'px');
     star.css('borderRadius', star.width() /2);
+    star.css('backgroundColor', eventColour());
 
     var twinkle = function(scaleX, scaleY) {
-      star.css('backgroundColor', eventColour());
       return setInterval(function() {
         var resize = Math.random();
         css_scale(resize * scaleX, resize * scaleY);
         star.css('opacity', (Math.random() * 0.5) + 0.5);
-      }, Math.floor(Math.random() * 3000));
+      }, Math.random() * 2000 + 2000);
     };
 
     var twinkleIntervalId = twinkle(1, 1);

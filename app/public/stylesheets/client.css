@@ -4,6 +4,25 @@ body {
   background-color: #000;
 }
 
+#maskLeft,
+#maskRight,
+#maskTop,
+#maskBottom
+{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: black;
+  z-index: 100000;
+}
+
+#maskRight { left: auto; }
+#maskLeft { right: auto; }
+#maskTop { bottom: auto; }
+#maskBottom { top: auto; }
+
 #tape {
   width: 1366px;
   height: 115px;

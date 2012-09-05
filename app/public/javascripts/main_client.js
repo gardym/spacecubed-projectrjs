@@ -7,16 +7,18 @@ var dataSource = getParam('data');
 var numberOfDaysToSeedEvents = parseInt(getParam('days')) || 1;
 var updateIntervalInSeconds = parseInt(getParam('interval')) || 20;
 
-var maxPins = parseInt(getParam('maxPins')) || 300;
+var maxPins = parseInt(getParam('maxPins')) || 200;
 var sparkleRefresh = parseInt(getParam('sparkleRefresh')) || 10000;
 
 var showBackground = getParam('background');
 var showExclusionAreas = getParam('showExclusionAreas');
 
-var exclusionTop = getParam('exclusionTop') || 0.17;
-var exclusionBottom = getParam('exclusionBottom') || 0.02;
 var offsetX = parseInt(getParam('offsetX')) || -40;
 var offsetY = parseInt(getParam('offsetY')) || 210;
+var clipTop = parseFloat(getParam('clipTop')) || 0.17;
+var clipLeft = parseFloat(getParam('clipLeft')) || 0.1;
+var clipRight = parseFloat(getParam('clipRight')) || 0.1;
+var clipBottom = parseFloat(getParam('clipBottom')) || 0.02;
 
 var config = {
   'shim': { 'lib/moment': { exports: function() { return this.moment; } } }
@@ -48,6 +50,7 @@ require(['jquery',
 
     var layoutManager = new LayoutManager(canvas.element.width(), canvas.element.height());
 
+
     var cs = canvas.element.width() / 1366; // scaling constant for pre-defined exclusion areas
     layoutManager.exclude( 840 * cs + offsetX, -50 * cs + offsetY,  140 * cs, 100 * cs);
     layoutManager.exclude(  10 * cs + offsetX,  50 * cs + offsetY, 1050 * cs, 310 * cs);
@@ -56,13 +59,15 @@ require(['jquery',
     layoutManager.exclude( 330 * cs + offsetX, 400 * cs + offsetY,   80 * cs, 150 * cs);
     layoutManager.exclude(1100 * cs + offsetX, 520 * cs + offsetY,  210 * cs,  50 * cs);
 
-    if (exclusionTop) {
-      layoutManager.exclude(0, 0, canvas.element.width(), canvas.element.height() * exclusionTop);
-    }
+    layoutManager.exclude(0, 0, canvas.element.width() * clipLeft, canvas.element.height());
+    layoutManager.exclude(canvas.element.width() * (1 - clipRight), 0, canvas.element.width() * clipRight, canvas.element.height());
+    layoutManager.exclude(0, 0, canvas.element.width(), canvas.element.height() * clipTop);
+    layoutManager.exclude(0, canvas.element.height() * (1 - clipBottom), canvas.element.width(), canvas.element.height() * clipBottom);
 
-    if (exclusionBottom) {
-      layoutManager.exclude(0, canvas.element.height() * (1 - exclusionBottom), canvas.element.width(), canvas.element.height() * exclusionBottom);
-    }
+    $('#maskLeft').width(canvas.element.width() * clipLeft);
+    $('#maskRight').width(canvas.element.width() * clipRight);
+    $('#maskTop').height(canvas.element.height() * clipTop);
+    $('#maskBottom').height(canvas.element.height() * clipBottom);
 
     if (showExclusionAreas)
     {

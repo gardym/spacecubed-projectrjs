@@ -19,7 +19,7 @@ define(function() {
   {
     var self = this;
 
-    self._createRingElements(10);
+    self._createRingElements(8);
     self.completionCallback = callback;
     setTimeout(function() {
       if(self.completionCallback) {
@@ -72,7 +72,7 @@ define(function() {
     ring.css('height', radiusInner * 2 + 'px')
     ring.css('top',  - (radiusInner + thickness) + 'px')
     ring.css('left', - (radiusInner + thickness) + 'px')
-    initialScale = 10;
+    initialScale = 5;
     ring.css('-webkit-transform', 'translate3d(0, 0, 0) scaleX(' + initialScale + ') scaleY(' + initialScale + ')');
     ring.css('-webkit-transition', '-webkit-transform 2000ms ease-in-out, opacity 2000ms ease-in-out');
     ring.css('opacity', '0.0');
