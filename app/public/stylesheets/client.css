@@ -132,10 +132,10 @@ html, body {
 #powered-by
 {
   text-align: center;  
-  font-size: 10px;
+  font-size: 12px;
   font-style: italic;
   color: white;
-  padding-bottom: 4px;
+  padding-bottom: 8px;
 }
 
 #thoughtworks img

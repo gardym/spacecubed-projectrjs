@@ -15,9 +15,9 @@ var showExclusionAreas = getParam('showExclusionAreas') || 'true';
 
 var offsetX = parseInt(getParam('offsetX')) || -40;
 var offsetY = parseInt(getParam('offsetY')) || 210;
-var clipTop = parseFloat(getParam('clipTop')) || 0.25;
+var clipTop = parseFloat(getParam('clipTop')) || 0.23;
 var clipLeft = parseFloat(getParam('clipLeft')) || 0.0;
-var clipRight = parseFloat(getParam('clipRight')) || 0.025;
+var clipRight = parseFloat(getParam('clipRight')) || 0.027;
 var clipBottom = parseFloat(getParam('clipBottom')) || 0.025;
 
 var config = {
@@ -52,12 +52,12 @@ require(['jquery',
 
 
     var cs = canvas.element.width() / 1366; // scaling constant for pre-defined exclusion areas
-    layoutManager.exclude( 840 * cs + offsetX, -50 * cs + offsetY,  140 * cs, 100 * cs);
-    layoutManager.exclude(  10 * cs + offsetX,  60 * cs + offsetY, 1050 * cs, 300 * cs);
+    layoutManager.exclude( 840 * cs + offsetX, -50 * cs + offsetY,  140 * cs, 120 * cs);
+    layoutManager.exclude(  10 * cs + offsetX,  70 * cs + offsetY, 1050 * cs, 290 * cs);
     layoutManager.exclude(  10 * cs + offsetX, 360 * cs + offsetY,  550 * cs,  40 * cs);
     layoutManager.exclude(1060 * cs + offsetX, 180 * cs + offsetY,   90 * cs, 100 * cs);
     layoutManager.exclude( 330 * cs + offsetX, 400 * cs + offsetY,   80 * cs, 150 * cs);
-    layoutManager.exclude(1100 * cs + offsetX, 480 * cs + offsetY,  210 * cs,  50 * cs);
+    layoutManager.exclude(1100 * cs + offsetX, 490 * cs + offsetY,  210 * cs,  40 * cs);
 
     layoutManager.exclude(0, 0, canvas.element.width() * clipLeft, canvas.element.height());
     layoutManager.exclude(canvas.element.width() * (1 - clipRight), 0, canvas.element.width() * clipRight, canvas.element.height());

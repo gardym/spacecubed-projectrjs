@@ -6,7 +6,7 @@ define(['jquery'], function($) {
 
     var position = canvas.latLongToCartesian(coords)
     throbber.css("left", position.x - throbber.width() / 2 + "px")
-    throbber.css("top", position.y - throbber.height() / 2 + "px")
+    throbber.css("top", position.y - throbber.height() / 2 + 10 + "px")
 
   };
 
