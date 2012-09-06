@@ -3,7 +3,7 @@
     0%   
     {
         opacity: 1;
-        -webkit-transform: scale(0.2, 0.2);
+        -webkit-transform: scale(0.5, 0.5);
         -webkit-animation-timing-function: ease-in-out;
     }
     50%  
@@ -15,7 +15,7 @@
     100% 
     {
         opacity: 1;
-        -webkit-transform: scale(0.2, 0.2);
+        -webkit-transform: scale(0.5, 0.5);
         -webkit-animation-timing-function: ease-in-out;
     }
 }
@@ -29,8 +29,8 @@
     -webkit-animation-iteration-count: infinite;
     -webkit-transform: scale(0.2, 0.2);
     position: absolute;
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
     background: red;
     border-radius: 20px;
 }

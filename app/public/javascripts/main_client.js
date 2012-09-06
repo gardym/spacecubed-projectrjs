@@ -15,10 +15,10 @@ var showExclusionAreas = getParam('showExclusionAreas');
 
 var offsetX = parseInt(getParam('offsetX')) || -40;
 var offsetY = parseInt(getParam('offsetY')) || 210;
-var clipTop = parseFloat(getParam('clipTop')) || 0.17;
-var clipLeft = parseFloat(getParam('clipLeft')) || 0.1;
-var clipRight = parseFloat(getParam('clipRight')) || 0.1;
-var clipBottom = parseFloat(getParam('clipBottom')) || 0.02;
+var clipTop = parseFloat(getParam('clipTop')) || 0.2;
+var clipLeft = parseFloat(getParam('clipLeft')) || 0.02;
+var clipRight = parseFloat(getParam('clipRight')) || 0.02;
+var clipBottom = parseFloat(getParam('clipBottom')) || 0.05;
 
 var config = {
   'shim': { 'lib/moment': { exports: function() { return this.moment; } } }
@@ -57,7 +57,7 @@ require(['jquery',
     layoutManager.exclude(  10 * cs + offsetX, 360 * cs + offsetY,  550 * cs,  40 * cs);
     layoutManager.exclude(1060 * cs + offsetX, 180 * cs + offsetY,   90 * cs, 100 * cs);
     layoutManager.exclude( 330 * cs + offsetX, 400 * cs + offsetY,   80 * cs, 150 * cs);
-    layoutManager.exclude(1100 * cs + offsetX, 520 * cs + offsetY,  210 * cs,  50 * cs);
+    layoutManager.exclude(1100 * cs + offsetX, 480 * cs + offsetY,  210 * cs,  50 * cs);
 
     layoutManager.exclude(0, 0, canvas.element.width() * clipLeft, canvas.element.height());
     layoutManager.exclude(canvas.element.width() * (1 - clipRight), 0, canvas.element.width() * clipRight, canvas.element.height());
