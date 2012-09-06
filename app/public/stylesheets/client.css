@@ -1,7 +1,8 @@
-body {
+html, body {
   padding: 0;
   margin: 0;
   background-color: #000;
+  overflow: hidden;
 }
 
 #maskLeft,
@@ -14,7 +15,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: black;
+  background: green;
   z-index: 100000;
 }
 
