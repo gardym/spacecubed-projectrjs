@@ -124,7 +124,7 @@ html, body {
 #thoughtworks
 {
   position: absolute;
-  top: 650px;
+  top: 635px;
   left: 68px;
   opacity: 0.75;
 }
@@ -134,6 +134,8 @@ html, body {
   text-align: center;  
   font-size: 12px;
   font-style: italic;
+  letter-spacing: -1px;
+  font-weight: bold;
   color: white;
   padding-bottom: 8px;
 }
@@ -141,4 +143,5 @@ html, body {
 #thoughtworks img
 {
   width: 120px;
+  box-shadow: 0 0 16px 8px rgba(0,0,0,1);
 }

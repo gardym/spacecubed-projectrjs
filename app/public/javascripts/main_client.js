@@ -11,11 +11,11 @@ var maxPins = parseInt(getParam('maxPins')) || 200;
 var sparkleRefresh = parseInt(getParam('sparkleRefresh')) || 10000;
 
 var showBackground = getParam('background');
-var showExclusionAreas = getParam('showExclusionAreas') || 'true';
+var showExclusionAreas = getParam('showExclusionAreas');
 
 var offsetX = parseInt(getParam('offsetX')) || -40;
 var offsetY = parseInt(getParam('offsetY')) || 210;
-var clipTop = parseFloat(getParam('clipTop')) || 0.23;
+var clipTop = parseFloat(getParam('clipTop')) || 0.24;
 var clipLeft = parseFloat(getParam('clipLeft')) || 0.0;
 var clipRight = parseFloat(getParam('clipRight')) || 0.027;
 var clipBottom = parseFloat(getParam('clipBottom')) || 0.025;
