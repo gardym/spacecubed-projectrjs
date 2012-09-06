@@ -3,8 +3,8 @@ define(['jquery'], function($) {
 
     var blue = '#4ABFD9', yellow = '#F2B33D';
     var eventColour = function() {
-      if(event.provider == 'Twitter') { return yellow; }
-      else { return blue; }
+      if(event.provider == 'Twitter') { return blue; }
+      else { return yellow; }
     };
 
     var star = $('<div class="star"></div>');
