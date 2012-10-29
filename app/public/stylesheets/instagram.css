@@ -35,11 +35,8 @@
     color: #444;
     font-size: 13px;    
     line-height: 15px;
-    -webkit-animation-duration: 20s;
-    -webkit-animation-name: instagram-animation;
-    -webkit-transform: translateX(0);
-    visibility: hidden;
     position: absolute;
+    visibility: hidden;
     max-width: 200px;
     border: 2px solid rgba(255,255,255,0.50);
     box-shadow: 0 0 16px 8px rgba(0,0,0,1);
@@ -48,6 +45,11 @@
     height: 100px;
 }
 
+.instagram.animation {
+    -webkit-animation-duration: 20s;
+    -webkit-animation-name: instagram-animation;
+    -webkit-transform: translateX(0);
+}
 
 .instagram .image
 {
