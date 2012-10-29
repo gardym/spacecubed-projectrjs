@@ -59,7 +59,7 @@ define(['jquery', 'visualisations/animations/circular'], function($, circularAni
 
     setTimeout(function() {
       var animateStep3 = Raphael.animation({path:"M " + (lx + 100) + " " + ly + " L " + (lx + 100) + " " + ly, "opacity": "0"},
-                                           2000,
+                                           1000,
                                            Raphael.easing_formulas["<"]);
       that.line.animate(animateStep3);
     }, 18000);
