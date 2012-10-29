@@ -25,42 +25,46 @@ define(['jquery', 'visualisations/animations/circular'], function($, circularAni
 
     var that = this;
     this.element.find(".image").bind("load", function() {
-      var lx = x + that.element.width() / 2;
-      var ly = y + that.element.height() / 2;
-
-      var s = that.latLongPosition;
-
-      that.line = window.mapPaper
-                        .path("M "+s.x+" "+ s.y +" L "+s.x+" "+ (s.y + 5))
-                        .attr({ "stroke": "#FFFFFF", "stroke-width": 2})
-                        .attr({"opacity":"0"});
-
-      // Animate trail
-      setTimeout(function() {
-        var animateStep1 = Raphael.animation({path:"M "+s.x+" "+ s.y+" L " + (lx - 20) + " "+ly, "opacity": "1"},
-                                             2000,
-                                             Raphael.easing_formulas[">"]);
-        that.line.animate(animateStep1);
-      }, 0);
-
-      setTimeout(function() {
-        var animateStep2 = Raphael.animation({path:"M "+s.x+" "+s.y+" L " + (lx + 20) + " "+ly},
-                                             16000);
-        that.line.animate(animateStep2);
-      }, 2000);
-
-      setTimeout(function() {
-        var animateStep3 = Raphael.animation({path:"M " + (lx + 100) + " " + ly + " L " + (lx + 100) + " " + ly, "opacity": "0"},
-                                             2000,
-                                             Raphael.easing_formulas["<"]);
-        that.line.animate(animateStep3);
-      }, 18000);
-
-      that.element.addClass("animation");
+      that._animate();
     });
 
     this.element.find(".image").prop("src", this.data.image);
+  };
 
+  InstagramView.prototype._animate = function() {
+    var lx = this.x + this.element.width() / 2;
+    var ly = this.y + this.element.height() / 2;
+
+    var s = this.latLongPosition;
+
+    this.line = window.mapPaper
+                      .path("M "+s.x+" "+ s.y +" L "+s.x+" "+ (s.y + 5))
+                      .attr({ "stroke": "#FFFFFF", "stroke-width": 2})
+                      .attr({"opacity":"0"});
+
+    var that = this;
+    // Animate trail
+    setTimeout(function() {
+      var animateStep1 = Raphael.animation({path:"M "+s.x+" "+ s.y+" L " + (lx - 20) + " "+ly, "opacity": "1"},
+                                           2000,
+                                           Raphael.easing_formulas[">"]);
+      that.line.animate(animateStep1);
+    }, 0);
+
+    setTimeout(function() {
+      var animateStep2 = Raphael.animation({path:"M "+s.x+" "+s.y+" L " + (lx + 20) + " "+ly},
+                                           16000);
+      that.line.animate(animateStep2);
+    }, 2000);
+
+    setTimeout(function() {
+      var animateStep3 = Raphael.animation({path:"M " + (lx + 100) + " " + ly + " L " + (lx + 100) + " " + ly, "opacity": "0"},
+                                           2000,
+                                           Raphael.easing_formulas["<"]);
+      that.line.animate(animateStep3);
+    }, 18000);
+
+    this.element.addClass("animation");
   };
 
   InstagramView.prototype.remove = function()
