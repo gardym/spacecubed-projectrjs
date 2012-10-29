@@ -29,22 +29,20 @@ define(['jquery', 'visualisations/animations/circular'], function($, circularAni
       var ly = y + that.element.height() / 2;
 
       var s = that.latLongPosition;
-      var self = that;
 
       // Animate trail
       setTimeout(function() {
-        self.line = window.mapPaper.path("M "+s.x+" "+ s.y +" L "+s.x+" "+ (s.y + 5)).attr({ "stroke": "#FFFFFF", "stroke-width": 2}).attr({"opacity":"0"});
-        //self.line = window.mapPaper.path("M "+s.x+" "+ (s.y + 5) +" L "+(lx - 100)+" "+ly).attr({ "stroke": "#FFFFFF", "stroke-width": 2}).attr({"opacity":"0"});
+        that.line = window.mapPaper.path("M "+s.x+" "+ s.y +" L "+s.x+" "+ (s.y + 5)).attr({ "stroke": "#FFFFFF", "stroke-width": 2}).attr({"opacity":"0"});
         var animateStep1 = Raphael.animation({path:"M "+s.x+" "+ s.y+" L " + (lx - 20) + " "+ly, "opacity": "1"}, 2000, Raphael.easing_formulas[">"]);
-        self.line.animate(animateStep1);
+        that.line.animate(animateStep1);
       }, 0)
       setTimeout(function() {
         var animateStep2 = Raphael.animation({path:"M "+s.x+" "+s.y+" L " + (lx + 20) + " "+ly}, 16000);
-        self.line.animate(animateStep2);
+        that.line.animate(animateStep2);
       }, 2000)
       setTimeout(function() {
         var animateStep3 = Raphael.animation({path:"M " + (lx + 100) + " " + ly + " L " + (lx + 100) + " " + ly, "opacity": "0"}, 2000, Raphael.easing_formulas["<"]);
-        self.line.animate(animateStep3);
+        that.line.animate(animateStep3);
       }, 18000)
 
       that.element.addClass("animation");
