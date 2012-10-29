@@ -23,28 +23,35 @@ define(['jquery', 'visualisations/animations/circular'], function($, circularAni
     .css('left', this.x + 'px')
     .css('top', this.y + 'px');
 
+    var that = this;
+    this.element.find(".image").bind("load", function() {
+      var lx = x + that.element.width() / 2;
+      var ly = y + that.element.height() / 2;
 
-    var lx = x + this.element.width() / 2;
-    var ly = y + this.element.height() / 2;
+      var s = that.latLongPosition;
+      var self = that;
 
-    var s = this.latLongPosition;
-    var self = this;
+      // Animate trail
+      setTimeout(function() {
+        self.line = window.mapPaper.path("M "+s.x+" "+ s.y +" L "+s.x+" "+ (s.y + 5)).attr({ "stroke": "#FFFFFF", "stroke-width": 2}).attr({"opacity":"0"});
+        //self.line = window.mapPaper.path("M "+s.x+" "+ (s.y + 5) +" L "+(lx - 100)+" "+ly).attr({ "stroke": "#FFFFFF", "stroke-width": 2}).attr({"opacity":"0"});
+        var animateStep1 = Raphael.animation({path:"M "+s.x+" "+ s.y+" L " + (lx - 20) + " "+ly, "opacity": "1"}, 2000, Raphael.easing_formulas[">"]);
+        self.line.animate(animateStep1);
+      }, 0)
+      setTimeout(function() {
+        var animateStep2 = Raphael.animation({path:"M "+s.x+" "+s.y+" L " + (lx + 20) + " "+ly}, 16000);
+        self.line.animate(animateStep2);
+      }, 2000)
+      setTimeout(function() {
+        var animateStep3 = Raphael.animation({path:"M " + (lx + 100) + " " + ly + " L " + (lx + 100) + " " + ly, "opacity": "0"}, 2000, Raphael.easing_formulas["<"]);
+        self.line.animate(animateStep3);
+      }, 18000)
 
-    // Animate trail
-    setTimeout(function() {
-      self.line = window.mapPaper.path("M "+s.x+" "+ s.y +" L "+s.x+" "+ (s.y + 5)).attr({ "stroke": "#FFFFFF", "stroke-width": 2}).attr({"opacity":"0"});
-      //self.line = window.mapPaper.path("M "+s.x+" "+ (s.y + 5) +" L "+(lx - 100)+" "+ly).attr({ "stroke": "#FFFFFF", "stroke-width": 2}).attr({"opacity":"0"});
-      var animateStep1 = Raphael.animation({path:"M "+s.x+" "+ s.y+" L " + (lx - 20) + " "+ly, "opacity": "1"}, 2000, Raphael.easing_formulas[">"]);
-      self.line.animate(animateStep1);
-    }, 0)
-    setTimeout(function() {
-      var animateStep2 = Raphael.animation({path:"M "+s.x+" "+s.y+" L " + (lx + 20) + " "+ly}, 16000);
-      self.line.animate(animateStep2);
-    }, 2000)
-    setTimeout(function() {
-      var animateStep3 = Raphael.animation({path:"M " + (lx + 100) + " " + ly + " L " + (lx + 100) + " " + ly, "opacity": "0"}, 2000, Raphael.easing_formulas["<"]);
-      self.line.animate(animateStep3);
-    }, 18000)
+      that.element.addClass("animation");
+    });
+
+    this.element.find(".image").prop("src", this.data.image);
+
   };
 
   InstagramView.prototype.remove = function()
@@ -55,7 +62,6 @@ define(['jquery', 'visualisations/animations/circular'], function($, circularAni
   InstagramView.prototype._createElement = function()
   {
     this.element = $("#template-instagram").clone().children().appendTo(this.canvas.element);
-    this.element.find(".image").prop("src", this.data.image);
     this.element
     .css('left', this.x + 'px')
     .css('top', this.y + 'px')
