@@ -15,7 +15,7 @@ var showExclusionAreas = getParam('showExclusionAreas');
 
 var offsetX = parseInt(getParam('offsetX')) || -40;
 var offsetY = parseInt(getParam('offsetY')) || 210;
-var clipTop = parseFloat(getParam('clipTop')) || 0.24;
+var clipTop = parseFloat(getParam('clipTop')) || 0.35;
 var clipLeft = parseFloat(getParam('clipLeft')) || 0.0;
 var clipRight = parseFloat(getParam('clipRight')) || 0.027;
 var clipBottom = parseFloat(getParam('clipBottom')) || 0.025;
