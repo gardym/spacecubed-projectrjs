@@ -16,6 +16,11 @@ define(['jquery', 'layers/features', 'layers/views/instagram'], function($, Feat
 
     _this._createView = function() {
       var grams = fetchGrams();
+
+      if(grams.length < 1) {
+        return;
+      }
+
       var randomGram = grams[Math.floor(Math.random() * grams.length)];
       return new InstagramView(canvas, randomGram);
     };

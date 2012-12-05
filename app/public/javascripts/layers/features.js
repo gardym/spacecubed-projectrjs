@@ -21,6 +21,10 @@ define(function() {
 
       var view = this._createView();
 
+      if(view === undefined) {
+        return;
+      }
+
       var viewArea = layoutManager.allocateAreaOfDimensions(
         view.element.width(),
         view.element.height(),
