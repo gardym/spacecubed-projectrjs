@@ -1,5 +1,6 @@
 *.swp
 node_modules/
 bin/
-.*env
+.*env*
 db/
+*.log
