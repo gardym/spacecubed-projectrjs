@@ -38,9 +38,9 @@ exports.events = function(req, res){
   };
 
   if(process.env.MONGOLAB_URI) {
-    var db_connection = new mongo.Db.connect(process.env.MONGOLAB_URI,
-                                             db_options,
-                                             search);
+    var db_connection = new mongo.connect(process.env.MONGOLAB_URI,
+                                          db_options,
+                                          search);
   } else {
     var db_connection = new mongo.Db('projectrjs',
                         new mongo.Server('localhost', 27017, db_options));
