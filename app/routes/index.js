@@ -38,7 +38,7 @@ exports.events = function(req, res){
   };
 
   if(process.env.MONGOLAB_URI) {
-    var db_connection = new mongo.connect(process.env.MONGOLAB_URI,
+    var db_connection = mongo.MongoClient.connect(process.env.MONGOLAB_URI,
                                           db_options,
                                           search);
   } else {
