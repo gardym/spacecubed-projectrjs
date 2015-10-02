@@ -2,19 +2,30 @@
   "author": "Mike Gardiner & Co-conspirators of ThoughtWork",
   "name": "projectrjs",
   "description": "Spacecubed-projectr(js)",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "dependencies": {
-    "instagram-node-lib": "*",
-    "moment": "*",
+    "async": "1.4",
+    "body-parser": "^1.14.1",
+    "errorhandler": "^1.4.2",
+    "express": "4.13",
+    "instagram-node-lib": "0.1",
+    "jade": "1.11",
+    "method-override": "^2.3.5",
+    "moment": "2.10",
     "mongodb": "2.0",
-    "ntwitter": "*",
-    "express": "*",
-    "jade": "*",
-    "async": "*"
+    "morgan": "^1.6.1",
+    "ntwitter": "0.5",
+    "serve-static": "^1.10.0"
   },
   "devDependencies": {},
   "optionalDependencies": {},
   "engines": {
     "node": "0.12.x"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/gardym/spacecubed-projectrjs.git"
+  },
+  "private": true,
+  "license": "UNLICENSED"
 }
