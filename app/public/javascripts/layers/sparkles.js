@@ -56,8 +56,10 @@ define(['layers/views/pin'], function(PinView) {
 
     var removeView = function(idOfViewToDie){
       var view = views[idOfViewToDie];
-      view.die();
-      delete views[idOfViewToDie];
+      if (view) {
+        view.die();
+        delete views[idOfViewToDie];
+      }
     };
 
     // Kick this bad boy off
